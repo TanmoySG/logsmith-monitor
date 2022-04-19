@@ -1,0 +1,33 @@
+{
+  "name": "logsmith-monitor",
+  "version": "0.1.0",
+  "description": "Logging Server",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "curl http://localhost:5000",
+    "dev" : "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanmoySG/logsmith-monitor.git"
+  },
+  "keywords": [
+    "logging",
+    "logs",
+    "monitor",
+    "server"
+  ],
+  "author": "Tanmoy Sen Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanmoySG/logsmith-monitor/issues"
+  },
+  "homepage": "https://github.com/TanmoySG/logsmith-monitor#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
