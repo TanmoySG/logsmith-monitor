@@ -9,3 +9,20 @@ Plan is to support
 - metrics (time taken/space used/etc) | json object of performance and stats
 - what else?
 
+
+### Nomenclature 
+
+- Publisher - The App/Service that is Publishing the Logs
+- Context - The Component of the App(Publisher) that is publishing the logs
+- Sub-Context - The Sub-Component of the Context Publishing the logs
+
+Contexts have 
+- Schema : property - hasSchema [true or false]
+- ID : property - id [a short UUID]
+
+## Logical Separations
+
+- The Publishers (Apps) are Logically Separated - Separate Directories - The Publisher Directory has a Contexts.json file with the details and list of Contexts
+- The Contexts have logical Seperation too - Separate JSONs (maybe)
+    - The JSONs have two parts - schema , logs (an array of JSONs (ndjson))
+- No Separation for Sub Conntexts - lives in the Contexts only
