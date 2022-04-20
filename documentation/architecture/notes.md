@@ -90,7 +90,7 @@ Contexts have
 
 Matches Type, and other Constraints
 ```
-### Or ---
+### --- Or ---
 
 ```
 {
