@@ -9,6 +9,7 @@ Plan is to support
 - metrics (time taken/space used/etc) | json object of performance and stats
 - what else?
 
+- Context-less logs go to default context
 
 ### Nomenclature 
 
@@ -26,23 +27,38 @@ Contexts have
 - The Contexts have logical Seperation too - Separate JSONs (maybe)
     - The JSONs have two parts - schema , logs (an array of JSONs (ndjson))
 - No Separation for Sub Conntexts - lives in the Contexts only
+- logs and metrics have separate logical boundaries - inside contexts dir. has both logs.json and metrics.json (or ndjson)
 
 ### Kind Of ...
 
 ```
----Publisher#1
-  |-- ContextsRegistryForPub#1.json
-  |-- Context#1.json
-  |-- Context#2.json
-  |-- ...
----Publisher#2
-  |-- ContextsRegistryForPub#2.json
-  |-- Context#1.json
-  |-- ...
----Publisher#3
-  |-- ContextsRegistryForPub#3.json
-  |-- Context#1.json
-  |-- ...
+--- Publisher#1
+    |-- ContextsRegistryForPub#1.json
+    |-- Context#1
+        |-- logs.json
+        |-- metrics.json
+    |-- Context#2.json
+        |-- logs.json
+        |-- metrics.json
+    |-- ...
+--- Publisher#2
+    |-- ContextsRegistryForPub#2.json
+    |-- Context#1
+        |-- logs.json
+        |-- metrics.json
+    |-- Context#2.json
+        |-- logs.json
+        |-- metrics.json
+    |-- ...
+--- Publisher#3
+    |-- ContextsRegistryForPub#3.json
+    |-- Context#1
+        |-- logs.json
+        |-- metrics.json
+    |-- Context#2.json
+        |-- logs.json
+        |-- metrics.json
+    |-- ...
 -- ...
 ```
 ### PublishersRegistry - where List and Details of Publishers are stored
@@ -65,21 +81,19 @@ Contexts have
         "id" : "123345",
         "timestamp" : "1233",
         "description" : "Lorem Ipsum",
+        "kind" : ["logs", "metrics"], //array of options
         "usesSchema" : true,
         "schema": {...}
     }
 }
 ```
-### LOGS - where logs live - ndjson, maybe, json
+### LOGS/Metrics - where logs and metrics live - ndjson, maybe, json
 ```
-{
-    logs:[
-        ...
-    ]
-}
+{ ... }
+{ ... }
 ```
 
-## Log Schema 
+## Schema 
 
 ```
 {
@@ -107,3 +121,18 @@ Matches only Keys, if keys are present.
 ```
 Matches only Keys, if keys are present.
 ```
+
+## Process Flow
+
+1. An App needs to register itself (as a Publisher) onto the logsmith - PublisherRegistry
+2. The Context may be created/registered in contextsRegistry
+3. Emit Logs/metrics from somewhere. 
+4. Check Context 
+    - If Context Exists
+        - Check if it uses Schema 
+        - Compare Schema with Data (if usesSchema=true)
+        - Else, No Schema - register
+    - if Context Does't Exist
+        - Register Context - no schema
+        - Register Logs
+5. ?
