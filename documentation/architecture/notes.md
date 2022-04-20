@@ -78,3 +78,23 @@ Contexts have
     ]
 }
 ```
+
+## Log Schema -
+
+```
+{
+    "key" : {
+        "type" : "string",
+    }
+}
+```
+Matches Type, and other Constraints
+### Or ---
+
+```
+{
+    "key" : "descriptor",
+    "key" : "descriptor",
+    ...
+}
+Matches only Keys, if keys are present.
