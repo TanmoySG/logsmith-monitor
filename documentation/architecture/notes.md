@@ -102,14 +102,8 @@ Matches Type, and other Constraints
 Matches only Keys, if keys are present.
 ```
 
-#### Going with the latter option
+### Going with the latter option
 
 ```
-{
-    "key" : "descriptor",
-    "key" : "descriptor",
-    ...
-}
-
 Matches only Keys, if keys are present.
 ```
