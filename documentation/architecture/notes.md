@@ -90,7 +90,19 @@ Contexts have
 
 Matches Type, and other Constraints
 ```
-### --- Or ---
+**Or**
+
+```
+{
+    "key" : "descriptor",
+    "key" : "descriptor",
+    ...
+}
+
+Matches only Keys, if keys are present.
+```
+
+#### Going with the latter option
 
 ```
 {
