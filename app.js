@@ -1,4 +1,5 @@
 import express from "express";
+import { validate_log } from "./handlers/logsHandler/validate-request.js";
 
 const app = express();
 const PORT = 8080;
@@ -7,7 +8,8 @@ app.use(express.json());
 
 app.get("/", function (request, response) {
     response.send({
-        message: "Welcome to Logsmith Monitor!"
+        message: "Welcome to Logsmith Monitor!",
+        isValid: validate_log({})
     })
 })
 
@@ -18,7 +20,7 @@ app.get("/publish/logs", function (request, response) {
             context: "Name of Component/App Pushing the Log",
             log: { "doc": "Put a JSON Object with all the logging details" },
             status: "INFO | WARN | SUCCESS | FAILURE | CRITICAL",
-            subcontext : "sub.cotexts.to.a.context"
+            subcontext : "sub.contexts.to.a.context"
         }
     })
 })
