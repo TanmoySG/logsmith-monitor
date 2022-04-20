@@ -79,7 +79,7 @@ Contexts have
 }
 ```
 
-## Log Schema -
+## Log Schema 
 
 ```
 {
@@ -87,8 +87,9 @@ Contexts have
         "type" : "string",
     }
 }
-```
+
 Matches Type, and other Constraints
+```
 ### Or ---
 
 ```
@@ -97,4 +98,6 @@ Matches Type, and other Constraints
     "key" : "descriptor",
     ...
 }
+
 Matches only Keys, if keys are present.
+```
