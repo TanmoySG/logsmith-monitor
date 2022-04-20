@@ -26,3 +26,55 @@ Contexts have
 - The Contexts have logical Seperation too - Separate JSONs (maybe)
     - The JSONs have two parts - schema , logs (an array of JSONs (ndjson))
 - No Separation for Sub Conntexts - lives in the Contexts only
+
+### Kind Of ...
+
+```
+---Publisher#1
+  |-- ContextsRegistryForPub#1.json
+  |-- Context#1.json
+  |-- Context#2.json
+  |-- ...
+---Publisher#2
+  |-- ContextsRegistryForPub#2.json
+  |-- Context#1.json
+  |-- ...
+---Publisher#3
+  |-- ContextsRegistryForPub#3.json
+  |-- Context#1.json
+  |-- ...
+-- ...
+```
+### PublishersRegistry - where List and Details of Publishers are stored
+```
+{
+    "publisher#1" : {
+        "id" : "xyzabc123",
+        "timestamp" : "12345678",
+        "description" : "Lorem Ipsum",
+        "path" : "/path/to/pub#1/directory"
+    },
+    "publisher#2" : {...},
+    "publisher#3" : {...},
+}
+```
+### ContextRegistry - where List and Details of Contexts
+```
+{
+    "context#1" : {
+        "id" : "123345",
+        "timestamp" : "1233",
+        "description" : "Lorem Ipsum",
+        "usesSchema" : true,
+        "schema": {...}
+    }
+}
+```
+### LOGS - where logs live - ndjson, maybe, json
+```
+{
+    logs:[
+        ...
+    ]
+}
+```
