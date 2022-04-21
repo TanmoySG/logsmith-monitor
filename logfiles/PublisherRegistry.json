@@ -1,5 +1,13 @@
 {
     "test": {
         "user": "xyz"
+    },
+    "tester": {
+        "id": "ermGXtA3",
+        "path": "logfiles/tester",
+        "origin": "two",
+        "namespace": "tester",
+        "timestamp": 1650571761429,
+        "description": "hfbhfbvhfdbvf"
     }
 }
