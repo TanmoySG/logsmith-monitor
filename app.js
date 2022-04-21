@@ -1,5 +1,5 @@
 import express from "express";
-import { validate_log } from "./handlers/logsHandler/validate-request.js";
+import { validatePublisher } from "./handlers/logsHandler/validate.js";
 
 const app = express();
 const PORT = 8080;
@@ -9,7 +9,7 @@ app.use(express.json());
 app.get("/", function (request, response) {
     response.send({
         message: "Welcome to Logsmith Monitor!",
-        isValid: validate_log({})
+        isValid: validatePublisher({})
     })
 })
 
