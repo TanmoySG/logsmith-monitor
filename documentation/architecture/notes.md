@@ -66,9 +66,11 @@ Contexts have
 {
     "publisher#1" : {
         "id" : "xyzabc123",
+        "path" : "/path/to/pub#1/directory",
+        "origin" : "app.something.com:1000",
         "timestamp" : "12345678",
-        "description" : "Lorem Ipsum",
-        "path" : "/path/to/pub#1/directory"
+        "namespace" : "publisher#1",
+        "description" : "Lorem Ipsum"
     },
     "publisher#2" : {...},
     "publisher#3" : {...},
@@ -136,3 +138,22 @@ Matches only Keys, if keys are present.
         - Register Context - no schema
         - Register Logs
 5. ?
+
+
+### Can this (logsmith-monitor) be a Logging-as-a-Service (LaaS) ?
+
+What is LaaS? - [Logging as a Service on Wikipedia](https://en.wikipedia.org/wiki/Logging_as_a_service)
+
+(Ideate Later)
+
+### cURL Requests Scratchpad
+```
+curl --request POST \
+  --url localhost:8080/publisher/new \
+  --header 'content-type: application/json' \
+  --data '{
+      "publisher" : "tester",
+      "origin" : "two",
+      "description" : "hfbhfbvhfdbvf"
+  }'
+```
