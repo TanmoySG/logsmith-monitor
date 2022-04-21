@@ -148,12 +148,5 @@ What is LaaS? - [Logging as a Service on Wikipedia](https://en.wikipedia.org/wik
 
 ### cURL Requests Scratchpad
 ```
-curl --request POST \
-  --url localhost:8080/publisher/new \
-  --header 'content-type: application/json' \
-  --data '{
-      "publisher" : "tester",
-      "origin" : "two",
-      "description" : "hfbhfbvhfdbvf"
-  }'
+curl --request POST --url localhost:8080/publisher/new --header 'content-type: application/json' --data '{"publisher" : "tester","origin" : "two","description" : "hfbhfbvhfdbvf"}'
 ```
