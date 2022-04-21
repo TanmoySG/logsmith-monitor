@@ -12,7 +12,7 @@ export function getPublishersRegistry() {
     return PublisherRegistry;
 }
 
-export function addToPublishersRegistry(newPublisher) {
+export function addToPublisherRegistry(newPublisher) {
     const PublisherRegistry = getPublishersRegistry();
     console.log(PublisherRegistry)
     if (validatePublisher(newPublisher, PublisherRegistry)) {
@@ -32,6 +32,6 @@ export function addToPublishersRegistry(newPublisher) {
             })
         })
     }else{
-        return "userAlreadyExist"
+        return "user Already Exist"
     }
 }

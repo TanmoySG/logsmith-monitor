@@ -1,5 +1,5 @@
 import express from "express";
-import { addToPublishersRegistry } from "./handlers/publishers/publisher.js";
+import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
 
 const app = express();
 const PORT = 8080;
@@ -9,7 +9,7 @@ app.use(express.json());
 app.get("/", function (request, response) {
     response.send({
         message: "Welcome to Logsmith Monitor!",
-        isValid: JSON.stringify(addToPublishersRegistry({
+        isValid: JSON.stringify(addToPublisherRegistry({
             "publisher" : "tester",
             "description" : "Fucl"
         }))
