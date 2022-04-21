@@ -2,6 +2,7 @@ import * as filesystem from 'fs';
 import { nanoid } from "nanoid";
 import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
 import { validateNewPublisher } from "./validate.js";
+import { createContextRegistry } from '../contexts/context.js';
 
 const PublisherRegistryFilePath = "logfiles/PublisherRegistry.json";
 
@@ -13,7 +14,6 @@ export function getPublishersRegistry() {
 }
 
 export function addToPublisherRegistry(newPublisher, callback) {
-    console.log(newPublisher);
     const PublisherRegistry = getPublishersRegistry();
     if (validateNewPublisher(newPublisher, PublisherRegistry)) {
         const publisherNamespacePath = "logfiles/" + newPublisher["publisher"];
@@ -27,13 +27,14 @@ export function addToPublisherRegistry(newPublisher, callback) {
                 "timestamp": Date.now(),
                 "description": newPublisher["description"]
             };
-            console.log(newPublisherProfile);
-            PublisherRegistry[newPublisher["publisher"]] = newPublisherProfile;
-            JSONWriterGeneric(PublisherRegistryFilePath, PublisherRegistry, function (err) {
-                console.log(err);
-                callback({
-                    status: "success",
-                    message: "Publisher Created!"
+            createContextRegistry(publisherNamespacePath, function (err) {
+                PublisherRegistry[newPublisher["publisher"]] = newPublisherProfile;
+                JSONWriterGeneric(PublisherRegistryFilePath, PublisherRegistry, function (err) {
+                    console.log(err);
+                    callback({
+                        status: "success",
+                        message: "Publisher Created!"
+                    });
                 });
             });
         })

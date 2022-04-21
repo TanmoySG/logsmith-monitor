@@ -1,5 +1,9 @@
-function validateSchema(LogBody) {
-
+export function validateExistingPublisher(existingPublisher, PublisherRegistry) {
+    if (existingPublisher in PublisherRegistry) {
+        return true
+    } else {
+        return false
+    }
 }
 
 export function validateLog(LogBody) {
@@ -22,8 +26,8 @@ export function validateNewPublisher(newPublisher, PublisherRegistry) {
     if (newPublisher["publisher"] in PublisherRegistry) {
         return false
     } else {
-        if (["publisher", "origin"] in newPublisher) {
-            if (length(newPublisher["publisher"]) != 0 && length(newPublisher["origin"]) != 0) {
+        if ("publisher" in newPublisher && "origin" in newPublisher) {
+            if (newPublisher["publisher"].length != 0 && newPublisher["origin"].length != 0) {
                 return true
             } else {
                 return false
