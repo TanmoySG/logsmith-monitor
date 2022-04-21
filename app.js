@@ -16,6 +16,30 @@ app.get("/", function (request, response) {
     })
 })
 
+
+app.get("/publisher/new", function (request, response) {
+    response.send({
+        greetings: "Welcome to Logsmith Monitor Documentation!",
+        message: "Use this route in POST method to register new publisher.",
+        route : "{url}:{port}/publisher/new",
+        method : "POST",
+        body: {
+            publisher : "A Recognizable and Short Name of the Publisher, Eg. App1",
+            origin : "Origin of the Publisher - Technical Name or URI. Eg. backend.app1.com:5000",
+            description : "Description of the Publisher. Eg. The Backend of App1"
+        }
+    })
+})
+
+
+app.post("/publisher/new", function (request, response) {
+    // const newPublisherRequestProfile = request.body;
+    addToPublisherRegistry(request.body, function(PublisherRegistryResponse){
+        response.status(PublisherRegistryResponse['status'] == "success" ? 200 : 412 );
+        response.send(PublisherRegistryResponse);
+    });
+})
+
 app.get("/publish/logs", function (request, response) {
     response.send({
         message: "Publish Logs Route",

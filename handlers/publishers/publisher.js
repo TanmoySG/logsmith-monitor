@@ -1,7 +1,7 @@
 import * as filesystem from 'fs';
 import { nanoid } from "nanoid";
 import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
-import { validatePublisher } from "./validate.js";
+import { validateNewPublisher } from "./validate.js";
 
 const PublisherRegistryFilePath = "logfiles/PublisherRegistry.json";
 
@@ -12,26 +12,35 @@ export function getPublishersRegistry() {
     return PublisherRegistry;
 }
 
-export function addToPublisherRegistry(newPublisher) {
+export function addToPublisherRegistry(newPublisher, callback) {
+    console.log(newPublisher);
     const PublisherRegistry = getPublishersRegistry();
-    console.log(PublisherRegistry)
-    if (validatePublisher(newPublisher, PublisherRegistry)) {
+    if (validateNewPublisher(newPublisher, PublisherRegistry)) {
         const publisherNamespacePath = "logfiles/" + newPublisher["publisher"];
         filesystem.mkdir(publisherNamespacePath, function (err) {
             if (err) throw err;
             const newPublisherProfile = {
                 "id": nanoid(8),
+                "path": publisherNamespacePath,
+                "origin": newPublisher["origin"],
+                "namespace": newPublisher["publisher"],
                 "timestamp": Date.now(),
-                "description": newPublisher["description"],
-                "path": publisherNamespacePath
-            }
+                "description": newPublisher["description"]
+            };
+            console.log(newPublisherProfile);
             PublisherRegistry[newPublisher["publisher"]] = newPublisherProfile;
             JSONWriterGeneric(PublisherRegistryFilePath, PublisherRegistry, function (err) {
                 console.log(err);
-                return "success";
-            })
+                callback({
+                    status: "success",
+                    message: "Publisher Created!"
+                });
+            });
         })
-    }else{
-        return "user Already Exist"
+    } else {
+        callback({
+            status: "failed",
+            message: "Error in Publisher Profile."
+        });
     }
 }

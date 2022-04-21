@@ -1,6 +1,3 @@
-import * as filesystem from 'fs';
-import { JSONWriterGeneric } from "../utilities/jsonWriter.js";
-
 function validateSchema(LogBody) {
 
 }
@@ -21,10 +18,18 @@ export function validateLog(LogBody) {
     }
 }
 
-export function validatePublisher(newPublisher, PublisherRegistry) {
-        if (newPublisher["publisher"] in PublisherRegistry){
-             return false
-        }else{
-            return true
+export function validateNewPublisher(newPublisher, PublisherRegistry) {
+    if (newPublisher["publisher"] in PublisherRegistry) {
+        return false
+    } else {
+        if (["publisher", "origin"] in newPublisher) {
+            if (length(newPublisher["publisher"]) != 0 && length(newPublisher["origin"]) != 0) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
         }
+    }
 }
