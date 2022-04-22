@@ -17,5 +17,6 @@ Logsmith-Monitor has different layers of Extractions
     - Publisher
         - ...
 ```
-
+<centre>
 ![Diagram](./diagrams/logsmith-monitor-flow.jpg)
+<centre>
