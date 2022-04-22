@@ -83,9 +83,16 @@ Contexts have
         "id" : "123345",
         "timestamp" : "1233",
         "description" : "Lorem Ipsum",
-        "kind" : ["logs", "metrics"], //array of options
-        "usesSchema" : true,
-        "schema": {...}
+        "kind" : {
+            "logs" : {
+                "usesSchema" : true,
+                "schema": {...}
+            },
+            "metrics" : {
+                "usesSchema" : true,
+                "schema": {...}
+            }
+        }
     }
 }
 ```
