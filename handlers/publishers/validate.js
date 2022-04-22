@@ -1,5 +1,5 @@
-export function validateExistingPublisher(existingPublisher, PublisherRegistry) {
-    if (existingPublisher in PublisherRegistry) {
+export function validateExistingPublisher(publisher, PublisherRegistry) {
+    if (publisher in PublisherRegistry) {
         return true
     } else {
         return false

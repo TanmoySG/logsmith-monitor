@@ -1,6 +1,7 @@
 import express from "express";
 import { addToPublisherRegistry, getPublishersRegistry } from "./handlers/publishers/publisher.js";
 import { validateExistingPublisher } from "./handlers/publishers/validate.js";
+import { addToContextrRegistry } from "./handlers/contexts/context.js";
 
 const app = express();
 const PORT = 8080;
@@ -8,6 +9,7 @@ const PORT = 8080;
 app.use(express.json());
 
 app.get("/", function (request, response) {
+    addToContextrRegistry();
     response.send({
         message: "Welcome to Logsmith Monitor!",
         version: "logsmith-monitor v0.1.0"
