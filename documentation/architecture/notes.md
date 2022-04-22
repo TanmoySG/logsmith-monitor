@@ -77,21 +77,44 @@ Contexts have
 }
 ```
 ### ContextRegistry - where List and Details of Contexts
+Whats Included in request ? - context(namespace),  description,  origin, kind , if log or metrics use schema then add keys log and metric and value as a json object with {"key" : "descriptor" }.
+
+status ad timestamp are added by default - no need to add those
+
+Do we need descriptors for schema?
+
+#### Request
+```
+POST /:publisher/context/new
+
+{
+        "namespace" : "context#1",
+        "origin" : "app.something.com:1000/context1",
+        "description" : "Lorem Ipsum",
+        "kind" : [log , metric],
+        "logs" : [column1, column2, ...],
+        "metrics":[ column1, 2, ...]
+}
+```
+#### How it looks when processed
 ```
 {
     "context#1" : {
         "id" : "123345",
         "timestamp" : "1233",
         "description" : "Lorem Ipsum",
-        "kind" : {
-            "logs" : {
-                "usesSchema" : true,
-                "schema": {...}
-            },
-            "metrics" : {
-                "usesSchema" : true,
-                "schema": {...}
-            }
+        "namespace" : "context#1",
+        "origin" : "app.something.com:1000/context1",
+        "kind" : [log , metric],
+        "logs" : {
+            "usesSchema" : true,
+            "schema": [..., status[WARN|INFO|etc], timestamp],
+            "path" : "path/to/logs"
+        },
+        "metrics" : {
+            "usesSchema" : true,
+            "schema": [..., timestamp],
+            "path" : "path/to/metrics"
         }
     }
 }
