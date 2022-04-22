@@ -18,7 +18,7 @@ export function getContextRegistry(publisher) {
     return ContextRegistry;
 }
 
-export function addToContextrRegistry(publisher, newContext, callback) {
+export function addToContextsRegistry(publisher, newContext, callback) {
     const ContextRegistry = getContextRegistry(publisher);
     if(validateExistingPublisher(publisher)){
         
