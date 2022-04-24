@@ -18,9 +18,3 @@ export function jsonlWriter(filePath, contentToWrite, callback){
         }
     })
 }
-
-// jsonlWriter("test.jsonl", {"test" : "succcess", "something" : "nothing"}, function(err){console.log(err)})
-// jsonlWriter("test.jsonl", {"test2" : "succcess", "somethin1g" : "nothing"}, function(err){console.log(err)})
-// jsonlWriter("test.jsonl", {"test3" : "succcess", "something1" : "nothing"}, function(err){console.log(err)})
-
-// jsonlReader("test.jsonl", (data)=>{console.log(data)})
