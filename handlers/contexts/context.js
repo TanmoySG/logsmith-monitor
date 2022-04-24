@@ -1,6 +1,7 @@
 import * as filesystem from 'fs';
 import { JSONWriterGeneric } from "../utilities/jsonWriter.js";
 import { validateExistingPublisher } from '../publishers/validate.js';
+import { validateNewContext } from './validate.js';
 
 const ContextRegistryTemplate = {}
 
