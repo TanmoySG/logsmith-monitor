@@ -95,6 +95,19 @@ POST /:publisher/context/new
         "logs" : [column1, column2, ...],
         "metrics":[ column1, 2, ...]
 }
+
+
+or 
+
+{
+        "namespace" : "context#1",
+        "origin" : "app.something.com:1000/context1",
+        "description" : "Lorem Ipsum",
+        "kind" : {
+            "logs" : [column1, column2, ...],
+            "metrics":[ column1, 2, ...]
+        }    
+}
 ```
 #### How it looks when processed
 ```
