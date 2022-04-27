@@ -23,7 +23,7 @@ export function validateLog(LogBody) {
 }
 
 export function validateNewPublisher(newPublisher, PublisherRegistry) {
-    if (newPublisher["publisher"] in PublisherRegistry) {
+    if (validateExistingPublisher(newPublisher["publisher"], PublisherRegistry)) {
         return false
     } else {
         if ("publisher" in newPublisher && "origin" in newPublisher) {
