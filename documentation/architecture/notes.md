@@ -198,7 +198,7 @@ curl --request POST --url localhost:8080/publisher/new --header 'content-type: a
 
 ### Tests
 
-A Snippent on How to Write Tests.
+A Snippet on How to Write Tests.
 
 
 Structure

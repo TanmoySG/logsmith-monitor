@@ -63,11 +63,11 @@ describe("ContextHandler-Validate Tests", function(){
             expect(validateNewContext(invalidNewContextData.invalidNewContextTwo, TestContextRegistry)).to.equal(false)
         })
 
-        it("Test Case #3 [ Failure Case - Origin Missing       ] [ Should Return False ]", function(){
+        it("Test Case #4 [ Failure Case - Origin Missing       ] [ Should Return False ]", function(){
             expect(validateNewContext(invalidNewContextData.invalidNewContextThree, TestContextRegistry)).to.equal(false)
         })
 
-        it("Test Case #3 [ Failure Case - Invalid Origin Value ] [ Should Return False ]", function(){
+        it("Test Case #5 [ Failure Case - Invalid Origin Value ] [ Should Return False ]", function(){
             expect(validateNewContext(invalidNewContextData.invalidNewContextThree, TestContextRegistry)).to.equal(false)
         })
     })
