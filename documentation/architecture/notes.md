@@ -104,8 +104,8 @@ or
         "origin" : "app.something.com:1000/context1",
         "description" : "Lorem Ipsum",
         "kind" : {
-            "logs" : [column1, column2, ...],
-            "metrics":[ column1, 2, ...]
+            "logs" : [column1, column2, ...], // or incase of no schema logs: []
+            "metrics":[ column1, 2, ...] // or incase of no schema metrics: []
         }    
 }
 ```
