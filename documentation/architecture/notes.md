@@ -195,3 +195,41 @@ What is LaaS? - [Logging as a Service on Wikipedia](https://en.wikipedia.org/wik
 ```
 curl --request POST --url localhost:8080/publisher/new --header 'content-type: application/json' --data '{"publisher" : "tester","origin" : "two","description" : "hfbhfbvhfdbvf"}'
 ```
+
+### Tests
+
+A Snippent on How to Write Tests.
+
+
+Structure
+```
+ <Handler-Component> Tests
+    Testing Method <method-name>
+        Test Case #<N> [ <Success/Failure> Case - <Description> ] [ Should Return <Value> ]
+```
+Code
+```
+describe("ContextHandler-Validate Tests", function(){
+    describe("Testing Method - validateNewContext()", function(){
+        it("Test Case #1 [ Success Case - Valid Context        ] [ Should Return True  ]", function(){
+            expect(validateNewContext(validNewContextData.validNewContextOne, TestContextRegistry)).to.equal(true)
+        })
+
+        it("Test Case #2 [ Failure Case - Context Exists       ] [ Should Return False ]", function(){
+            expect(validateNewContext(invalidNewContextData.invalidNewContextOne, TestContextRegistry)).to.equal(false)
+        })
+
+        it("Test Case #3 [ Failure Case - Kind Value Missing   ] [ Should Return False ]", function(){
+            expect(validateNewContext(invalidNewContextData.invalidNewContextTwo, TestContextRegistry)).to.equal(false)
+        })
+
+        it("Test Case #3 [ Failure Case - Origin Missing       ] [ Should Return False ]", function(){
+            expect(validateNewContext(invalidNewContextData.invalidNewContextThree, TestContextRegistry)).to.equal(false)
+        })
+
+        it("Test Case #3 [ Failure Case - Invalid Origin Value ] [ Should Return False ]", function(){
+            expect(validateNewContext(invalidNewContextData.invalidNewContextThree, TestContextRegistry)).to.equal(false)
+        })
+    })
+})
+```
