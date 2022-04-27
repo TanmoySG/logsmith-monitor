@@ -1,6 +1,13 @@
+export function validateExistingContext(context, ContextRegistry) {
+    if (context in ContextRegistry) {
+        return true
+    } else {
+        return false
+    }
+}
 
 export function validateNewContext(newContext, ContextRegistry) {
-    if (newContext["context"] in ContextRegistry) {
+    if (validateExistingContext(newContext["context"], ContextRegistry)) {
         return false
     } else {
         if ("context" in newContext && "origin" in newContext && "kind" in newContext) {
@@ -17,6 +24,6 @@ export function validateNewContext(newContext, ContextRegistry) {
     }
 }
 
-export function hasSchema(newContext, ContextRegistry){
+export function hasSchema(newContext, ContextRegistry) {
 
 }
