@@ -88,7 +88,7 @@ Do we need descriptors for schema?
 POST /:publisher/context/new
 
 {
-        "namespace" : "context#1",
+        "context" : "context#1",
         "origin" : "app.something.com:1000/context1",
         "description" : "Lorem Ipsum",
         "kind" : [log , metric],
@@ -100,7 +100,7 @@ POST /:publisher/context/new
 or 
 
 {
-        "namespace" : "context#1",
+        "context" : "context#1",
         "origin" : "app.something.com:1000/context1",
         "description" : "Lorem Ipsum",
         "kind" : {
@@ -110,6 +110,8 @@ or
 }
 ```
 #### How it looks when processed
+
+`context` ---becomes--> `namespace`
 ```
 {
     "context#1" : {
