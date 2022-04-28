@@ -40,7 +40,7 @@ const invalidNewContextData = {
         "description": "Test Context - Test #3",
         "kind": {}
     },
-    invalidNewContextThree : {
+    invalidNewContextFour : {
         "context": "context#3",
         "origin": "",
         "description": "Test Context - Test #3",
@@ -68,7 +68,7 @@ describe("ContextHandler-Validate Tests", function(){
         })
 
         it("Test Case #5 [ Failure Case - Invalid Origin Value ] [ Should Return False ]", function(){
-            expect(validateNewContext(invalidNewContextData.invalidNewContextThree, TestContextRegistry)).to.equal(false)
+            expect(validateNewContext(invalidNewContextData.invalidNewContextFour, TestContextRegistry)).to.equal(false)
         })
     })
 })
