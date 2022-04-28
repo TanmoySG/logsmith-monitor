@@ -233,3 +233,30 @@ describe("ContextHandler-Validate Tests", function(){
     })
 })
 ```
+
+### Schema Rules
+
+Rules that govern logs and metric schema
+
+#### Logs Schema Rules
+```
+- timestamp, scope are put in by default
+- If the above are added in the new context defination, logsmith considers it as no-schema, as they are added and populated by the system
+- If a log has a schema, its uses strict schema usage, i.e logs with any extra columns or missing columns are not recorded
+- Will introduce a useStrictSchema Flag in future to enable and disable it.
+- If The publisher emits timestamp, the system generated timestamp is overriden
+- No need to  mention timestamp and scope for new schema defination
+- Scope :  WARN, INFO, CRITICAL, etc
+- timestamp : when log is registered
+```
+
+#### Metrics Schema Rules
+```
+- timestamp is put in by default
+- If the above are added in the new context defination, logsmith considers it as no-schema, as they are added and populated by the system
+- If a metric has a schema, its uses strict schema usage, i.e metric with any extra columns or missing columns are not recorded
+- Will introduce a useStrictSchema Flag in future to enable and disable it.
+- If The publisher emits timestamp, the system generated timestamp is overriden
+- No need to  mention timestamp for new schema defination
+- timestamp : when log is registered
+```
