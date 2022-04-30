@@ -23,6 +23,7 @@ export function addToContextsRegistry(publisher, newContext, callback) {
     const ContextRegistry = getContextRegistry(publisher);
     if(validateExistingPublisher(publisher)){
         
+        
     }else{
        callback({
            status : "failed",
