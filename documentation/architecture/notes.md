@@ -15,7 +15,7 @@ Plan is to support
 
 - Publisher - The App/Service that is Publishing the Logs
 - Context - The Component of the App(Publisher) that is publishing the logs
-- Sub-Context - The Sub-Component of the Context Publishing the logs
+- Sub-Context - The Sub-Component of the Context Publishing the logs [❌]
 
 Contexts have 
 - Schema : property - hasSchema [true or false]
@@ -167,6 +167,11 @@ Matches only Keys, if keys are present.
 
 ```
 Matches only Keys, if keys are present.
+```
+
+**Update** Wont use Descriptor, just key-names.
+```
+Match Keys Only, no Descriptor
 ```
 
 ## Process Flow
