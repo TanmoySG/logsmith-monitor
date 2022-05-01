@@ -272,7 +272,7 @@ How should the "Template" LogRegistry look like?
 {
     "kind" : "logs",
     "hasSchema" : true, // or false
-    "schema" : ["col1", "col2"],
+    "schema" : ["col1", "col2","timestamp" , "status"],
     "defaults" : ["timestamp" , "status"],
     "logCount" : 69,
     "logs" :[
