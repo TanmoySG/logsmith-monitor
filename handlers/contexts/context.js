@@ -1,4 +1,5 @@
 import * as filesystem from 'fs';
+import { nanoid } from 'nanoid';
 import { JSONWriterGeneric } from "../utilities/jsonWriter.js";
 import { validateExistingPublisher } from '../publishers/validate.js';
 import { checkLogHasValidSchema, checkMetricHasValidSchema, validateNewContext } from './validate.js';
@@ -34,13 +35,14 @@ export function getContextRegistry(publisher) {
 }
 
 export function addToContextsRegistry(publisher, newContext, callback) {
+    const PublisherRegistry = getPublishersRegistry();
     const ContextRegistryFilePath = `logfiles/${publisher}/ContextRegistry.json`;
     const ContextRegistry = getContextRegistry(publisher);
-    if (validateExistingPublisher(publisher)) {
-        const publisherProfile = getPublishersRegistry()[publisher]
+    if (validateExistingPublisher(publisher, PublisherRegistry)) {
+        const publisherProfile = PublisherRegistry[publisher]
         const publisherNamespacePath = publisherProfile["path"];
         if (validateNewContext(newContext, ContextRegistry)) {
-            const contextNamespacePath = publisherNamespacePath + newContext["context"];
+            const contextNamespacePath = publisherNamespacePath + "/" + newContext["context"];
             filesystem.mkdir(contextNamespacePath, function (err) {
                 if (err) throw err;
                 const newContextProfile = {
@@ -54,7 +56,7 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                 };
 
                 const logRegistryPath = `${contextNamespacePath}/LogsRegistry.json`
-                if ("logs" in Object.keys(newContext["kind"])) {
+                if ("logs" in newContext["kind"]) {
                     const logHasSchema = checkLogHasValidSchema(newContext);
                     newContextProfile.kind["logs"] = {
                         "usesSchema": logHasSchema
@@ -62,17 +64,17 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                     if (logHasSchema) {
                         newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
                         logRegistryTemplate["usesSchema"] = logHasSchema;
-                        logRegistryTemplate["schema"] = [...newContext["logs"], ...defaultLogSchema]
+                        logRegistryTemplate["schema"] = [...newContext["kind"]["logs"], ...defaultLogSchema]
                     } else {
                         newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
                         logRegistryTemplate["usesSchema"] = logHasSchema;
                         logRegistryTemplate["schema"] = [...defaultLogSchema]
                     }
-                    createLogRegistry(logRegistryPath, logRegistryTemplate, function (err) {
-                        if (err) throw err;
+                    createLogRegistry(contextNamespacePath, logRegistryTemplate, function (err) {
+                        console.log(err);
                         ContextRegistry[newContext["context"]] = newContextProfile;
                         JSONWriterGeneric(ContextRegistryFilePath, ContextRegistry, function (err) {
-                            if (err) throw err;
+                            console.log(err);
                         })
                     })
                 }
@@ -83,8 +85,8 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                 }
 
                 callback({
-                    status: "failed",
-                    message: "Not yet Supported."
+                    status: "success",
+                    message: "Context Added."
                 })
             })
         } else {
