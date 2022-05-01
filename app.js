@@ -1,7 +1,7 @@
 import express from "express";
 import { addToPublisherRegistry, getPublishersRegistry } from "./handlers/publishers/publisher.js";
 import { validateExistingPublisher } from "./handlers/publishers/validate.js";
-import { addToContextrRegistry } from "./handlers/contexts/context.js";
+import { addToContextsRegistry } from "./handlers/contexts/context.js";
 
 const app = express();
 const PORT = 8080;

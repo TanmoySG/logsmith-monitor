@@ -21,20 +21,20 @@ export function getContextRegistry(publisher) {
 
 export function addToContextsRegistry(publisher, newContext, callback) {
     const ContextRegistry = getContextRegistry(publisher);
-    if(validateExistingPublisher(publisher)){
-        if(validateNewContext(newContext, ContextRegistry)){
-            
-        }else{
+    if (validateExistingPublisher(publisher)) {
+        if (validateNewContext(newContext, ContextRegistry)) {
+
+        } else {
             callback({
                 status: "failed",
                 message: "Error in New Context."
             });
         }
-    }else{
-       callback({
-           status : "failed",
-           message : "Publisher not in Registry."
-       })
+    } else {
+        callback({
+            status: "failed",
+            message: "Publisher not in Registry."
+        })
     }
-    
+
 }
