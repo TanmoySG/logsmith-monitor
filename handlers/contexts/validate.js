@@ -14,7 +14,7 @@ export function validateNewContext(newContext, ContextRegistry) {
             if (newContext["context"].length < 0 && newContext["origin"].length < 0) {
                 return false
             }
-            if (!("logs" in newContext["kind"]) || !("metrics" in newContext["kind"])) {
+            if (!("logs" in newContext["kind"]) && !("metrics" in newContext["kind"])) {
                 return false
             }
             return true
