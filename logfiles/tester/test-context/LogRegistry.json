@@ -1,0 +1,16 @@
+{
+    "kind": "logs",
+    "usesSchema": true,
+    "schema": [
+        "col1",
+        "col2",
+        "timestamp",
+        "status"
+    ],
+    "defaults": [
+        "timestamp",
+        "status"
+    ],
+    "logCount": 0,
+    "logs": []
+}

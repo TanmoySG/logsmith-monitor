@@ -1,8 +1,15 @@
-import { checkLogHasValidSchema } from "./contexts/validate.js";
+import { addToContextsRegistry } from "./contexts/context.js";
 
-console.log(checkLogHasValidSchema({
+const publisher = "tester";
+const newContext = {
+    "context" : "test-context",
+    "origin" : "app.something.com:1000/context1",
+    "description" : "Lorem Ipsum",
     "kind" : {
-        "logs" : ["timestamp", "status", "colm"],
-        "metrics" : [""]
-    }
-}))
+        "logs" : ["col1","col2"],
+    }  
+}
+
+addToContextsRegistry(publisher, newContext, function(ret){
+    console.log(ret)
+})

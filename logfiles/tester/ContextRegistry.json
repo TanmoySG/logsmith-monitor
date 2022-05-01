@@ -1,1 +1,16 @@
-{}
+{
+    "test-context": {
+        "id": "L3OyYp",
+        "path": "logfiles/tester/test-context",
+        "origin": "app.something.com:1000/context1",
+        "namespace": "test-context",
+        "timestamp": 1651434795297,
+        "description": "Lorem Ipsum",
+        "kind": {
+            "logs": {
+                "usesSchema": true,
+                "path": "logfiles/tester/test-context/LogsRegistry.json"
+            }
+        }
+    }
+}
