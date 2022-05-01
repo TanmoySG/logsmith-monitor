@@ -245,13 +245,13 @@ Rules that govern logs and metric schema
 
 #### Logs Schema Rules
 ```
-- timestamp, scope are put in by default
+- timestamp, status are put in by default
 - If the above are added in the new context defination, logsmith considers it as no-schema, as they are added and populated by the system
 - If a log has a schema, its uses strict schema usage, i.e logs with any extra columns or missing columns are not recorded
 - Will introduce a useStrictSchema Flag in future to enable and disable it.
 - If The publisher emits timestamp, the system generated timestamp is overriden
-- No need to  mention timestamp and scope for new schema defination
-- Scope :  WARN, INFO, CRITICAL, etc
+- No need to  mention timestamp and status for new schema defination
+- status :  WARN, INFO, CRITICAL, etc
 - timestamp : when log is registered
 ```
 
@@ -264,4 +264,24 @@ Rules that govern logs and metric schema
 - If The publisher emits timestamp, the system generated timestamp is overriden
 - No need to  mention timestamp for new schema defination
 - timestamp : when log is registered
+```
+### Default/Template LogRegistry
+
+How should the "Template" LogRegistry look like? 
+```
+{
+    "kind" : "logs",
+    "hasSchema" : true, // or false
+    "schema" : ["col1", "col2"],
+    "defaults" : ["timestamp" , "status"],
+    "logCount" : 69,
+    "logs" :[
+        {"timestamp" : 123456789, "status" : "warn", "col1", "col2", ...},
+        {"timestamp" : 123456789, "status" : "warn", "col1", "col2", ...},
+        {"timestamp" : 123456789, "status" : "warn", "col1", "col2", ...},
+        {"timestamp" : 123456789, "status" : "warn", "col1", "col2", ...},
+        {"timestamp" : 123456789, "status" : "warn", "col1", "col2", ...},
+        ...
+    ]
+}
 ```
