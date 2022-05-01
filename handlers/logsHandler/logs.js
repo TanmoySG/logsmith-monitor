@@ -1,7 +1,7 @@
-import { JSONWriterGeneric } from '../utilities/jsonWriter';
+import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
 
 export function createLogRegistry(contextNamespacePath, logTemplate, callback) {
-    const logNamespace = contextNamespacePath + "/" + "logs.json"
+    const logNamespace = contextNamespacePath + "/" + "LogRegistry.json"
     JSONWriterGeneric(logNamespace, logTemplate, function (err) {
         callback(err);
     })
