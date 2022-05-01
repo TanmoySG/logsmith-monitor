@@ -1,8 +1,8 @@
-import { validateLogHasSchema } from "./contexts/validate.js";
+import { checkLogHasValidSchema } from "./contexts/validate.js";
 
-console.log(validateLogHasSchema({
+console.log(checkLogHasValidSchema({
     "kind" : {
-        "logs" : ["timestamp", "scope", "colm"],
+        "logs" : ["timestamp", "status", "colm"],
         "metrics" : [""]
     }
 }))

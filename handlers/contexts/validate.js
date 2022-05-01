@@ -24,10 +24,10 @@ export function validateNewContext(newContext, ContextRegistry) {
     }
 }
 
-export function validateLogHasSchema(newContext) {
+export function checkLogHasValidSchema(newContext) {
     if (Array.isArray(newContext["kind"]["logs"])) {
         if (newContext["kind"]["logs"].length > 0) {
-            if (newContext["kind"]["logs"].every(columnName => ["timestamp", "scope"].includes(columnName))) {
+            if (newContext["kind"]["logs"].every(columnName => ["timestamp", "status"].includes(columnName))) {
                 return false
             } else {
                 return true
@@ -38,7 +38,7 @@ export function validateLogHasSchema(newContext) {
     }
 }
 
-export function validateMetricHasSchema(newContext) {
+export function checkMetricHasValidSchema(newContext) {
     if (Array.isArray(newContext["kind"]["metrics"])) {
         if (newContext["kind"]["metrics"].length > 0) {
             if (newContext["kind"]["metrics"].every(key => ["timestamp"].includes(key))) {
