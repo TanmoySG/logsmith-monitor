@@ -1,8 +1,6 @@
-// newContext["kind"]["logs"].every(columnName => ["timestamp", "status"].includes(columnName))
-
-export function validateSchema(context, newLog){
-    const logSchema = context["schema"];
-    if(newLog.every(columnName => logSchema.includes(columnName))){
+export function validateSchema(LogRegistry, newLog){
+    const logSchema = LogRegistry["schema"];
+    if(Object.keys(newLog).every(columnName => logSchema.includes(columnName))){
         return true
     }else{
         return false
