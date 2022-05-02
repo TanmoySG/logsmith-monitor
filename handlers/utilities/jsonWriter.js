@@ -6,7 +6,7 @@ export function JSONWriterGeneric(filePath, contentToWrite, callback) {
         if (err) {
             callback(err);
         }else{
-            callback(true);
+            callback();
         }
     })
 }
