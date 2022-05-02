@@ -12,5 +12,18 @@
         "status"
     ],
     "logCount": 0,
-    "logs": []
+    "logs": [
+        {
+            "col1": "test",
+            "col2": "test2",
+            "timestamp": 123456,
+            "status": "WARN"
+        },
+        {
+            "col1": "test",
+            "col2": "test2",
+            "status": "WARN",
+            "timestamp": 1651519790061
+        }
+    ]
 }
