@@ -1,8 +1,10 @@
+import * as filesystem from 'fs';
 import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
 import { validateExistingPublisher } from '../publishers/validate.js'
-import { getPublisherRegistry } from '../publishers/publisher'
+import { getPublishersRegistry } from '../publishers/publisher.js'
 import { getContextRegistry } from '../contexts/context.js';
 import { validateExistingContext } from '../contexts/validate.js';
+import { validateSchema } from './validate.js';
 
 export function usesSchema(LogRegistry) {
     return LogRegistry.usesSchema
@@ -24,15 +26,43 @@ export function getLogRegistry(publisher, context) {
 }
 
 export function registerNewLog(publisher, context, newLog, callback) {
-    const PublisherRegistry = getPublisherRegistry();
-    if (validateExistingPublisher(publisher, PublisherRegistry)){
+    const PublisherRegistry = getPublishersRegistry();
+    if (validateExistingPublisher(publisher, PublisherRegistry)) {
         const ContextRegistry = getContextRegistry(publisher);
-        if(validateExistingContext(context, ContextRegistry)){
-            const LogRegistry = getLogRegistry(publisher, context);
-            if(usesSchema(LogRegistry)){
-
-            }else{
-                
+        if (validateExistingContext(context, ContextRegistry)) {
+            const LogRegistryFilePath = `logfiles/${publisher}/${context}/LogRegistry.json`;
+            var LogRegistry = getLogRegistry(publisher, context);
+            var newLogObject = {};
+            if (!("timestamp" in newLog)) {
+                newLog["timestamp"] = Date.now();
+            }
+            if (usesSchema(LogRegistry)) {
+                if (validateSchema(LogRegistry, newLog)) {
+                    newLogObject = { ...newLog };
+                    LogRegistry["logs"].push(newLogObject);
+                    JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
+                        if (err) throw err;
+                        callback({
+                            "status": "success",
+                            "message": "Log Registered"
+                        })
+                    })
+                } else {
+                    callback({
+                        "status": "failed",
+                        "message": "Schema Mismatch"
+                    })
+                }
+            } else {
+                newLogObject = { ...newLog };
+                LogRegistry["logs"].push(newLogObject);
+                JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
+                    if (err) throw err;
+                    callback({
+                        "status": "success",
+                        "message": "Log Registered"
+                    })
+                })
             }
         }
     }
