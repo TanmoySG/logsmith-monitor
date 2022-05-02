@@ -285,3 +285,15 @@ How should the "Template" LogRegistry look like?
     ]
 }
 ```
+
+### Register Log - Request JSON
+```
+POST: /:publisher/:context/log
+
+{
+    "timestamp" : 1234,
+    "status" " [INFO | WARN | Etc],
+    "col1" : kjgkjh,
+    ...
+}
+```
