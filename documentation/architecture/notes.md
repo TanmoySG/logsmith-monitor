@@ -335,5 +335,5 @@ FOR CREATING CONTEXT
 
 FOR LOG - need more storm in the brain. :)
 ```
-
-**[for future]** Use Treads wherever possible to boost performance. Use Treaded Logging from client using libraries.
+- **[for future]** Use Predefined `Log Levels` - INFO WARN etc.
+- **[for future]** Use Threads wherever possible to boost performance. Use Threaded Logging from client using libraries.
