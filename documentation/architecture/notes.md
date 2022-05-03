@@ -305,9 +305,9 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 - **Current Dev Version - `0.1.0-alpha`**
 - Test Versions - 0.0.x with x taking up 0 to 15 (only 15 test builds allowed)
 
-Features Planned (yet)
+#### Features Planned (yet)
 
-[High Level]
+**[High Level]**
 - PublisherRegistry
 - ContextRegistry
 - LogRegistry
@@ -318,7 +318,7 @@ Features Planned (yet)
 - Monitoring Dashboard
 - Complete `v0.1.0` Routes and Endpoints
 
-[Low Level]
+**[Low Level]**
 - Context Validation `target: v0.1.0-alpha` `in development`
 - Publisher Validation `target: v0.1.0-alpha` `in development`
 - Log Validation (schema) `target: v0.1.0-alpha` `in development`
@@ -355,3 +355,5 @@ Features Planned (yet)
 | Monitoring Dashboard | | | backlogged | |
 | MetricRegistry | MetricRegistry Schema Validation and Definition | [#7](https://github.com/TanmoySG/logsmith-monitor/issues/7) |  backlogged | |
 | Log Fetching or Log Get | Realtime LogFetch | [#18](https://github.com/TanmoySG/logsmith-monitor/issues/18) |  backlogged | |
+
+Current Development [v0.1.0] Project Board - [logsmith-monitor v0.1.0-alpha Release](https://github.com/TanmoySG/logsmith-monitor/projects/1)
