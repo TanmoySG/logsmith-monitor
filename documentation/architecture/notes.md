@@ -342,4 +342,4 @@ Features Planned (yet)
 
 | Feature [HL] | Component [LL] | Tracking Issues | Target Version | Milestone |
 | ------------ | -------------- | --------------- | -------------- | --------- |
-| PublisherRegistry | Publisher Validation,  Post-Validation Actions for Publisher Registry | [#2](https://github.com/TanmoySG/logsmith-monitor/issues/2) [#10](https://github.com/TanmoySG/logsmith-monitor/issues/10) [#13](https://github.com/TanmoySG/logsmith-monitor/issues/13) | `v0.1.0-alpha` | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
+| PublisherRegistry | Publisher Validation,  Post-Validation Actions for Publisher Registry | [#2](https://github.com/TanmoySG/logsmith-monitor/issues/2) [#10](https://github.com/TanmoySG/logsmith-monitor/issues/10) [#13](https://github.com/TanmoySG/logsmith-monitor/issues/13) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
