@@ -2,14 +2,14 @@ import express from "express";
 import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
 import { addToContextsRegistry } from "./handlers/contexts/context.js";
 import { registerNewLog } from "./handlers/logsHandler/logs.js";
+import { ResponseStandardizer } from "./handlers/utilities/responseUtility.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = 9059;
 
 app.use(express.json());
 
 app.get("/", function (request, response) {
-    addToContextrRegistry();
     response.send({
         message: "Welcome to Logsmith Monitor!",
         version: "logsmith-monitor v0.1.0"
@@ -20,8 +20,10 @@ app.get("/", function (request, response) {
 app.post("/publisher", function (request, response) {
     const newPublisherRequestProfile = request.body;
     addToPublisherRegistry(newPublisherRequestProfile, function (PublisherRegistryResponse) {
-        response.status(PublisherRegistryResponse['status'] == "success" ? 200 : 412);
-        response.send(PublisherRegistryResponse);
+        ResponseStandardizer(PublisherRegistryResponse, function(StatusCode, ResponseBody){
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     });
 })
 
