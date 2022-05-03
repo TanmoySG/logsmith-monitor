@@ -313,6 +313,9 @@ Features Planned (yet)
 - LogRegistry
 - MetricRegistry
 - Log Fetching or Log Get
+- Containerization, CI/CD and Testing
+- Helper Libraries
+- Monitoring Dashboard
 
 [Low Level]
 - Context Validation
@@ -334,8 +337,9 @@ Features Planned (yet)
 - MetricRegistry Schema Validation and Definition
 - MetricRegistry Data Visualization in Dashboard
 - MetricPipes for Easy Analysis of Metrics
+- Pretty Print JSON Logs to Prettified logs 
 - Add as Neccessary
 
 | Feature [HL] | Component [LL] | Tracking Issues | Target Version | Milestone |
 | ------------ | -------------- | --------------- | -------------- | --------- |
-| PublisherRegistry |
+| PublisherRegistry | Publisher Validation ,  Post-Validation Actions for Context and Publisher Registry | [#2](https://github.com/TanmoySG/logsmith-monitor/issues/2) [#10](https://github.com/TanmoySG/logsmith-monitor/issues/10) [#13](https://github.com/TanmoySG/logsmith-monitor/issues/13) | `v0.1.0-alpha` | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) }
