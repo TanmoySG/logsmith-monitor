@@ -307,7 +307,7 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 
 #### Features Planned (yet)
 
-**[High Level]**
+[High Level]
 - PublisherRegistry
 - ContextRegistry
 - LogRegistry
@@ -318,7 +318,7 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 - Monitoring Dashboard
 - Complete `v0.1.0` Routes and Endpoints
 
-**[Low Level]**
+[Low Level]
 - Context Validation `target: v0.1.0-alpha` `in development`
 - Publisher Validation `target: v0.1.0-alpha` `in development`
 - Log Validation (schema) `target: v0.1.0-alpha` `in development`
