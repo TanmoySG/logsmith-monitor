@@ -356,4 +356,5 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 | MetricRegistry | MetricRegistry Schema Validation and Definition | [#7](https://github.com/TanmoySG/logsmith-monitor/issues/7) |  backlogged | |
 | Log Fetching or Log Get | Realtime LogFetch | [#18](https://github.com/TanmoySG/logsmith-monitor/issues/18) |  backlogged | |
 
-Current Development [v0.1.0] Project Board - [logsmith-monitor v0.1.0-alpha Release](https://github.com/TanmoySG/logsmith-monitor/projects/1)
+#### Current Development [v0.1.0] Project Board 
+- [logsmith-monitor v0.1.0-alpha Release](https://github.com/TanmoySG/logsmith-monitor/projects/1)
