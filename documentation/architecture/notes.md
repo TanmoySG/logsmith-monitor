@@ -318,21 +318,21 @@ Features Planned (yet)
 - Monitoring Dashboard
 
 [Low Level]
-- Context Validation `target : v0.1.0-alpha` `currently working`
-- Publisher Validation `target : v0.1.0-alpha` `currently working`
-- Log Validation (schema) `target : v0.1.0-alpha` `currently working`
+- Context Validation `target : v0.1.0-alpha` `in development`
+- Publisher Validation `target : v0.1.0-alpha` `in development`
+- Log Validation (schema) `target : v0.1.0-alpha` `in development`
 - Strict Schema Usage
 - Schema Descriptor, Field Type, and other schema enhancements
-- Post-Validation Actions for Publisher Registry `target : v0.1.0-alpha` `currently working`
-- Post-Validation Actions for Context Registry `target : v0.1.0-alpha` `currently working`
-- Post-Validation for LogRegistry `target : v0.1.0-alpha` `currently working`
+- Post-Validation Actions for Publisher Registry `target : v0.1.0-alpha` `in development`
+- Post-Validation Actions for Context Registry `target : v0.1.0-alpha` `in development`
+- Post-Validation for LogRegistry `target : v0.1.0-alpha` `in development`
 - Realtime Log Fetching 
-- In-time/Static Log Fetching `target : v0.1.0-alpha` `currently working`
-- Response Standardizer `target : v0.1.0-alpha` `currently working`
+- In-time/Static Log Fetching `target : v0.1.0-alpha` `in development`
+- Response Standardizer `target : v0.1.0-alpha` `in development`
 - Containerization 
 - Container Publishing
-- Helper Libraries - Python and JS `target : v0.1.0-alpha` `currently working`
-- Testing - Current Features `target : v0.1.0-alpha` `currently working`
+- Helper Libraries - Python and JS `target : v0.1.0-alpha` `in development`
+- Testing - Current Features `target : v0.1.0-alpha` `in development`
 - CI/CD Pipelines 
 - A Monitoring Dashboard (in Container Dashboard)
 - MetricRegistry Schema Validation and Definition
