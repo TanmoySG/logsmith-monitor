@@ -20,7 +20,7 @@ app.get("/", function (request, response) {
 app.post("/publisher", function (request, response) {
     const newPublisherRequestProfile = request.body;
     addToPublisherRegistry(newPublisherRequestProfile, function (PublisherRegistryResponse) {
-        ResponseStandardizer(PublisherRegistryResponse, function(StatusCode, ResponseBody){
+        ResponseStandardizer(PublisherRegistryResponse, function (StatusCode, ResponseBody) {
             response.status(StatusCode)
             response.send(ResponseBody)
         })
@@ -32,7 +32,7 @@ app.post("/:publisher/context", function (request, response) {
     const Publisher = request.params.publisher;
     const newContextRequestProfile = request.body;
     addToContextsRegistry(Publisher, newContextRequestProfile, function (ContextRegistryResponse) {
-        ResponseStandardizer(ContextRegistryResponse, function(StatusCode, ResponseBody){
+        ResponseStandardizer(ContextRegistryResponse, function (StatusCode, ResponseBody) {
             response.status(StatusCode)
             response.send(ResponseBody)
         })
@@ -45,7 +45,10 @@ app.post("/:publisher/:context/logs", function (request, response) {
     const Context = request.params.context;
     const newLog = request.body;
     registerNewLog(Publisher, Context, newLog, function (LogRegistryResponse) {
-        response.send(LogRegistryResponse)
+        ResponseStandardizer(LogRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     })
 })
 
