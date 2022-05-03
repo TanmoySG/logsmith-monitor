@@ -297,3 +297,45 @@ POST: /:publisher/:context/log
     ...
 }
 ```
+
+## Planning
+
+Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
+
+- **Current Dev Version - `0.1.0-alpha`**
+- Test Versions - 0.0.x with x taking up 0 to 15 (only 15 test builds allowed)
+
+Features Planned (yet)
+
+[High Level]
+- PublisherRegistry
+- ContextRegistry
+- LogRegistry
+- MetricRegistry
+- Log Fetching or Log Get
+
+[Low Level]
+- Context Validation
+- Publisher Validation
+- Log Validation (schema)
+- Strict Schema Usage
+- Schema Descriptor, Field Type, and other schema enhancements
+- Post-Validation Actions for Context and Publisher Registry
+- Post Validation for LogRegistry
+- Realtime Log Fetching 
+- In-time Log Fetching
+- Response Standardizer
+- Containerization
+- Container Publishing
+- Helper Libraries - Python and JS
+- Testing - Current Features
+- CI/CD Pipelines
+- A Monitoring Dashboard (in Container Dashboard)
+- MetricRegistry Schema Validation and Definition
+- MetricRegistry Data Visualization in Dashboard
+- MetricPipes for Easy Analysis of Metrics
+- Add as Neccessary
+
+| Feature [HL] | Component [LL] | Tracking Issues | Target Version | Milestone |
+| ------------ | -------------- | --------------- | -------------- | --------- |
+| PublisherRegistry |
