@@ -32,7 +32,10 @@ app.post("/:publisher/context", function (request, response) {
     const Publisher = request.params.publisher;
     const newContextRequestProfile = request.body;
     addToContextsRegistry(Publisher, newContextRequestProfile, function (ContextRegistryResponse) {
-        response.send(ContextRegistryResponse);
+        ResponseStandardizer(ContextRegistryResponse, function(StatusCode, ResponseBody){
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     })
 })
 
