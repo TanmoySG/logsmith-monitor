@@ -1,7 +1,7 @@
 import express from "express";
-import { addToPublisherRegistry, getPublishersRegistry } from "./handlers/publishers/publisher.js";
-import { validateExistingPublisher } from "./handlers/publishers/validate.js";
+import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
 import { addToContextsRegistry } from "./handlers/contexts/context.js";
+import { registerNewLog } from "./handlers/logsHandler/logs.js";
 
 const app = express();
 const PORT = 8080;
@@ -25,30 +25,26 @@ app.post("/publisher", function (request, response) {
     });
 })
 
-
-app.get("/:publisher/context", function (request, response) {
+// New Context Route
+app.post("/:publisher/context", function (request, response) {
     const Publisher = request.params.publisher;
     const newContextRequestProfile = request.body;
-    addToContextsRegistry(Publisher, newContextRequestProfile, function(ContextRegistryResponse){
+    addToContextsRegistry(Publisher, newContextRequestProfile, function (ContextRegistryResponse) {
         response.send(ContextRegistryResponse);
     })
 })
 
-
-app.get("/publish/logs", function (request, response) {
-    response.send({
-        message: "Publish Logs Route",
-        documentation: {
-            context: "Name of Component/App Pushing the Log",
-            log: { "doc": "Put a JSON Object with all the logging details" },
-            status: "INFO | WARN | SUCCESS | FAILURE | CRITICAL",
-            subcontext: "sub.contexts.to.a.context"
-        }
+// Publish Log Route
+app.post("/:publisher/:context/logs", function (request, response) {
+    const Publisher = request.params.publisher;
+    const Context = request.params.context;
+    const newLog = request.body;
+    registerNewLog(Publisher, Context, newLog, function (LogRegistryResponse) {
+        response.send(LogRegistryResponse)
     })
 })
 
-
-
+// Server Defination
 app.listen(PORT, function () {
     console.log("Running on http://localhost:" + PORT)
 })
