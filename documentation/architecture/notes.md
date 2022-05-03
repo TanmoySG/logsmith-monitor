@@ -351,7 +351,7 @@ Features Planned (yet)
 | Helper Libraries | Helper Libraries - Python and JS | |  | v0.1.0-alpha | [logsmith-monitor v0.1.0 - Helper Libraries](https://github.com/TanmoySG/logsmith-monitor/milestone/2) |
 | Log Fetching or Log Get | In-time/Static Log Fetching | [#16](https://github.com/TanmoySG/logsmith-monitor/issues/16) [#17](https://github.com/TanmoySG/logsmith-monitor/issues/17) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
 | Containerization, CI/CD and Testing | Testing - Current Features, Containerization, CI/CD Pipelines  | [#9](https://github.com/TanmoySG/logsmith-monitor/issues/9) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
+| Complete `v0.1.0` Routes and Endpoints | TBD | | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
 | Monitoring Dashboard | | | backlogged | |
 | MetricRegistry | MetricRegistry Schema Validation and Definition | [#7](https://github.com/TanmoySG/logsmith-monitor/issues/7) |  backlogged | |
 | Log Fetching or Log Get | Realtime LogFetch | [#18](https://github.com/TanmoySG/logsmith-monitor/issues/18) |  backlogged | |
-| Complete `v0.1.0` Routes and Endpoints | TBD | | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
