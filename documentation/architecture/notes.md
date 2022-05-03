@@ -318,28 +318,32 @@ Features Planned (yet)
 - Monitoring Dashboard
 
 [Low Level]
-- Context Validation
-- Publisher Validation
-- Log Validation (schema)
+- Context Validation `target : v0.1.0-alpha` `currently working`
+- Publisher Validation `target : v0.1.0-alpha` `currently working`
+- Log Validation (schema) `target : v0.1.0-alpha` `currently working`
 - Strict Schema Usage
 - Schema Descriptor, Field Type, and other schema enhancements
-- Post-Validation Actions for Context and Publisher Registry
-- Post Validation for LogRegistry
+- Post-Validation Actions for Publisher Registry `target : v0.1.0-alpha` `currently working`
+- Post-Validation Actions for Context Registry `target : v0.1.0-alpha` `currently working`
+- Post-Validation for LogRegistry `target : v0.1.0-alpha` `currently working`
 - Realtime Log Fetching 
-- In-time Log Fetching
-- Response Standardizer
-- Containerization
+- In-time/Static Log Fetching `target : v0.1.0-alpha` `currently working`
+- Response Standardizer `target : v0.1.0-alpha` `currently working`
+- Containerization 
 - Container Publishing
-- Helper Libraries - Python and JS
-- Testing - Current Features
-- CI/CD Pipelines
+- Helper Libraries - Python and JS `target : v0.1.0-alpha` `currently working`
+- Testing - Current Features `target : v0.1.0-alpha` `currently working`
+- CI/CD Pipelines 
 - A Monitoring Dashboard (in Container Dashboard)
 - MetricRegistry Schema Validation and Definition
 - MetricRegistry Data Visualization in Dashboard
 - MetricPipes for Easy Analysis of Metrics
 - Pretty Print JSON Logs to Prettified logs 
+- Logsmith Access Control using Username and Token - Environment Variable based
 - Add as Neccessary
 
 | Feature [HL] | Component [LL] | Tracking Issues | Target Version | Milestone |
 | ------------ | -------------- | --------------- | -------------- | --------- |
 | PublisherRegistry | Publisher Validation,  Post-Validation Actions for Publisher Registry | [#2](https://github.com/TanmoySG/logsmith-monitor/issues/2) [#10](https://github.com/TanmoySG/logsmith-monitor/issues/10) [#13](https://github.com/TanmoySG/logsmith-monitor/issues/13) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
+| ContextRegistry | Context Validation,  Post-Validation Actions for Context Registry | [#3](https://github.com/TanmoySG/logsmith-monitor/issues/3) [#8](https://github.com/TanmoySG/logsmith-monitor/issues/8) [#12](https://github.com/TanmoySG/logsmith-monitor/issues/12) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
+<!-- | LogRegistry | Log Validation (schema)  -->
