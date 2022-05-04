@@ -1,8 +1,0 @@
-GET http://localhost:9059/
-
-###
-
-POST http://localhost:9059/publisher HTTP/1.1
-content-type: application/json
-
-{ "publisher" : "tester2", "origin" : "five" , "description" : "hfbhfbvhfdbvf"}
