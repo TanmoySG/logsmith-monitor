@@ -5,7 +5,7 @@ import { registerNewLog } from "./handlers/logsHandler/logs.js";
 import { ResponseStandardizer } from "./handlers/utilities/responseUtility.js";
 
 const app = express();
-const PORT = 9059;
+const PORT = 8080;
 
 app.use(express.json());
 
