@@ -2,7 +2,7 @@
 name: Documentation
 about: Issue for tracking Documentation Workflows.
 title: "[Documentation]"
-labels: architectural design, documentation
+labels: documentation
 assignees: TanmoySG
 
 ---
