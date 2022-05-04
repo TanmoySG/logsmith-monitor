@@ -1,9 +1,11 @@
 import express from "express";
-import { addToPublisherRegistry, getPublishersRegistry } from "./handlers/publishers/publisher.js";
-import { validateExistingPublisher } from "./handlers/publishers/validate.js";
+import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
+import { addToContextsRegistry } from "./handlers/contexts/context.js";
+import { registerNewLog } from "./handlers/logsHandler/logs.js";
+import { ResponseStandardizer } from "./handlers/utilities/responseUtility.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT ? process.env.PORT : 8080
 
 app.use(express.json());
 
@@ -14,65 +16,43 @@ app.get("/", function (request, response) {
     })
 })
 
-// Documentation Route - for new Publisher
-app.get("/publisher/new", function (request, response) {
-    response.send({
-        greetings: "Welcome to Logsmith Monitor Documentation!",
-        message: "Use this route in POST method to register new publisher.",
-        route: "{url}:{port}/publisher/new",
-        method: "POST",
-        body: {
-            publisher: "A Recognizable and Short Name of the Publisher, Eg. App1",
-            origin: "Origin of the Publisher - Technical Name or URI. Eg. backend.app1.com:5000",
-            description: "Description of the Publisher. Eg. The Backend of App1"
-        }
-    })
-})
-
-// Usage Route - for new Publisher
-app.post("/publisher/new", function (request, response) {
+// New Publisher Route
+app.post("/publisher", function (request, response) {
     const newPublisherRequestProfile = request.body;
     addToPublisherRegistry(newPublisherRequestProfile, function (PublisherRegistryResponse) {
-        response.status(PublisherRegistryResponse['status'] == "success" ? 200 : 412);
-        response.send(PublisherRegistryResponse);
+        ResponseStandardizer(PublisherRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     });
 })
 
-
-app.get("/:publisher/context/new", function (request, response) {
-    const Publisher = request.params["publisher"];
-    const PublisherRegistry = getPublishersRegistry();
-
-})
-
-
-app.get("/publish/logs", function (request, response) {
-    response.send({
-        message: "Publish Logs Route",
-        documentation: {
-            context: "Name of Component/App Pushing the Log",
-            log: { "doc": "Put a JSON Object with all the logging details" },
-            status: "INFO | WARN | SUCCESS | FAILURE | CRITICAL",
-            subcontext: "sub.contexts.to.a.context"
-        }
+// New Context Route
+app.post("/:publisher/context", function (request, response) {
+    const Publisher = request.params.publisher;
+    const newContextRequestProfile = request.body;
+    addToContextsRegistry(Publisher, newContextRequestProfile, function (ContextRegistryResponse) {
+        ResponseStandardizer(ContextRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     })
 })
 
-
-app.post("/publish/logs", function (request, response) {
-    response.send({
-        message: "Publish Logs Route",
-        documentation: {
-            context: "component.context.state",
-            log: { "doc": "Put a JSON Object with all the logging details" },
-            status: "INFO | WARN | SUCCESS | FAILURE | CRITICAL",
-            message: "Overview of the Log",
-            subcontext: "subcontexts.to.a.context"
-        }
+// Publish Log Route
+app.post("/:publisher/:context/logs", function (request, response) {
+    const Publisher = request.params.publisher;
+    const Context = request.params.context;
+    const newLog = request.body;
+    registerNewLog(Publisher, Context, newLog, function (LogRegistryResponse) {
+        ResponseStandardizer(LogRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
     })
 })
 
-
+// Server Defination
 app.listen(PORT, function () {
     console.log("Running on http://localhost:" + PORT)
 })

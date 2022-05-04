@@ -1,0 +1,56 @@
+@hostname =  http://localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+
+@publisher = testApp001
+@context = testContext001
+
+###
+GET {{host}}
+
+###
+
+POST {{host}}/publisher HTTP/1.1
+content-type: application/json
+
+{ 
+    "publisher" : "{{publisher}}", 
+    "origin" : "app.test.com" , 
+    "description" : "Test App"
+}
+
+###
+
+POST {{host}}/{{publisher}}/context HTTP/1.1
+content-type: application/json
+
+{
+    "context": "{{context}}",
+    "origin": "app.test.com/{{context}}",
+    "description": "Test Context",
+    "kind": {
+        "logs": ["message", "mode"]
+    }
+}
+
+###
+
+POST {{host}}/{{publisher}}/{{context}}/logs HTTP/1.1
+content-type: application/json
+
+{
+    "status" : "INFO",
+    "message" : "Testing Logsmith",
+    "mode" : "RESTClient"
+}
+
+###
+POST {{host}}/{{publisher}}/{{context}}/logs HTTP/1.1
+content-type: application/json
+
+{
+    "timestamp" : {{$timestamp}},
+    "status" : "WARN",
+    "message" : "Testing Logsmith",
+    "mode" : "RESTClient"
+}
