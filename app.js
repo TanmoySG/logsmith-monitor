@@ -12,7 +12,7 @@ app.use(express.json());
 app.get("/", function (request, response) {
     response.send({
         message: "Welcome to Logsmith Monitor!",
-        version: "logsmith-monitor v0.1.0"
+        version: "logsmith-monitor v0.1.0-alpha"
     })
 })
 
