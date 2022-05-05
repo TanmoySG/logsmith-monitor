@@ -2,7 +2,7 @@
 name: Deployment
 about: Issue for Tracking Deployment Operations.
 title: "[Deployment]"
-labels: deployment
+labels: deployment, DevOps
 assignees: TanmoySG
 
 ---

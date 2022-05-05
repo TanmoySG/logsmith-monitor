@@ -2,7 +2,7 @@
 name: DevOps
 about: Issue for tracking DevOps stuff.
 title: "[DevOps]"
-labels: ''
+labels: ci/cd, DevOps
 assignees: ''
 
 ---
