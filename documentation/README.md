@@ -77,5 +77,8 @@ PAYLOAD :
         ...
     }
 ```
+Note:
 
-Here, status is the LogLevel, i.e. the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. Also, a publisher can add timestamp from their own end, which overrides the system-set timestamp. If timestamp is not added to the log payload, system-generated timestamp is used.
+- Here, status is the LogLevel, i.e. the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. 
+- A publisher can add timestamp from their own end, which overrides the system-set timestamp. 
+- If timestamp is not added to the log payload, system-generated timestamp is used.
