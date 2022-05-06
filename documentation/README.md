@@ -27,6 +27,8 @@ export PORT=8082
 node .
 ```
 
+**Note:** Will be Containerizing Logsmith for easy usage.
+
 ## Register a Publisher
 
 For each App that you need to publish logs for, register a publisher using cURL.
@@ -48,7 +50,7 @@ This creates a Publisher Namespace with `ContextRegistry`.
 
 For each Component of the Publisher App - Frontend/Backend/Services , register a Context.
 ```
-ENDPOINT: localhost:8080/{publisher-name}/context
+ENDPOINT: localhost:8080/{publisher}/context
 METHOD  : POST
 PAYLOAD : 
     {
@@ -56,7 +58,24 @@ PAYLOAD :
         "origin": "app.test.com/context", 
         "description": "Test Context", 
         "kind": {
-            "logs": ["column1", "column2"]
+            "logs": ["column1", "column2", ...]
         }
     }
 ```
+
+## Register a Log
+
+A Publisher publishes Logs to a Context that are stored in the LogRegistry.
+```
+ENDPOINT: localhost:8080/{publisher}/{context}/logs
+METHOD  : POST
+PAYLOAD : 
+    {
+        "status" : "WARN",
+        "column1" : "Testing Logsmith",
+        "column2" : "RESTClient",
+        ...
+    }
+```
+
+Here, status is the LogLevel, i.e. the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. Also, a publisher can add timestamp from their own end, which overrides the system-set timestamp. If timestamp is not added to the log payload, system-generated timestamp is used.
