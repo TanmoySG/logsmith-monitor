@@ -67,3 +67,31 @@ export function registerNewLog(publisher, context, newLog, callback) {
         }
     }
 }
+
+export function getLogs(publisher, context, callback) {
+    const PublisherRegistry = getPublishersRegistry();
+    if (validateExistingPublisher(publisher, PublisherRegistry)) {
+        const ContextRegistry = getContextRegistry(publisher);
+        if (validateExistingContext(context, ContextRegistry)) {
+            var LogRegistry = getLogRegistry(publisher, context);
+            if (LogRegistry["logs"].length <= 0) {
+                callback({
+                    "status": "success",
+                    "count": 0,
+                    "log": []
+                })
+            }
+            var LogsInRegistry = [];
+            for (let log in LogRegistry.logs) {
+                LogsInRegistry.push(
+                    LogRegistry["logs"][log]
+                )
+            }
+            callback({
+                "status": "success",
+                "count": LogsInRegistry.length,
+                "log": LogsInRegistry
+            })
+        }
+    }
+}
