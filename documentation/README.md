@@ -82,3 +82,11 @@ Note:
 - Here, status is the LogLevel, i.e. the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. 
 - A publisher can add timestamp from their own end, which overrides the system-set timestamp. 
 - If timestamp is not added to the log payload, system-generated timestamp is used.
+
+## Get Registered Log
+
+A User can fetch registered logs to view all the logs in LogRegistry.
+```
+ENDPOINT: localhost:8080/{publisher}/{context}/logs
+METHOD  : GET
+```
