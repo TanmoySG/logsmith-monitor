@@ -1,0 +1,29 @@
+{
+    "kind": "logs",
+    "usesSchema": true,
+    "schema": [
+        "message",
+        "mode",
+        "timestamp",
+        "status"
+    ],
+    "defaults": [
+        "timestamp",
+        "status"
+    ],
+    "logCount": 0,
+    "logs": [
+        {
+            "status": "INFO",
+            "message": "Testing Logsmith",
+            "mode": "RESTClient",
+            "timestamp": 1651866727375
+        },
+        {
+            "timestamp": 1651866732,
+            "status": "WARN",
+            "message": "Testing Logsmith",
+            "mode": "RESTClient"
+        }
+    ]
+}

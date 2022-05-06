@@ -1,1 +1,10 @@
-{}
+{
+    "testApp001": {
+        "id": "nohRNOES",
+        "path": "logfiles/testApp001",
+        "origin": "app.test.com",
+        "namespace": "testApp001",
+        "timestamp": 1651866715733,
+        "description": "Test App"
+    }
+}
