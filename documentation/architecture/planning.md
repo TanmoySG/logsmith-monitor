@@ -6,6 +6,11 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 - **Current Dev Version - `0.1.0-alpha`**
 - Test Versions - 0.0.x with x taking up 0 to 15 (only 15 test builds allowed)
 
+#### Current Development [v0.1.0] Project Board
+
+- [logsmith-monitor v0.1.0-alpha Release](https://github.com/TanmoySG/logsmith-monitor/projects/1)
+
+
 | Feature [HL] | Component [LL] | Tracking Issues | Target Version | Milestone |
 | ------------ | -------------- | --------------- | -------------- | --------- |
 | PublisherRegistry | Publisher Validation,  Post-Validation Actions for Publisher Registry | [#2](https://github.com/TanmoySG/logsmith-monitor/issues/2) [#10](https://github.com/TanmoySG/logsmith-monitor/issues/10) [#13](https://github.com/TanmoySG/logsmith-monitor/issues/13) | v0.1.0-alpha | [logsmith-monitor v0.1.0](https://github.com/TanmoySG/logsmith-monitor/milestone/1) |
@@ -19,15 +24,12 @@ Feature Planning and Delivery Milestones. [Just Impersonating PM Stuff!]
 | MetricRegistry | MetricRegistry Schema Validation and Definition | [#7](https://github.com/TanmoySG/logsmith-monitor/issues/7) |  backlogged | |
 | Log Fetching or Log Get | Realtime LogFetch | [#18](https://github.com/TanmoySG/logsmith-monitor/issues/18) |  backlogged | |
 
-#### Current Development [v0.1.0] Project Board
-
-- [logsmith-monitor v0.1.0-alpha Release](https://github.com/TanmoySG/logsmith-monitor/projects/1)
 
 ## Features
 
 Features currently in Pipeline for Development.
 
-### Feature Description
+### Feature Planning
 
 Adding only new feature descriptions here. Existing Developed and Planned Features are in the next section.
 
