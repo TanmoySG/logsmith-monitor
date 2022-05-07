@@ -337,3 +337,9 @@ FOR LOG - need more storm in the brain. :)
 ```
 - **[for future]** Use Predefined `Log Levels` - INFO WARN etc.
 - **[for future]** Use Threads wherever possible to boost performance. Use Threaded Logging from client using libraries.
+
+### Some Intro that can be used 
+
+A Full-Stack app that can publish logs are called "Publisher". An App may comprise of various components - frontend, backend, database, event-processor, etc. that may publish its own logs. Each Component has its own "Context" within the Publisher as a Logical separation. Each Context publishes its logs to The Context's LogRegistry.
+
+![Diagram](./diagrams/logsmith-monitor-flow-Page-2.jpg)
