@@ -35,6 +35,10 @@ Logsmith-Monitor Consists of three main Components - PublisherRegistry, ContextR
 
 Refer to the [Architectural Documentation](./documentation/architecture/README.md) for detailed information of logsmith-monitor's architecture.
 
+Please Note, Logsmith-monitor is still `Work in Progress` and hence may be rough on the edges. Upcoming changes/features that will be added soon (targetted for `v0.1.0-alpha` release) -
+- Docker Container Deployment. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues?q=is%3Aissue+is%3Aopen+label%3Adeployment)
+<!-- - MetricRegistry. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues/7) - Targetted for later  -->
+
 ## Some Useful Links
 
 These Links may help you understand, upcoming features, architectural finding and other information about Logsmith Monitor.
