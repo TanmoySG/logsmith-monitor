@@ -44,7 +44,7 @@ Please Note, Logsmith-monitor is still **Work in Progress** and hence may be rou
 
 ## Testing and Demo
 
-To test logsmith-monitor using sample data, refer to the [Test Documentation](./test/README.md)
+To test logsmith-monitor using sample data, refer to the [Testing Documentation](./test/README.md)
 
 ## Some Useful Links
 

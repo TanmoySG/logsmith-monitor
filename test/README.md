@@ -14,4 +14,11 @@ Uses REST Client VSCode Extention. [Link](https://marketplace.visualstudio.com/i
 
 To Run a Request Click on the `Send Request` Button.
 
-![diagram](../../documentation/architecture/diagrams/REST-Client%20HOWTO.png)
+![diagram](../documentation/architecture/diagrams/REST-Client-HOWTO.png)
+
+# Clean-Up 
+
+After running through the demo/test clean-up the sample data using
+```
+make clean-up
+```
