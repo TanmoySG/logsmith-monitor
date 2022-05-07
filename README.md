@@ -15,4 +15,4 @@ To get started with logsmith-monitor, clone this repo and install the dependanci
 node .
 ```
 
-Docker based deployment solution to be added soon for easy start-up. Read for more options and configurations [here](./documentation/README.md).
+Docker based deployment will be added soon for easy start-up. Read for more options and configurations [here](./documentation/README.md).
