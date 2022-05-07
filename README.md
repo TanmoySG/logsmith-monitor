@@ -31,7 +31,7 @@ Logsmith-Monitor Consists of three main Components - PublisherRegistry, ContextR
 - For Each Publisher, a ContextRegistry stores the list and details of Contexts.
 - For Each Context, a LogRegistry stores the Logs and the Schema of Logs.
 
-![Diagram](./diagrams/logsmith-monitor-flow-Page-2.jpg)
+![Diagram](./documentation/architecture/diagrams/logsmith-monitor-flow-Page-2.jpg)
 
 Refer to the [Architectural Documentation](./documentation/architecture/README.md) for detailed information of logsmith-monitor's architecture.
 
