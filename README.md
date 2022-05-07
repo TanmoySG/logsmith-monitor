@@ -10,7 +10,7 @@ Logsmith-Monitor detaches your App and Logs to give a centralized hassle free lo
 
 ## Getting Started
 
-To Get Started with logsmith-monitor, clone this repo and install all the dependancies using `npm install`. Run the Express Server
+To get started with logsmith-monitor, clone this repo and install the dependancies using `npm install`. Once the dependancies are in place, Run the Express Server
 ```
 node .
 ```
