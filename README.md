@@ -38,7 +38,7 @@ Refer to the [Architectural Documentation](./documentation/architecture/README.m
 Please Note, Logsmith-monitor is still **Work in Progress** and hence may be rough on the edges. Upcoming changes/features that will be added soon (targetted for `v0.1.0-alpha` release) -
 
 - Docker Container Deployment. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues?q=is%3Aissue+is%3Aopen+label%3Adeployment)
-<!-- - MetricRegistry. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues/7) - Targetted for later  -->
+- logsmith Helper Libraries for JS and Python for easy usage in programs. [Tracking Milestone](https://github.com/TanmoySG/logsmith-monitor/milestone/2)
 
 ## Some Useful Links
 
