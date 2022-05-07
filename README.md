@@ -24,9 +24,6 @@ An App can interact with the logsmith-monitor server using REST Endpoint. To see
 
 JavaScript and Python Wrappers over these Endpoints are in the Dev Pipeline for easier usage in projects. These Wrappers will act help in both local logging as well as to interact with logsmith-monitor Server.
 
-## Testing and Demo
-
-To test logsmith-monitor using sample data, refer to the [Test Documentation](./test/README.md)
 
 ## Architecture
 
@@ -43,6 +40,11 @@ Please Note, Logsmith-monitor is still **Work in Progress** and hence may be rou
 
 - Docker Container Deployment. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues?q=is%3Aissue+is%3Aopen+label%3Adeployment)
 - logsmith Helper Libraries for JS and Python for easy usage in programs. [Tracking Milestone](https://github.com/TanmoySG/logsmith-monitor/milestone/2)
+
+
+## Testing and Demo
+
+To test logsmith-monitor using sample data, refer to the [Test Documentation](./test/README.md)
 
 ## Some Useful Links
 
