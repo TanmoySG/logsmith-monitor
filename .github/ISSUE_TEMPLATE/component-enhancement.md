@@ -1,7 +1,7 @@
 ---
 name: Component Enhancement
-about: Issue for tracking Development of Enhancement of Components.
-title: "[Enhancement]"
+about: Issue for tracking Development of Sub-Components of Components or Enhancement of Components.
+title: "[Enhancement/Sub-Component]"
 labels: enhancement, sub-components
 assignees: TanmoySG
 
