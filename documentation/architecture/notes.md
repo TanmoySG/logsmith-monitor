@@ -350,3 +350,8 @@ docker exec --interactive logsmith-monitor  /bin/sh
 ```
 
 This brings up the interactive shell inside the container where you can run the commands.
+
+#### Clean-Up inside Container
+```
+docker exec logsmith-monitor_logsmithmonitor_1  /bin/sh ./scripts/clean-up.sh
+```
