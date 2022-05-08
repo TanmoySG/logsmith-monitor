@@ -5,6 +5,7 @@ import { validateExistingPublisher } from '../publishers/validate.js';
 import { checkLogHasValidSchema, checkMetricHasValidSchema, validateNewContext } from './validate.js';
 import { getPublishersRegistry } from '../publishers/publisher.js';
 import { createLogRegistry } from '../logsHandler/logs.js';
+import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
 
 const ContextRegistryTemplate = {}
 
@@ -35,6 +36,7 @@ export function getContextRegistry(publisher) {
 }
 
 export function addToContextsRegistry(publisher, newContext, callback) {
+    publisher = StandardizeIdentifier(publisher);
     const PublisherRegistry = getPublishersRegistry();
     const ContextRegistryFilePath = `logfiles/${publisher}/ContextRegistry.json`;
     const ContextRegistry = getContextRegistry(publisher);
@@ -42,14 +44,15 @@ export function addToContextsRegistry(publisher, newContext, callback) {
         const publisherProfile = PublisherRegistry[publisher]
         const publisherNamespacePath = publisherProfile["path"];
         if (validateNewContext(newContext, ContextRegistry)) {
-            const contextNamespacePath = publisherNamespacePath + "/" + newContext["context"];
+            const StandardizedContextIdentifier = StandardizeIdentifier(newContext["context"]);
+            const contextNamespacePath = publisherNamespacePath + "/" + StandardizedContextIdentifier;
             filesystem.mkdir(contextNamespacePath, function (err) {
                 if (err) throw err;
                 const newContextProfile = {
                     "id": nanoid(6),
                     "path": contextNamespacePath,
                     "origin": newContext["origin"],
-                    "namespace": newContext["context"],
+                    "namespace": StandardizedContextIdentifier,
                     "timestamp": Date.now(),
                     "description": newContext["description"],
                     "kind": {}
@@ -72,7 +75,7 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                     }
                     createLogRegistry(contextNamespacePath, logRegistryTemplate, function (err) {
                         if (err) { console.log(err); }
-                        ContextRegistry[newContext["context"]] = newContextProfile;
+                        ContextRegistry[StandardizedContextIdentifier] = newContextProfile;
                         JSONWriterGeneric(ContextRegistryFilePath, ContextRegistry, function (err) {
                             if (err) { console.log(err); }
                         })
@@ -86,7 +89,8 @@ export function addToContextsRegistry(publisher, newContext, callback) {
 
                 callback({
                     status: "success",
-                    message: "Context Added."
+                    message: "Context Added.",
+                    context : StandardizedContextIdentifier
                 })
             })
         } else {
