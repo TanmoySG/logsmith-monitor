@@ -39,7 +39,7 @@ export function registerNewLog(publisher, context, newLog, callback) {
             if (usesSchema(LogRegistry)) {
                 if (validateSchema(LogRegistry, newLog)) {
                     newLogObject = { ...newLog };
-                    LogRegistry["logs"].push(newLogObject);
+                    LogRegistry["logs"].unshift(newLogObject);
                     JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
                         if (err) throw err;
                         callback({
@@ -81,16 +81,10 @@ export function getLogs(publisher, context, callback) {
                     "log": []
                 })
             }
-            var LogsInRegistry = [];
-            for (let log in LogRegistry.logs) {
-                LogsInRegistry.push(
-                    LogRegistry["logs"][log]
-                )
-            }
             callback({
                 "status": "success",
-                "count": LogsInRegistry.length,
-                "log": LogsInRegistry
+                "count": LogRegistry["logs"].length,
+                "log": LogRegistry["logs"]
             })
         }
     }
