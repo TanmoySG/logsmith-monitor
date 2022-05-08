@@ -342,4 +342,11 @@ FOR LOG - need more storm in the brain. :)
 
 A Full-Stack app that can publish logs are called "Publisher". An App may comprise of various components - frontend, backend, database, event-processor, etc. that may publish its own logs. Each Component has its own "Context" within the Publisher as a Logical separation. Each Context publishes its logs to The Context's LogRegistry.
 
-![Diagram](./diagrams/logsmith-monitor-flow-Page-2.jpg)
+
+### Running Container interactively to Execute Commands inside container
+
+```
+docker exec --interactive logsmith-monitor  /bin/sh
+```
+
+This brings up the interactive shell inside the container where you can run the commands.
