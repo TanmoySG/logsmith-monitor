@@ -1,3 +1,3 @@
 clean-up:
-	rm -rf logfiles/testApp001
+	rm -rf logfiles/TestApp001
 	echo {} > logfiles/PublisherRegistry.json
