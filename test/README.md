@@ -12,6 +12,8 @@ npm run test
 
 Uses REST Client VSCode Extention. [Link](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
+Make sure the PORT value is set correctly in the RESTSnippets.rest file
+
 To Run a Request Click on the `Send Request` Button.
 
 ![diagram](../documentation/architecture/diagrams/REST-Client-HOWTO.png)
