@@ -30,7 +30,7 @@ export function addToPublisherRegistry(newPublisher, callback) {
             createContextRegistry(publisherNamespacePath, function (err) {
                 PublisherRegistry[newPublisher["publisher"]] = newPublisherProfile;
                 JSONWriterGeneric(PublisherRegistryFilePath, PublisherRegistry, function (err) {
-                    console.log(err);
+                    if (err) { console.log(err); }
                     callback({
                         status: "success",
                         message: "Publisher Created!"

@@ -71,10 +71,10 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                         logRegistryTemplate["schema"] = [...defaultLogSchema]
                     }
                     createLogRegistry(contextNamespacePath, logRegistryTemplate, function (err) {
-                        console.log(err);
+                        if (err) { console.log(err); }
                         ContextRegistry[newContext["context"]] = newContextProfile;
                         JSONWriterGeneric(ContextRegistryFilePath, ContextRegistry, function (err) {
-                            console.log(err);
+                            if (err) { console.log(err); }
                         })
                     })
                 }
