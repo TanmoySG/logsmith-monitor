@@ -355,3 +355,10 @@ This brings up the interactive shell inside the container where you can run the 
 ```
 docker exec logsmith-monitor_logsmithmonitor_1  /bin/sh ./scripts/clean-up.sh
 ```
+
+#### Endpoints
+
+#### For next Iteration
+- [ ] `GET /publisher` Publisher List
+- [ ] `GET /:publisher/context` Context List
+- [ ] `GET /:publisher/:context/logs?realtime=true` Realtime Log List
