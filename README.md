@@ -52,3 +52,4 @@ These Links may help you understand, upcoming features, architectural finding an
 
 - [Notes - where ideas and thoughts are dumped!](./documentation/architecture/notes.md)
 - [Planning Documentation - Upcoming Features and Dev Milestones](./documentation/architecture/planning.md)
+- [Release Strategy - from wunder-identity-provider](https://github.com/TanmoySG/wunder-identity-provider/issues/79)
