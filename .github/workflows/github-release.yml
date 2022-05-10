@@ -1,4 +1,4 @@
-# GitHub Workflow File to Create Release on GitHub when a git-tag is pushed
+# GitHub Workflow File to Create Release on GitHub when a git-tag is pushed to main
 
 name: Release on Tagging
 
