@@ -1,5 +1,5 @@
 @hostname =  http://localhost
-@port = 8050
+@port = 8080
 @host = {{hostname}}:{{port}}
 
 @publisher = Testapp001
