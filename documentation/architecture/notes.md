@@ -337,3 +337,28 @@ FOR LOG - need more storm in the brain. :)
 ```
 - **[for future]** Use Predefined `Log Levels` - INFO WARN etc.
 - **[for future]** Use Threads wherever possible to boost performance. Use Threaded Logging from client using libraries.
+
+### Some Intro that can be used 
+
+A Full-Stack app that can publish logs are called "Publisher". An App may comprise of various components - frontend, backend, database, event-processor, etc. that may publish its own logs. Each Component has its own "Context" within the Publisher as a Logical separation. Each Context publishes its logs to The Context's LogRegistry.
+
+
+### Running Container interactively to Execute Commands inside container
+
+```
+docker exec --interactive logsmith-monitor  /bin/sh
+```
+
+This brings up the interactive shell inside the container where you can run the commands.
+
+#### Clean-Up inside Container
+```
+docker exec logsmith-monitor_logsmithmonitor_1  /bin/sh ./scripts/clean-up.sh
+```
+
+#### Endpoints
+
+#### For next Iteration
+- [ ] `GET /publisher` Publisher List
+- [ ] `GET /:publisher/context` Context List
+- [ ] `GET /:publisher/:context/logs?realtime=true` Realtime Log List

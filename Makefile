@@ -1,3 +1,3 @@
-teardown:
-	rm -rf logfiles/testApp001
+clean-up:
+	rm -rf logfiles/TestApp001
 	echo {} > logfiles/PublisherRegistry.json

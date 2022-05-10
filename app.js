@@ -1,11 +1,11 @@
 import express from "express";
 import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
 import { addToContextsRegistry } from "./handlers/contexts/context.js";
-import { registerNewLog } from "./handlers/logsHandler/logs.js";
+import { registerNewLog, getLogs } from "./handlers/logsHandler/logs.js";
 import { ResponseStandardizer } from "./handlers/utilities/responseUtility.js";
 
 const app = express();
-const PORT = process.env.PORT ? process.env.PORT : 8080
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 
@@ -45,6 +45,18 @@ app.post("/:publisher/:context/logs", function (request, response) {
     const Context = request.params.context;
     const newLog = request.body;
     registerNewLog(Publisher, Context, newLog, function (LogRegistryResponse) {
+        ResponseStandardizer(LogRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
+    })
+})
+
+// Get Logs Route
+app.get("/:publisher/:context/logs", function (request, response) {
+    const Publisher = request.params.publisher;
+    const Context = request.params.context;
+    getLogs(Publisher, Context, function (LogRegistryResponse) {
         ResponseStandardizer(LogRegistryResponse, function (StatusCode, ResponseBody) {
             response.status(StatusCode)
             response.send(ResponseBody)

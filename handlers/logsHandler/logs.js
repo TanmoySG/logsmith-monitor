@@ -5,6 +5,7 @@ import { getPublishersRegistry } from '../publishers/publisher.js'
 import { getContextRegistry } from '../contexts/context.js';
 import { validateExistingContext } from '../contexts/validate.js';
 import { validateSchema } from './validate.js';
+import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
 
 export function usesSchema(LogRegistry) {
     return LogRegistry.usesSchema
@@ -26,6 +27,8 @@ export function getLogRegistry(publisher, context) {
 }
 
 export function registerNewLog(publisher, context, newLog, callback) {
+    publisher = StandardizeIdentifier(publisher)
+    context = StandardizeIdentifier(context)
     const PublisherRegistry = getPublishersRegistry();
     if (validateExistingPublisher(publisher, PublisherRegistry)) {
         const ContextRegistry = getContextRegistry(publisher);
@@ -39,7 +42,7 @@ export function registerNewLog(publisher, context, newLog, callback) {
             if (usesSchema(LogRegistry)) {
                 if (validateSchema(LogRegistry, newLog)) {
                     newLogObject = { ...newLog };
-                    LogRegistry["logs"].push(newLogObject);
+                    LogRegistry["logs"].unshift(newLogObject);
                     JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
                         if (err) throw err;
                         callback({
@@ -64,6 +67,30 @@ export function registerNewLog(publisher, context, newLog, callback) {
                     })
                 })
             }
+        }
+    }
+}
+
+export function getLogs(publisher, context, callback) {
+    publisher = StandardizeIdentifier(publisher)
+    context = StandardizeIdentifier(context)
+    const PublisherRegistry = getPublishersRegistry();
+    if (validateExistingPublisher(publisher, PublisherRegistry)) {
+        const ContextRegistry = getContextRegistry(publisher);
+        if (validateExistingContext(context, ContextRegistry)) {
+            var LogRegistry = getLogRegistry(publisher, context);
+            if (LogRegistry["logs"].length <= 0) {
+                callback({
+                    "status": "success",
+                    "count": 0,
+                    "log": []
+                })
+            }
+            callback({
+                "status": "success",
+                "count": LogRegistry["logs"].length,
+                "log": LogRegistry["logs"]
+            })
         }
     }
 }

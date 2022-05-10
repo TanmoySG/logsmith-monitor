@@ -2,8 +2,8 @@
 @port = 8080
 @host = {{hostname}}:{{port}}
 
-@publisher = testApp001
-@context = testContext001
+@publisher = Testapp001
+@context = Testcontext001
 
 ###
 GET {{host}}
@@ -54,3 +54,7 @@ content-type: application/json
     "message" : "Testing Logsmith",
     "mode" : "RESTClient"
 }
+
+###
+GET {{host}}/{{publisher}}/{{context}}/logs HTTP/1.1
+content-type: application/json
