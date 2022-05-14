@@ -362,3 +362,46 @@ docker exec logsmith-monitor_logsmithmonitor_1  /bin/sh ./scripts/clean-up.sh
 - [ ] `GET /publisher` Publisher List
 - [ ] `GET /:publisher/context` Context List
 - [ ] `GET /:publisher/:context/logs?realtime=true` Realtime Log List
+
+### Good Practices
+- It is a good practice to pass a single log object to everywhere its required instead of defining it in every file.
+```
+from SubDirPath import defOne
+from SubDirTwo import defTwo
+
+log = log()
+defOne(params..., log)
+defTwo(params..., log)
+
+log.warn()
+
+// SubDirPath File
+def defOne(param, log):
+    log.warn()
+
+// SubDirTwo File
+def defTwo(param, log):
+    log.info()
+```
+
+Instead of
+```
+from SubDirPath import defOne
+from SubDirTwo import defTwo
+
+log = log(config)
+defOne(params)
+defTwo(params)
+
+log.warn()
+
+// SubDirPath File
+def defOne(param):
+    log = log(config)
+    log.warn()
+
+// SubDirTwo File
+def defTwo(param):
+    log = log(config)
+    log.info()
+```
