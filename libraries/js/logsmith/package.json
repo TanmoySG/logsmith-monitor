@@ -15,6 +15,7 @@
   "author": "Tanmoy Sen Gupta",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1"
+    "chalk": "^5.0.1",
+    "string-template": "^1.0.0"
   }
 }
