@@ -1,9 +1,15 @@
 import chalk from 'chalk';
 import format from 'string-template';
+import compile from 'string-template/compile.js';
 import * as path from 'path'
 import { readConfigFile } from './lib/fetchConfigs.js';
 
-// const LISTENER
+const LogFormats = {
+    JSON: "json",
+    CSV: "csv",
+    STATEMENT: "statement"
+}
+
 
 const defaultLogPrintPattern = "[{level}] {body}"
 
@@ -26,21 +32,42 @@ export default class Logsmith {
         this.env = options.env || "default"
         this.logfile = options.logfile || null
         this.consoleOnly = options.console_only || true
+        this.logFormat = options.logFormat || LogFormats.JSON
         this.logPrintPattern = statement || defaultLogPrintPattern
+        this.compiledLogPattern = compile(this.logPrintPattern)
     }
 
     fetchConfigFromFile(filepath) {
         if (path.extname(filepath) == ".json") {
-            this.env, this.logfile, this.consoleOnly, this.logPrintPattern = readConfigFile("json", filepath)
-        } else if (path.extname(filepath) == ".env") {
-
+            const configs = readConfigFile("json", filepath)
+            this.env = configs.env || "default"
+            this.logfile = configs.logfile || null
+            this.consoleOnly = configs.consoleOnly
+            this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
+            this.logPrintPattern = configs.logPrintPattern || defaultLogPrintPattern
+            this.compiledLogPattern = compile(this.logPrintPattern)
         } else {
             return Error("File format error. Should be json or env.")
         }
-        return Logsmith
     }
 
     WARN(log) {
+
+    }
+
+    INFO(log) {
+
+    }
+
+    CRITICAL(log) {
+
+    }
+
+    SUCCESS(log) {
+
+    }
+
+    FAILURE(log) {
 
     }
 
