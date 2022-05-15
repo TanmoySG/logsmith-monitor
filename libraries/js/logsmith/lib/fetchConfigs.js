@@ -1,6 +1,6 @@
 import * as filesystem from 'fs';
 
-function readJSONConfig(filepath) {
+export function readJSONConfig(filepath, callback) {
     const config = JSON.parse(
         filesystem.readFileSync(filepath)
     );
@@ -8,8 +8,8 @@ function readJSONConfig(filepath) {
 }
 
 export function readConfigFile(filetype, filepath) {
-    if(filetype=="json"){
+    if (filetype == "json") {
         const configs = readJSONConfig(filepath)
-        return configs.env , configs.logfile, configs.consoleOnly, configs.logPrintPattern
-    }
+        return configs
+    } else if (filetype == "") { }
 }
