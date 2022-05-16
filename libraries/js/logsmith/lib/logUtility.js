@@ -1,6 +1,10 @@
 import chalk from 'chalk';
 import format from 'string-template';
 
+function formatLogLevel(loglevel){
+    return loglevel.padEnd(8)
+}
+
 
 export function prepareJSONLog(logLevel, log, env, callback) {
     const JSONLog = {
@@ -12,9 +16,10 @@ export function prepareJSONLog(logLevel, log, env, callback) {
     callback(JSONLog)
 }
 
-export function consoleLogJSON(chalkMode, JSONLog){
+export function consoleLogJSON(loglevel, chalkMode, JSONLog){
+    loglevel = formatLogLevel(loglevel)
     console.log(
-        chalkMode(`[${JSONLog.logLevel}]`),
+        chalkMode(`[${loglevel}]`),
         JSON.stringify(JSONLog)
     )
 }
