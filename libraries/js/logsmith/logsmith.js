@@ -18,7 +18,8 @@ const ChalkLog = {
     INFO: chalk.blue,
     CRITICAL: chalk.bgRed.gray,
     SUCCESS: chalk.green,
-    FAILURE: chalk.red
+    FAILURE: chalk.red,
+    CUSTOM: chalk.whiteBright
 }
 
 const LogLevels = {
@@ -26,10 +27,9 @@ const LogLevels = {
     INFO: "INFO",
     CRITICAL: "CRITICAL",
     SUCCESS: "SUCCESS",
-    FAILURE: "FAILURE"
+    FAILURE: "FAILURE",
+    CUSTOM: "CUSTOM"
 }
-
-
 
 export default class Logsmith {
     constructor(options, statement) {
@@ -92,6 +92,15 @@ export default class Logsmith {
         if (this.logFormat == LogFormats.JSON) {
             prepareJSONLog(LogLevels.FAILURE, log, this.env, function (JSONLog) {
                 consoleLogJSON(LogLevels.FAILURE, ChalkLog.FAILURE, JSONLog)
+            })
+        }
+    }
+
+    LOG(loglevel, log) {
+        loglevel = loglevel.toUpperCase().substring(0,8);
+        if (this.logFormat == LogFormats.JSON) {
+            prepareJSONLog(loglevel, log, this.env, function (JSONLog) {
+                consoleLogJSON(loglevel, ChalkLog.CUSTOM, JSONLog)
             })
         }
     }
