@@ -1,35 +1,11 @@
-import chalk from 'chalk';
 import format from 'string-template';
 import compile from 'string-template/compile.js';
 import * as path from 'path'
 import { readConfigFile } from './lib/fetchConfigs.js';
-import { JSONLogDriver } from './lib/drivers.js';
-import { consoleLogJSON, prepareJSONLog } from './lib/logUtility.js';
+import { prepareJSONLog, consoleLogJSON, prepareStatementLog, consoleLogStatement } from './lib/logUtility.js';
+import { ChalkLog, LogLevels, LogFormats } from './lib/specs.js';
 
-const defaultLogPrintPattern = "[{level}] {body}"
-
-const LogFormats = {
-    JSON: "json",
-    STATEMENT: "statement"
-}
-
-const ChalkLog = {
-    WARN: chalk.yellowBright,
-    INFO: chalk.blue,
-    CRITICAL: chalk.bgRed.gray,
-    SUCCESS: chalk.green,
-    FAILURE: chalk.red,
-    CUSTOM: chalk.whiteBright
-}
-
-const LogLevels = {
-    WARN: "WARN",
-    INFO: "INFO",
-    CRITICAL: "CRITICAL",
-    SUCCESS: "SUCCESS",
-    FAILURE: "FAILURE",
-    CUSTOM: "CUSTOM"
-}
+const defaultLogStatementPattern = "[{level}] {body}"
 
 export default class Logsmith {
     constructor(options, statement) {
@@ -37,8 +13,8 @@ export default class Logsmith {
         this.logfile = options.logfile || null
         this.consoleOnly = options.console_only || true
         this.logFormat = options.logFormat || LogFormats.JSON
-        this.logPrintPattern = statement || defaultLogPrintPattern
-        this.compiledLogPattern = compile(this.logPrintPattern)
+        this.logStatementPattern = statement || defaultLogStatementPattern
+        this.compiledLogPattern = compile(this.logStatementPattern)
     }
 
     fetchConfigFromFile(filepath) {
@@ -48,8 +24,8 @@ export default class Logsmith {
             this.logfile = configs.logfile || null
             this.consoleOnly = configs.consoleOnly
             this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
-            this.logPrintPattern = configs.logPrintPattern || defaultLogPrintPattern
-            this.compiledLogPattern = compile(this.logPrintPattern)
+            this.logStatementPattern = configs.logStatementPattern || defaultLogStatementPattern
+            this.compiledLogPattern = compile(this.logStatementPattern)
         } else {
             return Error("File format error. Should be json or env.")
         }
@@ -57,16 +33,20 @@ export default class Logsmith {
 
     INFO(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.INFO, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.INFO, ChalkLog.INFO, JSONLog)
+            prepareJSONLog(LogLevels.INFO, log, this.env, function (LogJSON) {
+                consoleLogJSON(LogLevels.INFO, ChalkLog.INFO, LogJSON)
+            })
+        } else if (this.logFormat == LogFormats.STATEMENT) {
+            prepareStatementLog(LogLevels.INFO, log, this.env, this.compiledLogPattern, function (LogStatement) {
+                consoleLogStatement(LogLevels.INFO, ChalkLog.INFO, LogStatement)
             })
         }
     }
 
     WARN(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.WARN, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.WARN, ChalkLog.WARN, JSONLog)
+            prepareJSONLog(LogLevels.WARN, log, this.env, function (LogJSON) {
+                consoleLogJSON(LogLevels.WARN, ChalkLog.WARN, LogJSON)
             })
         }
     }
@@ -74,33 +54,33 @@ export default class Logsmith {
 
     CRITICAL(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.CRITICAL, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.CRITICAL, ChalkLog.CRITICAL, JSONLog)
+            prepareJSONLog(LogLevels.CRITICAL, log, this.env, function (LogJSON) {
+                consoleLogJSON(LogLevels.CRITICAL, ChalkLog.CRITICAL, LogJSON)
             })
         }
     }
 
     SUCCESS(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.SUCCESS, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.SUCCESS, ChalkLog.SUCCESS, JSONLog)
+            prepareJSONLog(LogLevels.SUCCESS, log, this.env, function (LogJSON) {
+                consoleLogJSON(LogLevels.SUCCESS, ChalkLog.SUCCESS, LogJSON)
             })
         }
     }
 
     FAILURE(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.FAILURE, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.FAILURE, ChalkLog.FAILURE, JSONLog)
+            prepareJSONLog(LogLevels.FAILURE, log, this.env, function (LogJSON) {
+                consoleLogJSON(LogLevels.FAILURE, ChalkLog.FAILURE, LogJSON)
             })
         }
     }
 
     LOG(loglevel, log) {
-        loglevel = loglevel.toUpperCase().substring(0,8);
+        loglevel = loglevel.toUpperCase().substring(0, 8);
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(loglevel, log, this.env, function (JSONLog) {
-                consoleLogJSON(loglevel, ChalkLog.CUSTOM, JSONLog)
+            prepareJSONLog(loglevel, log, this.env, function (LogJSON) {
+                consoleLogJSON(loglevel, ChalkLog.CUSTOM, LogJSON)
             })
         }
     }
