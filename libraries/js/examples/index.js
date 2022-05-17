@@ -2,18 +2,25 @@ import Logsmith from "../logsmith/logsmith.js";
 
 const logg = new Logsmith({})
 
+const SampleLog = {
+    status: "running",
+    component : "logger",
+    message: "The Test is Fine"
+}
 
-logg.WARN({ name: "tanmoy" })
+logg.WARN(SampleLog)
+logg.INFO(SampleLog)
+logg.SUCCESS(SampleLog)
+logg.FAILURE(SampleLog)
+logg.CRITICAL(SampleLog)
+logg.LOG("TRAILING", SampleLog)
 
-// logg.INFO({ name: "tanmoy" })
-
-// logg.SUCCESS({ name: "tanmoy" })
+console.log()
 
 logg.fetchConfigFromFile("./libraries/js/examples/configs/jsonConfig.json")
-logg.INFO({ name: "tanmoy" })
-
-// logg.FAILURE({ name: "tanmoy" })
-
-// logg.CRITICAL({ name: "tanmoy" })
-
-// logg.LOG("TRAILING", { name: "Tanmoy" })
+logg.WARN(SampleLog)
+logg.INFO(SampleLog)
+logg.SUCCESS(SampleLog)
+logg.FAILURE(SampleLog)
+logg.CRITICAL(SampleLog)
+logg.LOG("TRAILING", SampleLog)
