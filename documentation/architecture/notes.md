@@ -415,3 +415,12 @@ npm install <path-to-project>
 //eg
 npm install ../logsmith
 ```
+
+
+### Helper Libraries
+
+Some thoughts on helper libraries.
+
+#### NodeJS Helper Library
+
+- Q:  
