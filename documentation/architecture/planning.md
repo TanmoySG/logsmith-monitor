@@ -42,6 +42,21 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
         - In Cases, when the log-publisher app/service can't connect to the logsmith servers, it stores the log on the app's end. These logs may not be synced by itself to the server.
         - Also, if on the publisher end, log is not registered, due to any issue, log is registered only on the server side.
 
+- [Helper Library ~ NodeJS] JSON Logs, Statement Logs and Log Statement Patterns
+    - JSON logs are used to produce a log. A JSON object with the Key-Value pair of LogHeader(?) and LogValue is passed to the logger Object.
+        - This JSON is used in both JSON and Statement logging. 
+        - The Log JSON object is logged/console.log'ed by the logger along with the log level as `[level] {log}`
+        - Timestamp, environment (if defined) and loglevel are added to the log JSON object by the logger. As `{timestamp, env, level, ...log}`
+    - Statement Logs are used to produce a String Statement based Log
+        - It too requires a log json to be passed to the logger
+        - The log object uses a `log pattern` defined in the logger config. 
+        - Variables/Placeholders are defined in the pattern within `{}`.
+            - Eg. `{varone} @ {var2}` , varone and var2 being the placeholders/variables
+        - The value of variable are picked up from the JSON Log Object passed. 
+        - The keys in pattern must match the keys in the log json
+        - This way, the logged JSON is console.log'ed as a statement
+
+
 
 #### Features Planned (yet)
 
