@@ -1,5 +1,7 @@
 import chalk from 'chalk';
 
+export const DefaultLogStatementPattern = "[{timestamp}] {message}"
+
 export const ChalkLog = {
     WARN: chalk.yellowBright,
     INFO: chalk.blue,
