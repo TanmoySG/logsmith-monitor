@@ -55,7 +55,14 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
         - The value of variable are picked up from the JSON Log Object passed. 
         - The keys in pattern must match the keys in the log json
         - This way, the logged JSON is console.log'ed as a statement
-
+    - Sometimes, a User might just want to put a statement in the log object for logging instead of a JSON.
+        - In that case the log object should "convert" this statement into a valid JSON
+        - The Statement is assiged to a "message" key. Eg.
+            - Eg: if "this statement" is passed into the log.INFO() method 
+            - it should be converted into {message : "this message"}
+        - Also The default pattern should be able to use this feature, so that when a user puts a statement-log the message key is present in the default print patter
+            - Eg. defaultPattern = "{timestamp} ~ {message}"
+            
 
 
 #### Features Planned (yet)
