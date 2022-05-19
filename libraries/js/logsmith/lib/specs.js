@@ -24,3 +24,5 @@ export const LogFormats = {
     JSON: "json",
     STATEMENT: "statement"
 }
+
+export var logs = []
