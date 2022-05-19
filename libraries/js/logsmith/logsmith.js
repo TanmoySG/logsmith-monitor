@@ -20,7 +20,7 @@ export default class Logsmith {
             const configs = readConfigFile("json", filepath)
             this.env = configs.env || "default"
             this.logfile = configs.logfile || null
-            this.consoleOnly = configs.consoleOnly
+            this.consoleOnly = configs.consoleOnly 
             this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
             this.logStatementPattern = configs.logStatementPattern || DefaultLogStatementPattern
             this.compiledLogPattern = compile(this.logStatementPattern)
@@ -35,6 +35,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
@@ -45,6 +47,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
@@ -56,6 +60,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
@@ -66,6 +72,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
@@ -76,6 +84,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
@@ -87,6 +97,8 @@ export default class Logsmith {
             this.env,
             this.compiledLogPattern,
             this.logFormat,
+            this.consoleOnly,
+            this.logfile,
             log
         )
     }
