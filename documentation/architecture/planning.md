@@ -73,6 +73,10 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - Currently the Console logs only "Running at localhost:8080"
     - It Should also print the incoming logs
         - Like `context @ publisher | {incoming log}` 
+- **Multi-Monitor Support**
+    - Support for publishing logs to multiple logsmith-monitors
+    - Use separate threads(?) for each monitor
+    - [Needs some more thoughts]
 
 
 #### Features Planned (yet)
