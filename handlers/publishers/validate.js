@@ -23,17 +23,13 @@ export function validateLog(LogBody) {
 }
 
 export function validateNewPublisher(newPublisher, PublisherRegistry) {
-    if (validateExistingPublisher(newPublisher["publisher"], PublisherRegistry)) {
-        return false
-    } else {
-        if ("publisher" in newPublisher && "origin" in newPublisher) {
-            if (newPublisher["publisher"].length != 0 && newPublisher["origin"].length != 0) {
-                return true
-            } else {
-                return false
-            }
+    if ("publisher" in newPublisher && "origin" in newPublisher) {
+        if (newPublisher["publisher"].length != 0 && newPublisher["origin"].length != 0) {
+            return true
         } else {
             return false
         }
+    } else {
+        return false
     }
 }
