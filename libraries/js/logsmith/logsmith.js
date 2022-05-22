@@ -13,6 +13,8 @@ export default class Logsmith {
         this.consoleOnly = options.console_only || true
         this.logFormat = options.logFormat || LogFormats.JSON
         this.logStatementPattern = statement || DefaultLogStatementPattern
+        this.monitorLogging = options.monitorLogging || false
+        this.monitorConfigs = getMonitorConfigs(options)
         this.compiledLogPattern = compile(this.logStatementPattern)
     }
 
@@ -24,8 +26,9 @@ export default class Logsmith {
             this.consoleOnly = configs.consoleOnly 
             this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
             this.logStatementPattern = configs.logStatementPattern || DefaultLogStatementPattern
-            this.compiledLogPattern = compile(this.logStatementPattern)
+            this.monitorLogging = configs.monitorLogging || false
             this.monitorConfigs = getMonitorConfigs(configs)
+            this.compiledLogPattern = compile(this.logStatementPattern)
         } else {
             return Error("File format error. Should be json or env.")
         }
