@@ -2,6 +2,6 @@
     "env": "test",
     "logfile": "./examples//configs/log.log",
     "consoleOnly": false,
-    "logStatementPattern": "[ {component} ~ {status} ] : {message}",
+    "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
     "logFormat": "statement"
 }
