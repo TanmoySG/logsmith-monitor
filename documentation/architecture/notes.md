@@ -424,3 +424,19 @@ Some thoughts on helper libraries.
 #### NodeJS Helper Library
 
 - Q:  
+
+### Responses - Initial
+
+- Publisher
+    - publisher.exists
+    - publisher.invalid
+    - publisher.success
+    - publisher.missing
+- Context
+    - context.invalid
+    - context.success
+    - context.exists
+    - context.missing
+- Log
+    - log.success
+    - log.error
