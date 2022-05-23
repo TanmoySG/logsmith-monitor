@@ -19,6 +19,7 @@ export function addToPublisherRegistry(newPublisher, callback) {
     if (validateExistingPublisher(newPublisher["publisher"], PublisherRegistry)) {
         callback({
             status: "failed",
+            scope: "publisher.exists",
             message: "Publisher Exists"
         })
     }
@@ -42,7 +43,8 @@ export function addToPublisherRegistry(newPublisher, callback) {
                     callback({
                         status: "success",
                         message: "Publisher Created!",
-                        publisher: StandardizedPublisherIdentifier
+                        publisher: StandardizedPublisherIdentifier,
+                        scope: "publisher.success"
                     });
                 });
             });
@@ -50,6 +52,7 @@ export function addToPublisherRegistry(newPublisher, callback) {
     } else {
         callback({
             status: "failed",
+            scope: "publisher.invalid",
             message: "Error in Publisher Profile."
         });
     }
