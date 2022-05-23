@@ -77,6 +77,13 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - Support for publishing logs to multiple logsmith-monitors
     - Use separate threads(?) for each monitor
     - [Needs some more thoughts]
+- **File Config Override**
+    - Currently, configs fetched from file is not overridable
+    - Introduce a parameter/option in `fetchConfigFromFile()` definition
+        - (existing) filepath - path to config file
+        - (new) override - a JSON with options to override 
+    - The values defined in override , gets precedence over those in the file
+    - Usage - `fetchConfigFromFile(filepath, override)`
 
 
 #### Features Planned (yet)
