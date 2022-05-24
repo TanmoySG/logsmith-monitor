@@ -75,27 +75,3 @@ export function monitorLogger(listener, publisher, context, log, callback) {
     })
 }
 
-const sampleData = {
-    listener: "http://localhost:8080",
-    publisher: {
-        publisher: "testapp1",
-        origin: "bend.testapp1.com",
-        description: "test App"
-    },
-    context: {
-        context: "testcon1",
-        origin: "bend.testcon.con",
-        description: "Cotext",
-        kind: {
-            logs: []
-        }
-    },
-    log: {
-        loglevel: "WARN",
-        worker: "TEST WrKr"
-    }
-}
-
-monitorLogger(sampleData.listener, sampleData.publisher, sampleData.context, sampleData.log, function (response) {
-    console.log(response)
-})
