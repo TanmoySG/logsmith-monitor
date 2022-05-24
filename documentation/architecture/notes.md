@@ -440,3 +440,35 @@ Some thoughts on helper libraries.
 - Log
     - log.success
     - log.error
+
+
+### For testing monitorLogger
+
+```
+
+const sampleData = {
+    listener: "http://localhost:8080",
+    publisher: {
+        publisher: "testapp1",
+        origin: "bend.testapp1.com",
+        description: "test App"
+    },
+    context: {
+        context: "testcon2",
+        origin: "bend.testcon.con",
+        description: "Cotext",
+        kind: {
+            logs: []
+        }
+    },
+    log: {
+        loglevel: "WARN",
+        worker: "TEST WrKr",
+        random: "txt"
+    }
+}
+
+monitorLogger(sampleData.listener, sampleData.publisher, sampleData.context, sampleData.log, function (response) {
+    console.log(response)
+})
+```
