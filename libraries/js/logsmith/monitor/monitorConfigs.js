@@ -21,7 +21,7 @@ function formatPublisherConfig(monitorConfig) {
     return publisherConfig
 }
 
-function formatCotextConfig(publisher, monitorConfig) {
+function formatContextConfig(publisher, monitorConfig) {
     const contextConfig = {}
     contextConfig.context = monitorConfig.context || process.env.CONTEXT
     contextConfig.origin = monitorConfig.origin || DefaultContextTemplate.Origin(publisher, contextConfig.context)
@@ -31,28 +31,15 @@ function formatCotextConfig(publisher, monitorConfig) {
 }
 
 export function getMonitorConfigs(config) {
+    if(Object.keys(config).length === 0){
+        return {}
+    }
     const monitorConfigs = {}
     monitorConfigs.monitorPort = config.monitor.port || process.env.MONITOR_PORT
     monitorConfigs.monitorURI = config.monitor.server || process.env.MONITOR_URI
     monitorConfigs.monitorProtocol = config.monitor.protocol || process.env.MONITOR_PROTOCOL || "http"
     monitorConfigs.monitorListener = URITemplate(monitorConfigs.monitorProtocol, monitorConfigs.monitorURI, monitorConfigs.monitorPort) || process.env.LISTENER
     monitorConfigs.publisher = formatPublisherConfig(config.monitor.publisher)
-    monitorConfigs.context = formatCotextConfig(monitorConfigs.publisher.publisher, config.monitor.context)
+    monitorConfigs.context = formatContextConfig(monitorConfigs.publisher.publisher, config.monitor.context)
     return monitorConfigs
 }
-
-// can be used for test
-// console.log(
-//     getMonitorConfigs({
-//         monitor: {
-//             port: "8080",
-//             server: "localhost",
-//             publisher: {
-//                 publisher: "test"
-//             },
-//             context: {
-//                 context: "testcon"
-//             }
-//         }
-//     })
-// )
