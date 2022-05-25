@@ -468,7 +468,20 @@ const sampleData = {
     }
 }
 
-monitorLogger(sampleData.listener, sampleData.publisher, sampleData.context, sampleData.log, function (response) {
+monitorLogRunner(sampleData.listener, sampleData.publisher, sampleData.context, sampleData.log, function (response) {
     console.log(response)
 })
+```
+
+```
+
+function loadInits(monitorLogging, monitorConfigs) {
+    if (monitorLogging && monitorConfigs.publisher != undefined && monitorConfigs.context != undefined) {
+        createNewPublisher(monitorConfigs.listener, monitorConfigs.publisher, function (res) {
+            createNewContext(monitorConfigs.listener, monitorConfigs.publisher, monitorConfigs.context, function (resp) {
+                console.log("loded")
+            })
+        })
+    }
+}
 ```
