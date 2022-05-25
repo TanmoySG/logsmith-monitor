@@ -35,6 +35,33 @@ export function getContextRegistry(publisher) {
     return ContextRegistry;
 }
 
+export function verifyContextExistence(publisher, context, callback) {
+    publisher = StandardizeIdentifier(publisher);
+    const PublisherRegistry = getPublishersRegistry();
+    if (validateExistingPublisher(publisher, PublisherRegistry)) {
+        const ContextRegistry = getContextRegistry(publisher);
+        if (validateExistingContext(context, ContextRegistry)) {
+            callback({
+                status: "success",
+                scope: "context.exists",
+                message: "Context Exists"
+            })
+        } else {
+            callback({
+                status: "failed",
+                scope: "context.missing",
+                message: "Context Missing"
+            })
+        }
+    } else {
+        callback({
+            status: "failed",
+            scope: "publisher.missing",
+            message: "Publisher missing"
+        })
+    }
+}
+
 export function addToContextsRegistry(publisher, newContext, callback) {
     publisher = StandardizeIdentifier(publisher);
     const PublisherRegistry = getPublishersRegistry();
@@ -53,48 +80,48 @@ export function addToContextsRegistry(publisher, newContext, callback) {
         if (validateNewContext(newContext, ContextRegistry)) {
             const StandardizedContextIdentifier = StandardizeIdentifier(newContext["context"]);
             const contextNamespacePath = publisherNamespacePath + "/" + StandardizedContextIdentifier;
-            filesystem.mkdir(contextNamespacePath, function (err) {
-                if (err) throw err;
-                const newContextProfile = {
-                    "id": nanoid(6),
-                    "path": contextNamespacePath,
-                    "origin": newContext["origin"],
-                    "namespace": StandardizedContextIdentifier,
-                    "timestamp": Date.now(),
-                    "description": newContext["description"],
-                    "kind": {}
-                };
 
-                const logRegistryPath = `${contextNamespacePath}/LogsRegistry.json`
-                if ("logs" in newContext["kind"]) {
-                    const logHasSchema = checkLogHasValidSchema(newContext);
-                    newContextProfile.kind["logs"] = {
-                        "usesSchema": logHasSchema
-                    }
-                    if (logHasSchema) {
-                        newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
-                        logRegistryTemplate["usesSchema"] = logHasSchema;
-                        logRegistryTemplate["schema"] = [...newContext["kind"]["logs"], ...defaultLogSchema]
-                    } else {
-                        newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
-                        logRegistryTemplate["usesSchema"] = logHasSchema;
-                        logRegistryTemplate["schema"] = [...defaultLogSchema]
-                    }
-                    createLogRegistry(contextNamespacePath, logRegistryTemplate, function (err) {
-                        if (err) { console.log(err); }
-                        ContextRegistry[StandardizedContextIdentifier] = newContextProfile;
-                        JSONWriterGeneric(ContextRegistryFilePath, ContextRegistry, function (err) {
-                            if (err) { console.log(err); }
-                        })
-                    })
+            // To-do : Enclose within Try-Catch Block
+            filesystem.mkdirSync(contextNamespacePath);
+
+            const newContextProfile = {
+                "id": nanoid(6),
+                "path": contextNamespacePath,
+                "origin": newContext["origin"],
+                "namespace": StandardizedContextIdentifier,
+                "timestamp": Date.now(),
+                "description": newContext["description"],
+                "kind": {}
+            };
+            const logRegistryPath = `${contextNamespacePath}/LogsRegistry.json`
+            if ("logs" in newContext["kind"]) {
+                const logHasSchema = checkLogHasValidSchema(newContext);
+                newContextProfile.kind["logs"] = {
+                    "usesSchema": logHasSchema
                 }
-
-                callback({
-                    status: "success",
-                    message: "Context Added.",
-                    context: StandardizedContextIdentifier,
-                    scope: "context.success"
+                if (logHasSchema) {
+                    newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
+                    logRegistryTemplate["usesSchema"] = logHasSchema;
+                    logRegistryTemplate["schema"] = [...newContext["kind"]["logs"], ...defaultLogSchema]
+                } else {
+                    newContextProfile["kind"]["logs"]["path"] = logRegistryPath;
+                    logRegistryTemplate["usesSchema"] = logHasSchema;
+                    logRegistryTemplate["schema"] = [...defaultLogSchema]
+                }
+                createLogRegistry(contextNamespacePath, logRegistryTemplate, function (err) {
+                    if (err) { console.log(err); }
+                    ContextRegistry[StandardizedContextIdentifier] = newContextProfile;
+                    JSONWriterGeneric(ContextRegistryFilePath, ContextRegistry, function (err) {
+                        if (err) { console.log(err); }
+                    })
                 })
+            }
+
+            callback({
+                status: "success",
+                message: "Context Added.",
+                context: StandardizedContextIdentifier,
+                scope: "context.success"
             })
         } else {
             callback({
