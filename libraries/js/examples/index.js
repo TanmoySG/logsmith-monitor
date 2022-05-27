@@ -8,7 +8,8 @@ const SampleLog = {
 }
 
 const logg = new Logsmith({})
-logg.fetchConfigFromFile("./examples/configs/jsonConfig.json")
+logg.fetchConfigFromFile("/workspaces/logsmith-monitor/libraries/js/examples/configs/jsonConfig.json", function (err) { console.log(err) })
+logg.monitorInit(function (err) { console.log(err) })
 
 // console.log(logg)
 
