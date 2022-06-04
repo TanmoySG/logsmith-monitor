@@ -1,5 +1,5 @@
+import fetch, {FetchError} from 'node-fetch'
 import compile from "string-template/compile.js"
-import fetch from 'node-fetch'
 import { MonitorResponse } from "../lib/specs.js"
 
 const Endpoints = {
@@ -31,20 +31,19 @@ export function initiateMonitor(listener, monitorConfig, callback) {
     const context = monitorConfig.context
     checkPublisher(listener, publisher.publisher, function (response) {
         if (response.scope == MonitorResponse.publisher.exists) {
-            callback("exists")
+            callback(response.scope)
         } else {
-            callback("doesnt")
             createNewPublisher(listener, publisher, function (response) {
                 if (response.scope == MonitorResponse.publisher.success) {
                     checkContext(listener, publisher, context, function (response) {
                         if (response.scope == MonitorResponse.publisher.exists) {
-                            callback("exists")
+                            callback(response.scope)
                         } else {
                             createNewContext(listener, publisher, context, function (response) {
                                 if (response.scope == MonitorResponse.context.success) {
-                                    callback(response)
+                                    callback(response.scope)
                                 } else {
-                                    callback("failed")
+                                    callback(response.scope)
                                 }
                             })
                         }
@@ -63,6 +62,10 @@ export async function checkPublisher(listener, publisher, callback) {
         return response.json()
     }).then(function (response) {
         callback(response)
+    }).catch((error) => {
+        if(error.name == "FetchError"){
+            callback({scope : "couldn't connect to monitor. Logging offline."})
+        }
     })
 }
 

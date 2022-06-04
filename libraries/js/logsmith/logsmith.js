@@ -35,7 +35,7 @@ export default class Logsmith {
         }
     }
 
-    monitorInit(callback) {
+    initializeMonitor(callback) {
         if (this.monitorLogging == true && this.monitorConfigs != undefined) {
             initiateMonitor(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
                 callback({ "monitorInit": response })
