@@ -1,6 +1,3 @@
-import chalk from 'chalk';
-import format from 'string-template';
-
 function formatLogLevel(loglevel) {
     return loglevel.padEnd(8)
 }
