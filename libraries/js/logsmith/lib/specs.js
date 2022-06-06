@@ -48,5 +48,9 @@ export const MonitorResponse = {
     log: {
         error: "log.error",
         success: "log.success"
+    },
+    connection: {
+        failed: "connection.failed",
+        success: "connection.success"
     }
 }
