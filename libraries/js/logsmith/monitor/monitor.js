@@ -37,7 +37,7 @@ export async function checkConnection(listener) {
     }
 }
 
-export function initiateMonitor(listener, monitorConfig, callback) {
+export function createMonitorNamespaces(listener, monitorConfig, callback) {
     const publisher = monitorConfig.publisher
     const context = monitorConfig.context
     checkPublisher(listener, publisher.publisher, function (response) {
