@@ -1,11 +1,10 @@
 import * as path from 'path';
 import compile from 'string-template/compile.js';
 import { loggerRunner } from './lib/drivers.js';
-import isReachable from 'is-reachable'
 import { readConfigFile } from './lib/fetchConfigs.js';
-import { checkConnection, initiateMonitor } from './monitor/monitor.js';
+import { DefaultLogStatementPattern, LogFormats, LogLevels } from './lib/specs.js';
+import { createMonitorNamespaces } from './monitor/monitor.js';
 import { getMonitorConfigs } from './monitor/monitorConfigs.js';
-import { LogFormats, LogLevels, DefaultLogStatementPattern, MonitorResponse } from './lib/specs.js';
 
 export default class Logsmith {
     constructor(options) {
@@ -37,9 +36,10 @@ export default class Logsmith {
         }
     }
 
+    // Creates Publisher and Context if it doesn't exist
     initializeMonitor() {
         if (this.monitorLogging == true && this.monitorConfigs != undefined) {
-            initiateMonitor(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
+            createMonitorNamespaces(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
                 return response
             })
         }
