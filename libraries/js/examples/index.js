@@ -1,14 +1,14 @@
 import Logsmith from "../logsmith/logsmith.js";
 import express from "express";
 
+const configFilePath = "/workspaces/logsmith-monitor/libraries/js/examples/configs/jsonConfig.json";
+
 const app = express();
 const PORT = process.env.PORT || 8096;
 
 const logg = new Logsmith({})
-logg.fetchConfigFromFile("/workspaces/logsmith-monitor/libraries/js/examples/configs/jsonConfig.json", (err) => { })
-logg.initializeMonitor((resp) => { console.log(resp) })
-
-console.log(logg)
+logg.fetchConfigFromFile(configFilePath)
+logg.initializeMonitor()
 
 app.use(express.json());
 
