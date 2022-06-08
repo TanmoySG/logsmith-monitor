@@ -84,7 +84,12 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
         - (new) override - a JSON with options to override 
     - The values defined in override , gets precedence over those in the file
     - Usage - `fetchConfigFromFile(filepath, override)`
-
+- **Reachability Check**
+    - Currently, the logRunner doesn't check if the server/monitor is reachable
+    - Add reachability check and monitor liveness
+    - The liveness is set by the reachability check
+    - Based on the. liveness, the monitor requests are executed
+        - If monitor is live, only then are requests executed
 
 #### Features Planned (yet)
 
