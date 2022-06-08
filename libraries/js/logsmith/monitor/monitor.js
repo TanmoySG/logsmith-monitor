@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import isReachable from 'is-reachable'
 import compile from "string-template/compile.js"
 import { MonitorResponse } from "../lib/specs.js"
 
@@ -26,29 +27,19 @@ function prepareRequestConfig(method, body) {
 
 }
 
-export function checkConnection(listener, callback) {
+export async function checkConnection(listener) {
     const checkConnectionEndpoint = Endpoints.API(listener)
-    try {
-        fetch(
-            checkConnectionEndpoint, prepareRequestConfig("GET", {})
-        ).then((response) => {
-            return response.json()
-        }).then((json) => {
-            callback(MonitorResponse.connection.success)
-        })
-    } catch (error) {
-        if (error.name == "FetchError") {
-            callback(MonitorResponse.connection.failed)
-        }
+    const reachablity = await isReachable(checkConnectionEndpoint)
+    if (reachablity == true) {
+        return true
+    } else {
+        return false
     }
 }
 
 export function initiateMonitor(listener, monitorConfig, callback) {
     const publisher = monitorConfig.publisher
     const context = monitorConfig.context
-    if (monitorConfig.monitorLiveness == true) {
-        callback(MonitorResponse.connection.failed)
-    }
     checkPublisher(listener, publisher.publisher, function (response) {
         if (response.scope == MonitorResponse.connection.failed) {
             callback(response.message)

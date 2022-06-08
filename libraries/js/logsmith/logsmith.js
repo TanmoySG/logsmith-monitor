@@ -1,6 +1,7 @@
 import * as path from 'path';
 import compile from 'string-template/compile.js';
 import { loggerRunner } from './lib/drivers.js';
+import isReachable from 'is-reachable'
 import { readConfigFile } from './lib/fetchConfigs.js';
 import { checkConnection, initiateMonitor } from './monitor/monitor.js';
 import { getMonitorConfigs } from './monitor/monitorConfigs.js';
@@ -15,17 +16,11 @@ export default class Logsmith {
         this.logStatementPattern = options.logStatementPattern || DefaultLogStatementPattern
         this.monitorLogging = options.monitorLogging || false
         this.monitorConfigs = getMonitorConfigs(options)
-        this.monitorLiveness = this.monitorLogging === true ? checkConnection(options.monitorListener, function (response) {
-            if (response == MonitorResponse.connection.success) {
-                return true
-            } else if (response == MonitorResponse.connection.failed) {
-                return false
-            }
-        }) : false
         this.compiledLogPattern = compile(this.logStatementPattern)
+        return this
     }
 
-    fetchConfigFromFile(filepath, callback) {
+    fetchConfigFromFile(filepath) {
         if (path.extname(filepath) == ".json") {
             const configs = readConfigFile("json", filepath)
             this.env = configs.env || "default"
@@ -35,31 +30,18 @@ export default class Logsmith {
             this.logStatementPattern = configs.logStatementPattern || DefaultLogStatementPattern
             this.monitorLogging = configs.monitorLogging || false
             this.monitorConfigs = getMonitorConfigs(configs)
-            this.monitorLiveness = this.monitorLogging === true ? checkConnection(configs.monitorListener, function (response) {
-                if (response == MonitorResponse.connection.success) {
-                    return true
-                } else if (response == MonitorResponse.connection.failed) {
-                    return false
-                }
-            }) : false
             this.compiledLogPattern = compile(this.logStatementPattern)
-            callback("Config Loaded!")
+            return this
         } else {
-            callback(Error("File format error. Should be json or env."))
+            throw Error("format not supported")
         }
     }
 
-    initializeMonitor(callback) {
-        if (this.monitorLogging == true && this.monitorConfigs != undefined && this.monitorLiveness != undefined) {
-            if (this.monitorLiveness) {
-                callback({ "monitorInit": false })
-            } else {
-                initiateMonitor(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
-                    callback({ "monitorInit": response })
-                })
-            }
-        } else {
-            callback({ "monitorInit": false })
+    initializeMonitor() {
+        if (this.monitorLogging == true && this.monitorConfigs != undefined) {
+            initiateMonitor(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
+                return response
+            })
         }
     }
 
