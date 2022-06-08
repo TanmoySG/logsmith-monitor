@@ -10,59 +10,58 @@ const logg = new Logsmith({})
 logg.fetchConfigFromFile(configFilePath)
 logg.initializeMonitor()
 
+const SampleValidLogExt = {
+    "source": "example",
+    "issue": "none"
+}
+
 app.use(express.json());
 
 app.get("/warn", function (request, response) {
-    logg.WARN({ "trial": "W" })
+    logg.WARN({ "trial": "W", ...SampleValidLogExt })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "warn"
+        "log": "sent",
+        "level": "warn"
     })
 })
 
 app.get("/info", function (request, response) {
-    logg.INFO({ "trial": "I" })
+    logg.INFO({ ...SampleValidLogExt })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "info"
+        "log": "sent",
+        "level": "info"
     })
 })
 
 app.get("/critical", function (request, response) {
     logg.CRITICAL({ "trial": "C" })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "critical"
+        "log": "sent",
+        "level": "critical"
     })
 })
 
 app.get("/success", function (request, response) {
     logg.SUCCESS({ "trial": "S" })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "success"
+        "log": "sent",
+        "level": "success"
     })
 })
 
 app.get("/failure", function (request, response) {
     logg.FAILURE({ "trial": "F" })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "failure"
+        "log": "sent",
+        "level": "failure"
     })
 })
 
 app.get("/log", function (request, response) {
     logg.LOG("TRAILING...", { "trial": "L" })
     response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "log"
+        "log": "sent",
+        "level": "log"
     })
 })
 
