@@ -1,6 +1,6 @@
 import express from "express";
-import { addToPublisherRegistry } from "./handlers/publishers/publisher.js";
-import { addToContextsRegistry } from "./handlers/contexts/context.js";
+import { addToPublisherRegistry, verifyPublisherExistence } from "./handlers/publishers/publisher.js";
+import { addToContextsRegistry, verifyContextExistence } from "./handlers/contexts/context.js";
 import { registerNewLog, getLogs } from "./handlers/logsHandler/logs.js";
 import { ResponseStandardizer } from "./handlers/utilities/responseUtility.js";
 
@@ -27,6 +27,17 @@ app.post("/publisher", function (request, response) {
     });
 })
 
+// check publisher 
+app.get("/:publisher", function (request, response) {
+    const Publisher = request.params.publisher;
+    verifyPublisherExistence(Publisher, function (PublisherRegistryResponse) {
+        ResponseStandardizer(PublisherRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
+    });
+})
+
 // New Context Route
 app.post("/:publisher/context", function (request, response) {
     const Publisher = request.params.publisher;
@@ -37,6 +48,18 @@ app.post("/:publisher/context", function (request, response) {
             response.send(ResponseBody)
         })
     })
+})
+
+// check context 
+app.get("/:publisher/:context", function (request, response) {
+    const Publisher = request.params.publisher;
+    const Context = request.params.context;
+    verifyContextExistence(Publisher, Context, function (PublisherRegistryResponse) {
+        ResponseStandardizer(PublisherRegistryResponse, function (StatusCode, ResponseBody) {
+            response.status(StatusCode)
+            response.send(ResponseBody)
+        })
+    });
 })
 
 // Publish Log Route

@@ -1,2 +1,2 @@
-rm -rf logfiles/TestApp001
+rm -rf logfiles/testapp001
 echo {} > logfiles/PublisherRegistry.json

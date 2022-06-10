@@ -27,7 +27,7 @@ export function validateNewContext(newContext, ContextRegistry) {
 export function checkLogHasValidSchema(newContext) {
     if (Array.isArray(newContext["kind"]["logs"])) {
         if (newContext["kind"]["logs"].length > 0) {
-            if (newContext["kind"]["logs"].every(columnName => ["timestamp", "status"].includes(columnName))) {
+            if (newContext["kind"]["logs"].every(columnName => ["timestamp", "logLevel"].includes(columnName))) {
                 return false
             } else {
                 return true

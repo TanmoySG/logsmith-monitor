@@ -362,3 +362,166 @@ docker exec logsmith-monitor_logsmithmonitor_1  /bin/sh ./scripts/clean-up.sh
 - [ ] `GET /publisher` Publisher List
 - [ ] `GET /:publisher/context` Context List
 - [ ] `GET /:publisher/:context/logs?realtime=true` Realtime Log List
+
+### Good Practices
+- It is a good practice to pass a single log object to everywhere its required instead of defining it in every file.
+```
+from SubDirPath import defOne
+from SubDirTwo import defTwo
+
+log = log()
+defOne(params..., log)
+defTwo(params..., log)
+
+log.warn()
+
+// SubDirPath File
+def defOne(param, log):
+    log.warn()
+
+// SubDirTwo File
+def defTwo(param, log):
+    log.info()
+```
+
+Instead of
+```
+from SubDirPath import defOne
+from SubDirTwo import defTwo
+
+log = log(config)
+defOne(params)
+defTwo(params)
+
+log.warn()
+
+// SubDirPath File
+def defOne(param):
+    log = log(config)
+    log.warn()
+
+// SubDirTwo File
+def defTwo(param):
+    log = log(config)
+    log.info()
+```
+
+#### Install local package in the Directory Example Directory
+
+Go to Example Directory, use `npm install`
+```
+npm install <path-to-project>
+
+//eg
+npm install ../logsmith
+```
+
+
+### Helper Libraries
+
+Some thoughts on helper libraries.
+
+#### NodeJS Helper Library
+
+- Q:  
+
+### Responses - Initial
+
+- Publisher
+    - publisher.exists
+    - publisher.invalid
+    - publisher.success
+    - publisher.missing
+- Context
+    - context.invalid
+    - context.success
+    - context.exists
+    - context.missing
+- Log
+    - log.success
+    - log.error
+
+
+### For testing monitorLogger
+
+```
+
+const sampleData = {
+    listener: "http://localhost:8080",
+    publisher: {
+        publisher: "testapp1",
+        origin: "bend.testapp1.com",
+        description: "test App"
+    },
+    context: {
+        context: "testcon2",
+        origin: "bend.testcon.con",
+        description: "Cotext",
+        kind: {
+            logs: []
+        }
+    },
+    log: {
+        loglevel: "WARN",
+        worker: "TEST WrKr",
+        random: "txt"
+    }
+}
+
+monitorLogRunner(sampleData.listener, sampleData.publisher, sampleData.context, sampleData.log, function (response) {
+    console.log(response)
+})
+```
+
+```
+
+function loadInits(monitorLogging, monitorConfigs) {
+    if (monitorLogging && monitorConfigs.publisher != undefined && monitorConfigs.context != undefined) {
+        createNewPublisher(monitorConfigs.listener, monitorConfigs.publisher, function (res) {
+            createNewContext(monitorConfigs.listener, monitorConfigs.publisher, monitorConfigs.context, function (resp) {
+                console.log("loded")
+            })
+        })
+    }
+}
+```
+
+```
+if (response.scope == MonitorResponse.publisher.missing) {
+            createNewPublisher(listener, publisher, function (response) {
+                if (response.scope == MonitorResponse.publisher.success) {
+                    monitorLogRunner(listener, monitorConfig, log, function (response) {
+                        callback(response)
+                    })
+                }
+                callback(response)
+            })
+        } else if (response.scope == MonitorResponse.context.missing) {
+            createNewContext(listener, publisher, context, function (response) {
+                if (response.scope == MonitorResponse.context.success) {
+                    monitorLogRunner(listener, monitorConfig, log, function (response) {
+                        console.log(response)
+                        callback(response)
+                    })
+                }
+                callback(response)
+            })
+        } else {
+            if (response.scope == MonitorResponse.log.error) {
+                callback(response)
+            } else if (response.scope == MonitorResponse.log.success) {
+                callback(response)
+            }
+        }
+```
+
+### Not Reachable Monitor
+
+Identified Issues
+
+- Mid-flight crashing
+    - If the Monitor goes down, for any reason , the logging library also causes the app/program its logging for to go down, mid flight.
+    - Caused due to FetchError in node-fetchwhen server is unreachable.
+    - This should be worked on and rather than making the program stop it should handle it 
+    - May add a catch block to handle this
+    - **Pending Issue Creation** -  Create an issue and work on it.

@@ -1,11 +1,12 @@
 import * as filesystem from 'fs';
-import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
-import { validateExistingPublisher } from '../publishers/validate.js'
-import { getPublishersRegistry } from '../publishers/publisher.js'
 import { getContextRegistry } from '../contexts/context.js';
 import { validateExistingContext } from '../contexts/validate.js';
-import { validateSchema } from './validate.js';
+import { getPublishersRegistry } from '../publishers/publisher.js';
+import { validateExistingPublisher } from '../publishers/validate.js';
+import { consoleLogger } from '../utilities/consoleUtility.js';
 import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
+import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
+import { validateSchema } from './validate.js';
 
 export function usesSchema(LogRegistry) {
     return LogRegistry.usesSchema
@@ -45,29 +46,46 @@ export function registerNewLog(publisher, context, newLog, callback) {
                     LogRegistry["logs"].unshift(newLogObject);
                     JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
                         if (err) throw err;
+                        consoleLogger(publisher, context, newLogObject);
                         callback({
-                            "status": "success",
-                            "message": "Log Registered"
+                            status: "success",
+                            scope: "log.success",
+                            message: "Log Registered"
                         })
                     })
                 } else {
                     callback({
-                        "status": "failed",
-                        "message": "Schema Mismatch"
+                        status: "failed",
+                        scope: "log.error",
+                        message: "Schema Mismatch"
                     })
                 }
             } else {
                 newLogObject = { ...newLog };
-                LogRegistry["logs"].push(newLogObject);
+                LogRegistry["logs"].unshift(newLogObject);
                 JSONWriterGeneric(LogRegistryFilePath, LogRegistry, function (err) {
                     if (err) throw err;
+                    consoleLogger(publisher, context, newLogObject);
                     callback({
-                        "status": "success",
-                        "message": "Log Registered"
+                        status: "success",
+                        scope: "log.success",
+                        message: "Log Registered"
                     })
                 })
             }
+        } else {
+            callback({
+                status: "failed",
+                scope: "context.missing",
+                message: "Context doesn't exist."
+            })
         }
+    } else {
+        callback({
+            status: "failed",
+            scope: "publisher.missing",
+            message: "Publisher does't Exist."
+        });
     }
 }
 
