@@ -55,7 +55,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
@@ -70,7 +69,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
@@ -85,7 +83,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
@@ -100,7 +97,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
@@ -115,7 +111,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
@@ -131,7 +126,6 @@ export default class Logsmith {
             this.logfile,
             this.monitorLogging,
             this.monitorConfigs,
-            this.monitorLiveness,
             log
         )
     }
