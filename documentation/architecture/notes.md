@@ -514,3 +514,14 @@ if (response.scope == MonitorResponse.publisher.missing) {
             }
         }
 ```
+
+### Not Reachable Monitor
+
+Identified Issues
+
+- Mid-flight crashing
+    - If the Monitor goes down, for any reason , the logging library also causes the app/program its logging for to go down, mid flight.
+    - Caused due to FetchError in node-fetchwhen server is unreachable.
+    - This should be worked on and rather than making the program stop it should handle it 
+    - May add a catch block to handle this
+    - **Pending Issue Creation** -  Create an issue and work on it.
