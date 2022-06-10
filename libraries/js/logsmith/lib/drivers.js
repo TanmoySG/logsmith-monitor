@@ -11,7 +11,7 @@ function transformStatementToJSON(statement) {
 }
 
 
-export function loggerRunner(logLevel, env, compiledLogPattern, logFormat, consoleOnly, logFilePath, monitorLogging, monitorConfig, monitorLiveness, log) {
+export function loggerRunner(logLevel, env, compiledLogPattern, logFormat, consoleOnly, logFilePath, monitorLogging, monitorConfig, log) {
     if (typeof log == "string") {
         log = transformStatementToJSON(log)
     }
