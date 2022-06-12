@@ -133,3 +133,64 @@ This method provides the custom log level logging capability. This method takes 
 log.LOG(loglevel="TEST", {"test": "passed"})
 log.LOG(loglevel="TEST", "The test Passed")
 ```
+
+## Support for Logsmith Monitor
+
+Logsmith Monitor (or simply Monitor) is a stand-alone logging Server for multi-component apps. Read about logsmith-monitor [here]().
+
+LogsmithJS supports logging to Monitor. It pro creation of Publishers and Context
+
+### Configurations
+
+There are some specific connfigurations that are required to log to logsmith monitor. A basic and minimum configuration has the following fields, along with the configurations mentioned above. 
+
+The Configurations for monitor support are defined as a JSON Object with "monitor" as the key.
+
+```json
+{
+    "monitor": {
+        "port": "8080",
+        "server": "localhost",
+        "publisher": {
+            "publisher": "testapp001"
+        },
+        "context": {
+            "context": "testcontext001"
+        }
+    }
+}
+```
+
+The fields required for monitor support are
+
+| Fields    | Description                                          | Type         | Allowed Values                |
+| --------- | ---------------------------------------------------- | ------------ | ----------------------------- |
+| server    | The address/URI where monitor is running             | URI (string) | URL                           |
+| port      | The Port of the address where its running            | string       | Numeric and Valid PORT number |
+| publisher | A JSON object to define the details of the Publisher | JSON Object  | JSON, [Read More]()           |
+| context   | A JSON Object top specify the details of the Context | JSON Object  | JSON, [Read More]()           |
+
+The `publisher` and `context` fields are used to define their respective configs. The bare minimum publisher and context information that must be provided are the namespaces. 
+
+For Publisher Configurations, the field that needs to be put is the publisher name. Eg:
+```json
+"publisher": {
+    "publisher": <publsiher-name>
+}
+```
+
+For Context Configurations, the field that needs to be put is the context name. Eg:
+```json
+"context": {
+    "context": <context-name>
+}
+```
+
+There are other customizable fields for either. These fields are same as that defined for running Monitor.
+
+- [Read More about the configurations for Publisher](../../../documentation/README.md#register-a-publisher)
+- [Read More about the configurations for Contexts](../../../documentation/README.md#register-a-context)
+
+### The `initializeMonitor()` method
+
+Logsmith
