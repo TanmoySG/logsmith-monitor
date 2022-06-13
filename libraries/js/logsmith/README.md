@@ -6,7 +6,7 @@ LogsmithJS is a Logging Library for Node JS apps with support for [logsmith-moni
 
 Install LogsmithJS using npm
 
-```shell
+```sh
 npm i logsmithjs
 ```
 
@@ -37,15 +37,15 @@ To use logsmith, certain configurations are required. If no configs are provided
 
 The Various flags/fields that can be configured are
 
-| Field               | Description                                                                                                                                                                                 | Type    | Allowed Values        | Default Value             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- | ------------------------- |
-| env                 | Environment on which the app is running                                                                                                                                                     | string  | Any                   | "default"                 |
-| consoleOnly         | If consoleOnly is set to true then the logs will only be shown on the terminal, and wont be logged to any file                                                                              | boolean | `true` or `false`     | true                      |
-| logfile             | If logs are to be logged to a file, this field is used to specify the path to the logfile, works only if consoleOnly is false                                                               | string  | Relative Path to File | null                      |
-| logStatementPattern | The Pattern in which the log needs to be logged on console. [Read More.]()                                                                                                                  | string  | Any String            | `[{timestamp}] {message}` |
-| logFormat           | The Format of Log                                                                                                                                                                           | string  | `json` or `statement` | json                      |
-| monitorLogging      | Flag that is set if logging to monitor is required. If set to true, logs will be published to monitor too. If set to true, monitor specific configurations are also required. [Read More]() | boolean | `true` or `false`     | false                     |
-| monitor             | A JSON field that is required to communicate with monitor. Works only is monitorLogging is set to true. Read the [Monitor Config Section]() for more                                        | json    | [Read More]()         | null                      |
+| Field               | Description                                                                                                                                                                                 | Type    | Allowed Values                       | Default Value             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------ | ------------------------- |
+| env                 | Environment on which the app is running                                                                                                                                                     | string  | Any                                  | "default"                 |
+| consoleOnly         | If consoleOnly is set to true then the logs will only be shown on the terminal, and wont be logged to any file                                                                              | boolean | `true` or `false`                    | true                      |
+| logfile             | If logs are to be logged to a file, this field is used to specify the path to the logfile, works only if consoleOnly is false                                                               | string  | Relative Path to File                | null                      |
+| logStatementPattern | The Pattern in which the log needs to be logged on console. [Read More.](#log-statement-patterns)                                                                                           | string  | Any String                           | `[{timestamp}] {message}` |
+| logFormat           | The Format of Log                                                                                                                                                                           | string  | `json` or `statement`                | json                      |
+| monitorLogging      | Flag that is set if logging to monitor is required. If set to true, logs will be published to monitor too. If set to true, monitor specific configurations are also required. [Read More]() | boolean | `true` or `false`                    | false                     |
+| monitor             | A JSON field that is required to communicate with monitor. Works only is monitorLogging is set to true. Read the [Monitor Config Section](#monitor-configurations) for more                 | json    | [Read More](#monitor-configurations) | null                      |
 
 ### Using Configurations
 
@@ -136,11 +136,11 @@ log.LOG(loglevel="TEST", "The test Passed")
 
 ## Support for Logsmith Monitor
 
-Logsmith Monitor (or simply Monitor) is a stand-alone logging Server for multi-component apps. Read about logsmith-monitor [here]().
+Logsmith Monitor (or simply Monitor) is a stand-alone logging Server for multi-component apps. Read about logsmith-monitor [here](https://github.com/TanmoySG/logsmith-monitor).
 
 LogsmithJS supports logging to Monitor. It pro creation of Publishers and Context
 
-### Configurations
+### Monitor Configurations
 
 There are some specific connfigurations that are required to log to logsmith monitor. A basic and minimum configuration has the following fields, along with the configurations mentioned above. 
 
@@ -167,8 +167,8 @@ The fields required for monitor support are
 | --------- | ---------------------------------------------------- | ------------ | ----------------------------- |
 | server    | The address/URI where monitor is running             | URI (string) | URL                           |
 | port      | The Port of the address where its running            | string       | Numeric and Valid PORT number |
-| publisher | A JSON object to define the details of the Publisher | JSON Object  | JSON, [Read More]()           |
-| context   | A JSON Object top specify the details of the Context | JSON Object  | JSON, [Read More]()           |
+| publisher | A JSON object to define the details of the Publisher | JSON Object  | JSON                          |
+| context   | A JSON Object top specify the details of the Context | JSON Object  | JSON                          |
 
 The `publisher` and `context` fields are used to define their respective configs. The bare minimum publisher and context information that must be provided are the namespaces. 
 
@@ -225,4 +225,30 @@ log.fetchConfigFromFile("/path/to/file.json")
 log.initializeMonitor()
 ```
 
-### 
+## Know More
+
+Some general information about some of the components in logsmithjs.
+
+### Log Statement Patterns
+
+Log Statement Patterns are strings with placeholder that are used to print logs on-to the local console in the same format. The placeholders are identified by the names of the fields (in log) and placeholders names are defined in the string by enclosing them within curly-braces `{}`. 
+
+Example Usage
+```js
+import Logsmith  from "logsmithjs";
+
+const logStatementPattern = "{timestamp} > {status}"
+const log = new Logsmith({logStatementPattern : logStatementPattern})
+
+log.INFO({"timetamp": "11 AM", "status" : "ok", "action": "create"})
+```
+
+The above code logs a custom log statement
+```
+11 AM > ok
+```
+
+
+## Known Issues
+
+There are some issues that we are working on to solve. List of the known issues and their temporary remediation are available [here](./KNOW_ISSUES.md).
