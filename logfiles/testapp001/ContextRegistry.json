@@ -1,0 +1,16 @@
+{
+    "testcontext001": {
+        "id": "0bBgQ4",
+        "path": "logfiles/testapp001/testcontext001",
+        "origin": "app.testapp001.com/testcontext001",
+        "namespace": "testcontext001",
+        "timestamp": 1655272951456,
+        "description": "Logs Published by testapp001",
+        "kind": {
+            "logs": {
+                "usesSchema": false,
+                "path": "logfiles/testapp001/testcontext001/LogsRegistry.json"
+            }
+        }
+    }
+}

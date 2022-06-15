@@ -1,1 +1,10 @@
-{}
+{
+    "testapp001": {
+        "id": "lCISFE_S",
+        "path": "logfiles/testapp001",
+        "origin": "app.testapp001.com",
+        "namespace": "testapp001",
+        "timestamp": 1655272951445,
+        "description": "Logs Published by testapp001"
+    }
+}

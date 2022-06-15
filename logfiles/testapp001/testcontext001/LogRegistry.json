@@ -1,0 +1,21 @@
+{
+    "kind": "logs",
+    "usesSchema": false,
+    "schema": [
+        "timestamp",
+        "logLevel"
+    ],
+    "defaults": [
+        "timestamp",
+        "logLevel"
+    ],
+    "logCount": 0,
+    "logs": [
+        {
+            "timestamp": 1655272969704,
+            "logLevel": "INFO",
+            "source": "example",
+            "issue": "none"
+        }
+    ]
+}
