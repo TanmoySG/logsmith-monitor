@@ -257,14 +257,14 @@ The above code logs a custom log statement
 To test Logsmith and Logsmith-Monitor in Action, we created this example application. 
 
 Startup Logsmith Monitor in Docker
-```sh
+```console
 docker pull ghcr.io/tanmoysg/logsmith-monitor:v0.0.5
 
 docker run ghcr.io/tanmoysg/logsmith-monitor:v0.0.5
 ```
 
 Go to the [`examples`](../examples/) directory. Start the example Express App.
-```
+```console
 node .
 ```
 
@@ -277,7 +277,7 @@ Once the Server starts, it gives an endpoint for each logging method. The Endpoi
 - {express-app-url}/log
 
 These can be tested using cURL
-```
+```console
 curl localhost:8096/info
 ```
 
