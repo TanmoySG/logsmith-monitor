@@ -4,7 +4,7 @@ LogsmithJS is a Logging Library for Node JS apps with support for [logsmith-moni
 
 ## Getting Started
 
-Install LogsmithJS using npm
+Install LogsmithJS using [npm](https://www.npmjs.com/package/logsmithjs)
 
 ```sh
 npm i logsmithjs
@@ -20,61 +20,9 @@ const log = new Logsmith({})
 log.INFO("this is working fine")
 ```
 
-## Configurations
+While a logsmithJS supports a no-config setup, there are some configurations that can be tweaked as per need. [Read More](#configurations)
 
-To use logsmith, certain configurations are required. If no configs are provided then the default values are set. A basic logsmith config looks something like this.
-
-```json
-{
-    "env": "test",
-    "logfile": "path/to/local/log/file",
-    "consoleOnly": false,
-    "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
-    "logFormat": "json",
-    "monitorLogging": true
-}
-```
-
-The Various flags/fields that can be configured are
-
-| Field               | Description                                                                                                                                                                                 | Type    | Allowed Values                       | Default Value             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------ | ------------------------- |
-| env                 | Environment on which the app is running                                                                                                                                                     | string  | Any                                  | "default"                 |
-| consoleOnly         | If consoleOnly is set to true then the logs will only be shown on the terminal, and wont be logged to any file                                                                              | boolean | `true` or `false`                    | true                      |
-| logfile             | If logs are to be logged to a file, this field is used to specify the path to the logfile, works only if consoleOnly is false                                                               | string  | Relative Path to File                | null                      |
-| logStatementPattern | The Pattern in which the log needs to be logged on console. [Read More.](#log-statement-patterns)                                                                                           | string  | Any String                           | `[{timestamp}] {message}` |
-| logFormat           | The Format of Log                                                                                                                                                                           | string  | `json` or `statement`                | json                      |
-| monitorLogging      | Flag that is set if logging to monitor is required. If set to true, logs will be published to monitor too. If set to true, monitor specific configurations are also required. [Read More]() | boolean | `true` or `false`                    | false                     |
-| monitor             | A JSON field that is required to communicate with monitor. Works only is monitorLogging is set to true. Read the [Monitor Config Section](#monitor-configurations) for more                 | json    | [Read More](#monitor-configurations) | null                      |
-
-### Using Configurations
-
-Configurations can be defined and used in an application by creating the config json and passing it to the Logsmith object while initializing.
-
-```js
-import Logsmith  from "logsmithjs"
-
-const logConfig = {
-    "env": "test",
-    "logfile": "path/to/local/log/file",
-    "consoleOnly": false,
-    "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
-    "logFormat": "json",
-    "monitorLogging": true
-}
-
-const log = new Logsmith(logConfig)
-```
-
-Configurations may also be loaded from JSON files. Define the Configurations in a JSON file and load it using `fetchConfigFromFile()` method.
-
-```js
-import Logsmith from "logsmithjs"
-
-const log = new Logsmith({});
-
-log.fetchConfigFromFile("/path/to/config/file.json")
-```
+For Logsmith-Monitor Support, [go here.](#support-for-logsmith-monitor)
 
 ## Usage
 
@@ -132,6 +80,62 @@ This method provides the custom log level logging capability. This method takes 
 ```js
 log.LOG(loglevel="TEST", {"test": "passed"})
 log.LOG(loglevel="TEST", "The test Passed")
+```
+
+## Configurations
+
+To use logsmith, certain configurations are required. If no configs are provided then the default values are set. A basic logsmith config looks something like this.
+
+```json
+{
+    "env": "test",
+    "logfile": "path/to/local/log/file",
+    "consoleOnly": false,
+    "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
+    "logFormat": "json",
+    "monitorLogging": true
+}
+```
+
+The Various flags/fields that can be configured are
+
+| Field               | Description                                                                                                                                                                                 | Type    | Allowed Values                       | Default Value             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------ | ------------------------- |
+| env                 | Environment on which the app is running                                                                                                                                                     | string  | Any                                  | "default"                 |
+| consoleOnly         | If consoleOnly is set to true then the logs will only be shown on the terminal, and wont be logged to any file                                                                              | boolean | `true` or `false`                    | true                      |
+| logfile             | If logs are to be logged to a file, this field is used to specify the path to the logfile, works only if consoleOnly is false                                                               | string  | Relative Path to File                | null                      |
+| logStatementPattern | The Pattern in which the log needs to be logged on console. [Read More.](#log-statement-patterns)                                                                                           | string  | Any String                           | `[{timestamp}] {message}` |
+| logFormat           | The Format of Log                                                                                                                                                                           | string  | `json` or `statement`                | json                      |
+| monitorLogging      | Flag that is set if logging to monitor is required. If set to true, logs will be published to monitor too. If set to true, monitor specific configurations are also required. [Read More]() | boolean | `true` or `false`                    | false                     |
+| monitor             | A JSON field that is required to communicate with monitor. Works only is monitorLogging is set to true. Read the [Monitor Config Section](#monitor-configurations) for more                 | json    | [Read More](#monitor-configurations) | null                      |
+
+### Using Configurations
+
+Configurations can be defined and used in an application by creating the config json and passing it to the Logsmith object while initializing.
+
+```js
+import Logsmith  from "logsmithjs"
+
+const logConfig = {
+    "env": "test",
+    "logfile": "path/to/local/log/file",
+    "consoleOnly": false,
+    "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
+    "logFormat": "json",
+    "monitorLogging": true
+}
+
+const log = new Logsmith(logConfig)
+```
+
+Configurations may also be loaded from JSON files. Define the Configurations in a JSON file and load it using `fetchConfigFromFile()` method.
+
+```js
+import Logsmith from "logsmithjs"
+
+const log = new Logsmith({});
+
+log.fetchConfigFromFile("/path/to/config/file.json")
 ```
 
 ## Support for Logsmith Monitor
@@ -248,6 +252,36 @@ The above code logs a custom log statement
 11 AM > ok
 ```
 
+## Example Application
+
+To test Logsmith and Logsmith-Monitor in Action, we created this example application. 
+
+Startup Logsmith Monitor in Docker
+```sh
+docker pull ghcr.io/tanmoysg/logsmith-monitor:v0.0.5
+
+docker run ghcr.io/tanmoysg/logsmith-monitor:v0.0.5
+```
+
+Go to the [`examples`](../examples/) directory. Start the example Express App.
+```
+node .
+```
+
+Once the Server starts, it gives an endpoint for each logging method. The Endpoints available are
+- {express-app-url}/warn
+- {express-app-url}/info
+- {express-app-url}/critical
+- {express-app-url}/success
+- {express-app-url}/failure
+- {express-app-url}/log
+
+These can be tested using cURL
+```
+curl localhost:8096/info
+```
+
+The logs should be printed both on the monitor as well as the example app terminal. Play around with the config for more customization.
 
 ## Known Issues
 
