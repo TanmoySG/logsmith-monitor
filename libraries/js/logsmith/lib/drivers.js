@@ -1,5 +1,5 @@
-import { consoleLogJSON, consoleLogStatement, prepareJSONLog, prepareStatementLog } from './logUtility.js';
 import { ChalkLog, LogFormats } from './specs.js';
+import { prepareJSONLog, consoleLogJSON, prepareStatementLog, consoleLogStatement } from './logUtility.js';
 
 export function loggerRunner(logLevel, env, compiledLogPattern, logFormat, log) {
     const chalkLog = ChalkLog[logLevel] || ChalkLog.CUSTOM
