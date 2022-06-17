@@ -1,4 +1,4 @@
-import Logsmith from "../logsmith/logsmith.js";
+import Logsmith from "logsmith";
 
 const logg = new Logsmith({})
-console.log(logg.log({ level: "INFO", body: { col1: "val1", col2: "val2" } }))
+console.log(logg.getParams())
