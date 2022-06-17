@@ -405,13 +405,3 @@ def defTwo(param):
     log = log(config)
     log.info()
 ```
-
-#### Install local package in the Directory Example Directory
-
-Go to Example Directory, use `npm install`
-```
-npm install <path-to-project>
-
-//eg
-npm install ../logsmith
-```
