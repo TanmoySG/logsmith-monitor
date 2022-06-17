@@ -28,25 +28,6 @@ export const LogFormats = {
 export var logs = []
 
 const PROTOCOLS = {
-    "http": "http://",
-    "https": "https://"
-}
-
-export const MonitorResponse = {
-    publisher: {
-        exists: "publisher.exists",
-        invalid: "publisher.invalid",
-        success: "publisher.success",
-        missing: "publisher.missing"
-    },
-    context: {
-        exists: "context.exists",
-        invalid: "context.invalid",
-        success: "context.success",
-        missing: "context.missing"
-    },
-    log: {
-        error: "log.error",
-        success: "log.success"
-    }
+    "http" : "http://",
+    "https" : "https://"
 }
