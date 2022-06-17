@@ -251,4 +251,4 @@ The above code logs a custom log statement
 
 ## Known Issues
 
-There are some issues that we are working on to solve. List of the known issues and their temporary remediation are available [here](./KNOWN_ISSUES.md).
+There are some issues that we are working on to solve. List of the known issues and their temporary remediation are available [here](./KNOW_ISSUES.md).
