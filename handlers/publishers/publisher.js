@@ -2,7 +2,7 @@ import * as filesystem from 'fs';
 import { nanoid } from "nanoid";
 import { JSONWriterGeneric } from '../utilities/jsonWriter.js';
 import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
-import { validateNewPublisher, validateExistingPublisher } from "./validate.js";
+import { validateNewPublisher } from "./validate.js";
 import { createContextRegistry } from '../contexts/context.js';
 
 const PublisherRegistryFilePath = "logfiles/PublisherRegistry.json";
@@ -16,12 +16,6 @@ export function getPublishersRegistry() {
 
 export function addToPublisherRegistry(newPublisher, callback) {
     const PublisherRegistry = getPublishersRegistry();
-    if (validateExistingPublisher(newPublisher["publisher"], PublisherRegistry)) {
-        callback({
-            status: "failed",
-            message: "Publisher Exists"
-        })
-    }
     if (validateNewPublisher(newPublisher, PublisherRegistry)) {
         const StandardizedPublisherIdentifier = StandardizeIdentifier(newPublisher["publisher"]);
         const publisherNamespacePath = "logfiles/" + StandardizedPublisherIdentifier;
@@ -42,7 +36,7 @@ export function addToPublisherRegistry(newPublisher, callback) {
                     callback({
                         status: "success",
                         message: "Publisher Created!",
-                        publisher: StandardizedPublisherIdentifier
+                        publisher : StandardizedPublisherIdentifier
                     });
                 });
             });
