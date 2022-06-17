@@ -17,7 +17,6 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "ndjson": "^2.0.0",
-    "node-fetch": "^3.2.4",
     "string-template": "^1.0.0"
   }
 }
