@@ -57,36 +57,36 @@ export function initiateMonitor(listener, monitorConfig, callback) {
     })
 }
 
-export async function checkPublisher(listener, publisher, callback) {
+export function checkPublisher(listener, publisher, callback) {
     const checkPublisherURI = Endpoints.checkPublisher(listener, publisher)
-    await fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
+    fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
     })
 }
 
-export async function checkContext(listener, publisher, context, callback) {
+export function checkContext(listener, publisher, context, callback) {
     const checkPublisherURI = Endpoints.checkContext(listener, publisher, context)
-    await fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
+    fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
     })
 }
 
-export async function createNewPublisher(listener, publisher, callback) {
+export function createNewPublisher(listener, publisher, callback) {
     const publisherURI = Endpoints.Publisher(listener)
-    await fetch(publisherURI, prepareRequestConfig("POST", publisher)).then(function (response) {
+    fetch(publisherURI, prepareRequestConfig("POST", publisher)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
     })
 }
 
-export async function createNewContext(listener, publisher, context, callback) {
+export function createNewContext(listener, publisher, context, callback) {
     const contextURI = Endpoints.Context(listener, publisher.publisher)
-    await fetch(contextURI, prepareRequestConfig("POST", context)).then(function (response) {
+    fetch(contextURI, prepareRequestConfig("POST", context)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
@@ -94,9 +94,9 @@ export async function createNewContext(listener, publisher, context, callback) {
 }
 
 
-export async function logToMonitor(listener, publisher, context, log, callback) {
+export function logToMonitor(listener, publisher, context, log, callback) {
     const logURI = Endpoints.Log(listener, publisher.publisher, context.context)
-    await fetch(logURI, prepareRequestConfig("POST", log)).then(function (response) {
+    fetch(logURI, prepareRequestConfig("POST", log)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
