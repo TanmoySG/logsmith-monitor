@@ -33,14 +33,6 @@ Features currently in Pipeline for Development.
 
 Adding only new feature descriptions here. Existing Developed and Planned Features are in the next section.
 
-- **CLI Tool**
-    - CLI tool for Logsmith that can run the monitor server in memory
-        - It can also start the docker container - pulls image and runs
-    - It can also create the publsher and contexts - Via interactive Prompt
-    - Can get logs/view logs
-    - Can perform all operations available through the API
-    - Can spin up multiple replicas (may be considered outside initial CLI Dev Scope)
-    - Can run diagnosis (may be considered outside initial CLI Dev Scope)
 - **Log Audit**
     - Log Auditing allows the publisher and logging-server to compare logs between themselves
         - Find anomalies in the logs
