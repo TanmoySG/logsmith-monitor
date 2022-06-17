@@ -92,8 +92,7 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                 callback({
                     status: "success",
                     message: "Context Added.",
-                    context: StandardizedContextIdentifier,
-                    scope: "context.success"
+                    context: StandardizedContextIdentifier
                 })
             })
         } else {
