@@ -9,7 +9,7 @@ import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
 
 const ContextRegistryTemplate = {}
 
-const defaultLogSchema = ["timestamp", "logLevel"]
+const defaultLogSchema = ["timestamp", "status"]
 const defaultMetricSchema = ["timestamp"]
 
 const logRegistryTemplate = {

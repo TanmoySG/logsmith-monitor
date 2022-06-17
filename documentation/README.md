@@ -71,7 +71,7 @@ ENDPOINT: localhost:8080/{publisher}/{context}/logs
 METHOD  : POST
 PAYLOAD : 
     {
-        "logLevel" : "WARN",
+        "status" : "WARN",
         "column1" : "Testing Logsmith",
         "column2" : "RESTClient",
         ...
@@ -79,7 +79,7 @@ PAYLOAD :
 ```
 Note:
 
-- Here, LogLevel is the the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. 
+- Here, status is the LogLevel, i.e. the Priority of the Log and can have any value like - WARN, INFO, FAILURE, etc. 
 - A publisher can add timestamp from their own end, which overrides the system-set timestamp. 
 - If timestamp is not added to the log payload, system-generated timestamp is used.
 

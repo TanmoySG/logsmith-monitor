@@ -18,19 +18,19 @@ const logg1 = {
     "col1" : "test",
     "col2": "test2",
     "timestamp" : 123456,
-    "logLevel" : "WARN"
+    "status" : "WARN"
 }
 
 const logg2={
     "col1" : "test",
     "col2": "test2",
-    "logLevel" : "WARN"
+    "status" : "WARN"
 }
 
 const logg3={
     "col" : "test",
     "col2": "test2",
-    "logLevel" : "WARN"
+    "status" : "WARN"
 }
 
 registerNewLog(publisher, context,logg1, function (err) {

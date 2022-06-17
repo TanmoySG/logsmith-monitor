@@ -7,10 +7,10 @@ export function validateExistingPublisher(publisher, PublisherRegistry) {
 }
 
 export function validateLog(LogBody) {
-    if (["context", "logLevel", "message"] in LogBody) {
+    if (["context", "status", "message"] in LogBody) {
         if (
             length(LogBody["context"]) != 0 &&
-            length(LogBody["logLevel"]) != 0 &&
+            length(LogBody["status"]) != 0 &&
             length(LogBody["message"]) != 0
         ) {
             return true

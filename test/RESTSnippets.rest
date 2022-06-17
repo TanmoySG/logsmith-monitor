@@ -39,7 +39,7 @@ POST {{host}}/{{publisher}}/{{context}}/logs HTTP/1.1
 content-type: application/json
 
 {
-    "logLevel" : "INFO",
+    "status" : "INFO",
     "message" : "Testing Logsmith",
     "mode" : "RESTClient"
 }
@@ -50,7 +50,7 @@ content-type: application/json
 
 {
     "timestamp" : {{$timestamp}},
-    "logLevel" : "WARN",
+    "status" : "WARN",
     "message" : "Testing Logsmith",
     "mode" : "RESTClient"
 }
