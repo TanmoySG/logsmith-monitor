@@ -2,8 +2,8 @@
 @port = 8080
 @host = {{hostname}}:{{port}}
 
-@publisher = testapp001
-@context = testcontext001
+@publisher = Testapp001
+@context = Testcontext001
 
 ###
 GET {{host}}
@@ -21,10 +21,6 @@ content-type: application/json
 
 ###
 
-GET {{host}}/{{publisher}} HTTP/1.1
-
-###
-
 POST {{host}}/{{publisher}}/context HTTP/1.1
 content-type: application/json
 
@@ -36,11 +32,6 @@ content-type: application/json
         "logs": ["message", "mode"]
     }
 }
-
-###
-
-
-GET {{host}}/{{publisher}}/{{context}} HTTP/1.1
 
 ###
 
