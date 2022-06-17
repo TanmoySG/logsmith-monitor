@@ -2,6 +2,5 @@
     "env": "test",
     "logfile": null,
     "consoleOnly": false,
-    "logPrintPattern": "[{level}] {body}",
-    "logFormat" : "csv"
+    "logPrintPattern": "[{level}] {body}"
 }
