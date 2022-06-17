@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, {FetchError} from 'node-fetch'
 import compile from "string-template/compile.js"
 import { MonitorResponse } from "../lib/specs.js"
 
@@ -26,33 +26,10 @@ function prepareRequestConfig(method, body) {
 
 }
 
-export function checkConnection(listener, callback) {
-    const checkConnectionEndpoint = Endpoints.API(listener)
-    try {
-        fetch(
-            checkConnectionEndpoint, prepareRequestConfig("GET", {})
-        ).then((response) => {
-            return response.json()
-        }).then((json) => {
-            callback(MonitorResponse.connection.success)
-        })
-    } catch (error) {
-        if (error.name == "FetchError") {
-            callback(MonitorResponse.connection.failed)
-        }
-    }
-}
-
 export function initiateMonitor(listener, monitorConfig, callback) {
     const publisher = monitorConfig.publisher
     const context = monitorConfig.context
-    if (monitorConfig.monitorLiveness == true) {
-        callback(MonitorResponse.connection.failed)
-    }
     checkPublisher(listener, publisher.publisher, function (response) {
-        if (response.scope == MonitorResponse.connection.failed) {
-            callback(response.message)
-        }
         if (response.scope == MonitorResponse.publisher.exists) {
             callback(response.scope)
         } else {
@@ -86,36 +63,33 @@ export async function checkPublisher(listener, publisher, callback) {
     }).then(function (response) {
         callback(response)
     }).catch((error) => {
-        if (error.name == "FetchError") {
-            callback({
-                scope: MonitorResponse.connection.failed,
-                message: "couldn't connect to monitor. Logging offline."
-            })
+        if(error.name == "FetchError"){
+            callback({scope : "couldn't connect to monitor. Logging offline."})
         }
     })
 }
 
-export function checkContext(listener, publisher, context, callback) {
+export async function checkContext(listener, publisher, context, callback) {
     const checkPublisherURI = Endpoints.checkContext(listener, publisher, context)
-    fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
+    await fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
     })
 }
 
-export function createNewPublisher(listener, publisher, callback) {
+export async function createNewPublisher(listener, publisher, callback) {
     const publisherURI = Endpoints.Publisher(listener)
-    fetch(publisherURI, prepareRequestConfig("POST", publisher)).then(function (response) {
+    await fetch(publisherURI, prepareRequestConfig("POST", publisher)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
     })
 }
 
-export function createNewContext(listener, publisher, context, callback) {
+export async function createNewContext(listener, publisher, context, callback) {
     const contextURI = Endpoints.Context(listener, publisher.publisher)
-    fetch(contextURI, prepareRequestConfig("POST", context)).then(function (response) {
+    await fetch(contextURI, prepareRequestConfig("POST", context)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
@@ -123,9 +97,9 @@ export function createNewContext(listener, publisher, context, callback) {
 }
 
 
-export function logToMonitor(listener, publisher, context, log, callback) {
+export async function logToMonitor(listener, publisher, context, log, callback) {
     const logURI = Endpoints.Log(listener, publisher.publisher, context.context)
-    fetch(logURI, prepareRequestConfig("POST", log)).then(function (response) {
+    await fetch(logURI, prepareRequestConfig("POST", log)).then(function (response) {
         return response.json()
     }).then(function (response) {
         callback(response)
