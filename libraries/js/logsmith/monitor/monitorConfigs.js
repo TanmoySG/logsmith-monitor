@@ -1,6 +1,6 @@
 import compile from "string-template/compile.js"
 
-const URITemplate = compile("{0}://{1}:{2}");
+const URITemplate = compile("{0}:{1}");
 const DefaultPublisherTemplate = {
     Origin: compile("app.{0}.com"),
     Description: compile("Logs Published by {0}")
@@ -32,19 +32,18 @@ function formatCotextConfig(publisher, monitorConfig) {
 
 export function getMonitorConfigs(config) {
     const monitorConfigs = {}
-    monitorConfigs.monitorPort = config.monitor.port || process.env.MONITOR_PORT
-    monitorConfigs.monitorURI = config.monitor.server || process.env.MONITOR_URI
-    monitorConfigs.monitorProtocol = config.monitor.protocol || process.env.MONITOR_PROTOCOL || "http"
-    monitorConfigs.monitorListener = URITemplate(monitorConfigs.monitorProtocol, monitorConfigs.monitorURI, monitorConfigs.monitorPort) || process.env.LISTENER
-    monitorConfigs.publisher = formatPublisherConfig(config.monitor.publisher)
-    monitorConfigs.context = formatCotextConfig(monitorConfigs.publisher.publisher, config.monitor.context)
+    monitorConfigs.monitorPort = config.MONITOR.port || process.env.MONITOR_PORT
+    monitorConfigs.monitorURI = config.MONITOR.server || process.env.MONITOR_URI
+    monitorConfigs.monitorListener = URITemplate(monitorConfigs.monitorURI, monitorConfigs.monitorPort) || process.env.LISTENER
+    monitorConfigs.publisher = formatPublisherConfig(config.MONITOR.publisher)
+    monitorConfigs.context = formatCotextConfig(monitorConfigs.publisher.publisher, config.MONITOR.context)
     return monitorConfigs
 }
 
 // can be used for test
 // console.log(
 //     getMonitorConfigs({
-//         monitor: {
+//         MONITOR: {
 //             port: "8080",
 //             server: "localhost",
 //             publisher: {

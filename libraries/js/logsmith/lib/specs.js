@@ -26,8 +26,3 @@ export const LogFormats = {
 }
 
 export var logs = []
-
-const PROTOCOLS = {
-    "http" : "http://",
-    "https" : "https://"
-}
