@@ -1,7 +1,5 @@
 import chalk from 'chalk';
 
-const LISTENER
-
 const logLevels = {
     WARN: chalk.yellow,
     INFO: chalk.blue,
