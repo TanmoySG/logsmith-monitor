@@ -83,8 +83,6 @@ export async function checkPublisher(listener, publisher, callback) {
                 message: "couldn't connect to monitor. Logging offline."
             })
         }
-    }).catch(function(error){
-        callback(MonitorResponse.connection.failed)
     })
 }
 
@@ -94,8 +92,6 @@ export function checkContext(listener, publisher, context, callback) {
         return response.json()
     }).then(function (response) {
         callback(response)
-    }).catch(function(error){
-        callback(MonitorResponse.connection.failed)
     })
 }
 
@@ -105,8 +101,6 @@ export function createNewPublisher(listener, publisher, callback) {
         return response.json()
     }).then(function (response) {
         callback(response)
-    }).catch(function(error){
-        callback(MonitorResponse.connection.failed)
     })
 }
 
@@ -116,8 +110,6 @@ export function createNewContext(listener, publisher, context, callback) {
         return response.json()
     }).then(function (response) {
         callback(response)
-    }).catch(function(error){
-        callback(MonitorResponse.connection.failed)
     })
 }
 
@@ -128,8 +120,6 @@ export function logToMonitor(listener, publisher, context, log, callback) {
         return response.json()
     }).then(function (response) {
         callback(response)
-    }).catch(function(error){
-        callback(MonitorResponse.connection.failed)
     })
 }
 
