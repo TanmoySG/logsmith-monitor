@@ -8,7 +8,6 @@ const SampleLog = {
     message: "The Test is Fine"
 }
 
-
 logg.WARN(SampleLog)
 logg.INFO(SampleLog)
 logg.SUCCESS(SampleLog)
@@ -25,11 +24,3 @@ logg.SUCCESS(SampleLog)
 logg.FAILURE(SampleLog)
 logg.CRITICAL(SampleLog)
 logg.LOG("TRAILING", SampleLog)
-
-
-const logg1 = new Logsmith({
-    "logFormat" : "statement"
-})
-
-
-logg1.CRITICAL("test")
