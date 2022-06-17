@@ -6,9 +6,7 @@ const compiledLoggingStatementHeader = compile(loggingStatementHeader)
 
 export function consoleLogger(publisher, context, log) {
     console.log(
-        chalk.blueBright(
-            compiledLoggingStatementHeader(publisher, context)
-        ),
+        chalk.blueBright(compiledLoggingStatementHeader(publisher, context)),
         JSON.stringify(log)
     )
 }
