@@ -1,69 +1,75 @@
+// import { PROTOCOLS } from "../logsmith/lib/specs.js";
 import Logsmith from "../logsmith/logsmith.js";
-import express from "express";
 
-const app = express();
-const PORT = process.env.PORT || 8096;
+const SampleLog = {
+    status: "running",
+    component: "logger",
+    message: "The Test is Fine"
+}
 
 const logg = new Logsmith({})
 logg.fetchConfigFromFile("/workspaces/logsmith-monitor/libraries/js/examples/configs/jsonConfig.json", function (err) { console.log(err) })
-logg.initializeMonitor((err) => { console.log(err) })
+logg.monitorInit(function (err) { console.log(err) })
 
-app.use(express.json());
+// console.log(logg)
 
-app.get("/warn", function (request, response) {
-    logg.WARN({ "trial": "W" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "warn"
-    })
-})
+logg.WARN({ "trial": "W" })
+logg.INFO({ "trial": "I" })
+logg.SUCCESS({ "trial": "S" })
+logg.FAILURE({ "tiral": "F" })
+logg.CRITICAL({ "trial": "C" })
+logg.LOG("TRAILING", { "trial": "T" })
 
-app.get("/info", function (request, response) {
-    logg.INFO({ "trial": "I" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "info"
-    })
-})
+// console.log()
 
-app.get("/critical", function (request, response) {
-    logg.CRITICAL({ "trial": "C" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "critical"
-    })
-})
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
 
-app.get("/success", function (request, response) {
-    logg.SUCCESS({ "trial": "S" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "success"
-    })
-})
 
-app.get("/failure", function (request, response) {
-    logg.FAILURE({ "trial": "F" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "failure"
-    })
-})
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
+// logg.WARN(SampleLog)
+// logg.INFO(SampleLog)
+// logg.SUCCESS(SampleLog)
+// logg.FAILURE(SampleLog)
+// logg.CRITICAL(SampleLog)
+// logg.LOG("TRAILING", SampleLog)
 
-app.get("/log", function (request, response) {
-    logg.LOG("TRAILING...", { "trial": "L" })
-    response.send({
-        message: "Welcome to Logsmith Example!",
-        version: "logsmith-monitor v0.1.0-alpha - Example",
-        level: "log"
-    })
-})
+// const logg1 = new Logsmith({
+//     "logFormat": "statement"
+// })
 
-app.listen(PORT, function () {
-    console.log("Running on http://localhost:" + PORT)
-})
+
+// logg1.CRITICAL("test")
