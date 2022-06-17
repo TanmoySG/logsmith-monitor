@@ -14,5 +14,3 @@ logg.fetchConfigFromFile("./libraries/js/examples/configs/jsonConfig.json")
 logg.FAILURE({ name: "tanmoy" })
 
 logg.CRITICAL({ name: "tanmoy" })
-
-logg.LOG("tRiaLalge", { name: "Tanmoy" })
