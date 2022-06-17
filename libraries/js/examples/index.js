@@ -18,7 +18,7 @@ logg.LOG("TRAILING", SampleLog)
 
 console.log()
 
-logg.fetchConfigFromFile("./examples/configs/jsonConfig.json")
+logg.fetchConfigFromFile("./libraries/js/examples/configs/jsonConfig.json")
 logg.WARN(SampleLog)
 logg.INFO(SampleLog)
 logg.SUCCESS(SampleLog)
