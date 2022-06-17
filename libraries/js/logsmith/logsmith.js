@@ -6,12 +6,12 @@ import { readConfigFile } from './lib/fetchConfigs.js';
 import { JSONLogDriver } from './lib/drivers.js';
 import { consoleLogJSON, prepareJSONLog } from './lib/logUtility.js';
 
-const defaultLogPrintPattern = "[{level}] {body}"
-
 const LogFormats = {
     JSON: "json",
     STATEMENT: "statement"
 }
+
+const defaultLogPrintPattern = "[{level}] {body}"
 
 const ChalkLog = {
     WARN: chalk.yellowBright,
@@ -55,45 +55,28 @@ export default class Logsmith {
         }
     }
 
-    INFO(log) {
-        if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.INFO, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.INFO, ChalkLog.INFO, JSONLog)
-            })
-        }
-    }
-
     WARN(log) {
         if (this.logFormat == LogFormats.JSON) {
             prepareJSONLog(LogLevels.WARN, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.WARN, ChalkLog.WARN, JSONLog)
+                consoleLogJSON(ChalkLog.WARN, JSONLog)
             })
         }
     }
 
+    INFO(log) {
+
+    }
 
     CRITICAL(log) {
-        if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.CRITICAL, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.CRITICAL, ChalkLog.CRITICAL, JSONLog)
-            })
-        }
+
     }
 
     SUCCESS(log) {
-        if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.SUCCESS, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.SUCCESS, ChalkLog.SUCCESS, JSONLog)
-            })
-        }
+
     }
 
     FAILURE(log) {
-        if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.FAILURE, log, this.env, function (JSONLog) {
-                consoleLogJSON(LogLevels.FAILURE, ChalkLog.FAILURE, JSONLog)
-            })
-        }
+
     }
 
 }
