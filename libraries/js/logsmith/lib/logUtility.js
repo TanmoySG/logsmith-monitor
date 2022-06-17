@@ -1,21 +1,19 @@
-import chalk from 'chalk';
 import format from 'string-template';
 
-
-export function prepareJSONLog(logLevel, log, env, callback) {
+export function prepareJSONLog(logLevel, log, env) {
     const JSONLog = {
         timestamp: Date.now(),
         logLevel: logLevel,
         env: env,
         ...log
     }
-    callback(JSONLog)
+    return JSONLog
 }
 
 export function consoleLogJSON(chalkMode, JSONLog){
     console.log(
         chalkMode(`[${JSONLog.logLevel}]`),
-        JSON.stringify(JSONLog)
+        JSONLog
     )
 }
 

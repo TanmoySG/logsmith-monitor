@@ -4,7 +4,7 @@ import compile from 'string-template/compile.js';
 import * as path from 'path'
 import { readConfigFile } from './lib/fetchConfigs.js';
 import { JSONLogDriver } from './lib/drivers.js';
-import { consoleLogJSON, prepareJSONLog } from './lib/logUtility.js';
+import { consoleLogJSON } from './lib/logUtility.js';
 
 const LogFormats = {
     JSON: "json",
@@ -14,7 +14,7 @@ const LogFormats = {
 const defaultLogPrintPattern = "[{level}] {body}"
 
 const ChalkLog = {
-    WARN: chalk.yellowBright,
+    WARN: chalk.yellow,
     INFO: chalk.blue,
     CRITICAL: chalk.bgRed.gray,
     SUCCESS: chalk.green,
@@ -57,7 +57,7 @@ export default class Logsmith {
 
     WARN(log) {
         if (this.logFormat == LogFormats.JSON) {
-            prepareJSONLog(LogLevels.WARN, log, this.env, function (JSONLog) {
+            JSONLogDriver(log, LogLevels.WARN, this.env, function (JSONLog) {
                 consoleLogJSON(ChalkLog.WARN, JSONLog)
             })
         }
@@ -79,4 +79,16 @@ export default class Logsmith {
 
     }
 
+
+
+    // log(logbody) {
+    //     const logStatement = format(
+    //         this.logPrintPattern, 
+    //         {  
+    //             level: logbody.level, 
+    //             body: JSON.stringify(logbody.body, null)
+    //         }
+    //     )
+    //     return logLevels.INFO(logStatement);
+    // }
 }
