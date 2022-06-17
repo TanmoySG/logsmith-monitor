@@ -1,6 +1,6 @@
 {
   "name": "logsmithjs",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "Logging Library for NodeJS Projects with logsmith-monitor support.",
   "main": "logsmith.js",
   "type": "module",
