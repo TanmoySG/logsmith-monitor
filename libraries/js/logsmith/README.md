@@ -175,54 +175,22 @@ The `publisher` and `context` fields are used to define their respective configs
 For Publisher Configurations, the field that needs to be put is the publisher name. Eg:
 ```json
 "publisher": {
-    "publisher": "<publsiher-name>"
+    "publisher": <publsiher-name>
 }
 ```
 
 For Context Configurations, the field that needs to be put is the context name. Eg:
 ```json
 "context": {
-    "context": "<context-name>"
+    "context": <context-name>
 }
 ```
 
-There are other customizable fields for either. These fields are same as that defined for running Monitor. 
+There are other customizable fields for either. These fields are same as that defined for running Monitor.
 
 - [Read More about the configurations for Publisher](../../../documentation/README.md#register-a-publisher)
 - [Read More about the configurations for Contexts](../../../documentation/README.md#register-a-context)
 
-When these values are not mentioned/provided by the user, logsmith creates/generates those for you. So the Configuration Above becomes
+### The `initializeMonitor()` method
 
-```json
-monitorConfigs: {
-    "monitorPort": "8080",
-    "monitorURI": "localhost",
-    "monitorProtocol": "http",
-    "monitorListener": "http://localhost:8080",
-    "publisher": {
-        "publisher": "testapp001",
-        "origin": "app.testapp001.com",
-        "description": "Logs Published by testapp001"
-    },
-    "context": {
-        "context": "testcontext001",
-        "origin": "app.testapp001.com/testcontext001",
-        "description": "Logs Published by testapp001",
-        "kind": []
-    }
-}
-```
-
-### Initializing Monitor Connection
-
-Logsmith provides a method - `initializeMonitor()`, to initialize a connection with the monitor. The method checks if the Publisher and Context Namespaces are available in monitor and creates them if not. 
-
-```js
-const log = new Logsmith({})
-log.fetchConfigFromFile("/path/to/file.json")
-
-// initialize Monitor
-log.initializeMonitor()
-```
-
-### 
+Logsmith
