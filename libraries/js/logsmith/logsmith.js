@@ -4,7 +4,7 @@ import { loggerRunner } from './lib/drivers.js';
 import { readConfigFile } from './lib/fetchConfigs.js';
 import { LogFormats, LogLevels } from './lib/specs.js';
 
-const defaultLogStatementPattern = "[{timestamp}] {env}"
+const defaultLogStatementPattern = "[{level}] {body}"
 
 export default class Logsmith {
     constructor(options, statement) {
