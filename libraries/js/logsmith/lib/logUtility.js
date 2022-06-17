@@ -1,44 +1,30 @@
 import chalk from 'chalk';
 import format from 'string-template';
 
-function formatLogLevel(loglevel) {
+function formatLogLevel(loglevel){
     return loglevel.padEnd(8)
 }
 
 
 export function prepareJSONLog(logLevel, log, env, callback) {
-    const LogJSON = {
+    const JSONLog = {
         timestamp: Date.now(),
         logLevel: logLevel,
         env: env,
         ...log
     }
-    callback(LogJSON)
+    callback(JSONLog)
 }
 
-export function consoleLogJSON(loglevel, chalkMode, LogJSON) {
+export function consoleLogJSON(loglevel, chalkMode, JSONLog){
     loglevel = formatLogLevel(loglevel)
     console.log(
         chalkMode(`[${loglevel}]`),
-        JSON.stringify(LogJSON)
+        JSON.stringify(JSONLog)
     )
 }
 
-export function prepareStatementLog(logLevel, log, env, logStatememtPattern, callback) {
-    log = {
-        timestamp: Date.now(),
-        logLevel: logLevel,
-        env: env,
-        ...log
-    }
-    const LogStatement = logStatememtPattern(log)
-    callback(LogStatement)
-}
+export function prepareStatementLog(logLevel, log, logFormat) {
 
-export function consoleLogStatement(loglevel, chalkMode, LogStatement) {
-    loglevel = formatLogLevel(loglevel)
-    console.log(
-        chalkMode(`[${loglevel}]`),
-        LogStatement
-    )
+
 }
