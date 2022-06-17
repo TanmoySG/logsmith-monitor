@@ -19,7 +19,7 @@ export function loggerRunner(logLevel, env, compiledLogPattern, logFormat, conso
     const chalkLog = ChalkLog[logLevel] || ChalkLog.CUSTOM
     if (logFormat == LogFormats.JSON) {
         prepareJSONLog(logLevel, log, env, function (LogJSON) {
-            if (monitorLogging) {
+            if (monitorLogging && monitorLiveness) {
                 monitorLogRunner(LISTENER, monitorConfig, LogJSON, function (response) { return response })
             }
             writeLogToFile(LogJSON, logFilePath, consoleOnly)
@@ -27,7 +27,7 @@ export function loggerRunner(logLevel, env, compiledLogPattern, logFormat, conso
         })
     } else if (logFormat == LogFormats.STATEMENT) {
         prepareStatementLog(logLevel, log, env, compiledLogPattern, function (LogStatement, LogJSON) {
-            if (monitorLogging) {
+            if (monitorLogging && monitorLiveness) {
                 monitorLogRunner(LISTENER, monitorConfig, LogJSON, function (response) { return response })
             }
             writeLogToFile(LogJSON, logFilePath, consoleOnly)
