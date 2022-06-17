@@ -48,16 +48,14 @@ export function registerNewLog(publisher, context, newLog, callback) {
                         if (err) throw err;
                         consoleLogger(publisher, context, newLogObject);
                         callback({
-                            status: "success",
-                            scope: "log.success",
-                            message: "Log Registered"
+                            "status": "success",
+                            "message": "Log Registered"
                         })
                     })
                 } else {
                     callback({
-                        status: "failed",
-                        scope: "log.error",
-                        message: "Schema Mismatch"
+                        "status": "failed",
+                        "message": "Schema Mismatch"
                     })
                 }
             } else {
@@ -67,25 +65,12 @@ export function registerNewLog(publisher, context, newLog, callback) {
                     if (err) throw err;
                     consoleLogger(publisher, context, newLogObject);
                     callback({
-                        status: "success",
-                        scope: "log.success",
-                        message: "Log Registered"
+                        "status": "success",
+                        "message": "Log Registered"
                     })
                 })
             }
-        } else {
-            callback({
-                status: "failed",
-                scope: "context.missing",
-                message: "Context doesn't exist."
-            })
         }
-    } else {
-        callback({
-            status: "failed",
-            scope: "publisher.missing",
-            message: "Publisher does't Exist."
-        });
     }
 }
 

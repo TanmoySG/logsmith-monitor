@@ -2,7 +2,7 @@ import * as filesystem from 'fs';
 import { nanoid } from 'nanoid';
 import { JSONWriterGeneric } from "../utilities/jsonWriter.js";
 import { validateExistingPublisher } from '../publishers/validate.js';
-import { checkLogHasValidSchema, validateExistingContext, validateNewContext } from './validate.js';
+import { checkLogHasValidSchema, checkMetricHasValidSchema, validateNewContext } from './validate.js';
 import { getPublishersRegistry } from '../publishers/publisher.js';
 import { createLogRegistry } from '../logsHandler/logs.js';
 import { StandardizeIdentifier } from '../utilities/identifierUtility.js';
@@ -38,18 +38,11 @@ export function getContextRegistry(publisher) {
 export function addToContextsRegistry(publisher, newContext, callback) {
     publisher = StandardizeIdentifier(publisher);
     const PublisherRegistry = getPublishersRegistry();
+    const ContextRegistryFilePath = `logfiles/${publisher}/ContextRegistry.json`;
+    const ContextRegistry = getContextRegistry(publisher);
     if (validateExistingPublisher(publisher, PublisherRegistry)) {
         const publisherProfile = PublisherRegistry[publisher]
         const publisherNamespacePath = publisherProfile["path"];
-        const ContextRegistryFilePath = `logfiles/${publisher}/ContextRegistry.json`;
-        const ContextRegistry = getContextRegistry(publisher);
-        if (validateExistingContext(newContext["context"], ContextRegistry)) {
-            callback({
-                status: "failed",
-                scope: "context.exists",
-                message: "Context Exists"
-            })
-        }
         if (validateNewContext(newContext, ContextRegistry)) {
             const StandardizedContextIdentifier = StandardizeIdentifier(newContext["context"]);
             const contextNamespacePath = publisherNamespacePath + "/" + StandardizedContextIdentifier;
@@ -89,23 +82,26 @@ export function addToContextsRegistry(publisher, newContext, callback) {
                     })
                 }
 
+                const metricRegistryPath = `${contextNamespacePath}/MetricsRegistry.json`
+                if ("metrics" in Object.keys(newContext["kind"])) {
+                    console.log("Unsupported.")
+                }
+
                 callback({
                     status: "success",
                     message: "Context Added.",
-                    context: StandardizedContextIdentifier
+                    context : StandardizedContextIdentifier
                 })
             })
         } else {
             callback({
                 status: "failed",
-                scope: "context.invalid",
                 message: "Error in New Context."
             });
         }
     } else {
         callback({
             status: "failed",
-            scope: "publisher.missing",
             message: "Publisher not in Registry."
         })
     }
