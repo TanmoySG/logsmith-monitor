@@ -25,10 +25,8 @@
   },
   "homepage": "https://github.com/TanmoySG/logsmith-monitor#readme",
   "dependencies": {
-    "chalk": "^5.0.1",
     "express": "^4.17.3",
-    "nanoid": "^3.3.3",
-    "string-template": "^1.0.0"
+    "nanoid": "^3.3.3"
   },
   "devDependencies": {
     "chai": "^4.3.6",

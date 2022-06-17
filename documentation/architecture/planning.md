@@ -68,7 +68,7 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - Use Cases :
         - Maybe to define the log component
         - Testing Environment Specs, etc.
-- **Console Logging inside Monitor Log** `[inWork - v0.1.0]`
+- **Console Logging inside Monitor Log**
     - When new logs are published they should be logged onto the server console too
     - Currently the Console logs only "Running at localhost:8080"
     - It Should also print the incoming logs
