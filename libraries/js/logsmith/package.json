@@ -1,5 +1,5 @@
 {
-  "name": "logsmith",
+  "name": "logsmith.js",
   "version": "0.0.1",
   "description": "Logging Library for NodeJS Projects with logsmith-monitor support.",
   "main": "logsmith.js",
