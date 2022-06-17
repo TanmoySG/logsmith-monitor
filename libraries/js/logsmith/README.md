@@ -194,7 +194,7 @@ There are other customizable fields for either. These fields are same as that de
 When these values are not mentioned/provided by the user, logsmith creates/generates those for you. So the Configuration Above becomes
 
 ```json
-"monitorConfigs": {
+monitorConfigs: {
     "monitorPort": "8080",
     "monitorURI": "localhost",
     "monitorProtocol": "http",
