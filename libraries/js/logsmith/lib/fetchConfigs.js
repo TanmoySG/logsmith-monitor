@@ -1,6 +1,6 @@
 import * as filesystem from 'fs';
 
-export function readJSONConfig(filepath) {
+export function readJSONConfig(filepath, callback) {
     const config = JSON.parse(
         filesystem.readFileSync(filepath)
     );
