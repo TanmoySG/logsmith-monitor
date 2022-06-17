@@ -41,7 +41,7 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - Use Case
         - In Cases, when the log-publisher app/service can't connect to the logsmith servers, it stores the log on the app's end. These logs may not be synced by itself to the server.
         - Also, if on the publisher end, log is not registered, due to any issue, log is registered only on the server side.
-- **[Helper Library ~ NodeJS] JSON Logs, Statement Logs and Log Statement Patterns** `[inWork - v0.1.0]`
+- [Helper Library ~ NodeJS] **JSON Logs, Statement Logs and Log Statement Patterns** `[inWork - v0.1.0]`
     - JSON logs are used to produce a log. A JSON object with the Key-Value pair of LogHeader(?) and LogValue is passed to the logger Object.
         - This JSON is used in both JSON and Statement logging. 
         - The Log JSON object is logged/console.log'ed by the logger along with the log level as `[level] {log}`
@@ -58,10 +58,10 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
         - In that case the log object should "convert" this statement into a valid JSON
         - The Statement is assiged to a "message" key. Eg.
             - Eg: if "this statement" is passed into the log.INFO() method 
-            - it should be converted into {message : "this statement"}
+            - it should be converted into {message : "this message"}
         - Also The default pattern should be able to use this feature, so that when a user puts a statement-log the message key is present in the default print patter
             - Eg. defaultPattern = "{timestamp} ~ {message}
-- **[Helper Library ~ NodeJS] `LogConstants` are special log field that the user/dev defines in the log configuration.**
+- [Helper Library ~ NodeJS] **`LogConstants` are special log field that the user/dev defines in the log configuration.**
     - These are added to the log produced, by default.
     - Like timestamp, loglevel and env, LogConstants can be used to put constant fields that might be helpful for a user to analyze the logs or other operations, without explicitly putting them in the log.Objects (log.INFO(), .WARN())
     - The user can just put the logging statement/json based on the requirement and these constant fields are put in by the logsmith system.
