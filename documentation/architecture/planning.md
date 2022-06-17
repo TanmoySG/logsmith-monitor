@@ -98,6 +98,22 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - The liveness is set by the reachability check
     - Based on the. liveness, the monitor requests are executed
         - If monitor is live, only then are requests executed
+- **Persistent Volume/Storage**
+    - Persistent Docker Volume to store files even after monitor stops
+        - May create a Volume with an Unique UUID for each instance 
+        - Built into the CLI - Create Volume then start container with mounted volume
+    - Persitent Storage across local (non-docker) deployments
+        - Create storage instance in the Monitor Workspace (See below) for each instance of the program
+        - Load the path/provide the path (maybe through Env Var) to the instance, it should this path to logfiles
+        - Built into CLI with same workflow as Persitent Docker Volume
+        - May use the UUID based approach
+- **Monitor Workspace**
+    - Currently the Monitor uses only one path to store the files that too in the project folder
+    - Dependant on the project directory 
+    - A "Workspace" would detach the program from the storage by creating a monitor-workspace directory(?) in the root(?)
+    - Simillar to how programs create a directory in the User directory on the respective OS
+    - Workspace shall also allow the storage of Monitor Configurations
+    - Also, multi-instance deployment can be made possible by creating separate directories in the Workspace with UUID
 
 #### Features Planned (yet)
 
