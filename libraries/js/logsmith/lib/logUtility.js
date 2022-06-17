@@ -32,7 +32,7 @@ export function prepareStatementLog(logLevel, log, env, logStatememtPattern, cal
         ...log
     }
     const LogStatement = logStatememtPattern(log)
-    callback(LogStatement, log)
+    callback(LogStatement)
 }
 
 export function consoleLogStatement(loglevel, chalkMode, LogStatement) {
