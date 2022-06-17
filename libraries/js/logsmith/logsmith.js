@@ -2,8 +2,9 @@ import * as path from 'path';
 import compile from 'string-template/compile.js';
 import { loggerRunner } from './lib/drivers.js';
 import { readConfigFile } from './lib/fetchConfigs.js';
-import { LogFormats, LogLevels, DefaultLogStatementPattern } from './lib/specs.js';
+import { LogFormats, LogLevels } from './lib/specs.js';
 
+const defaultLogStatementPattern = "[{timestamp}] {env}"
 
 export default class Logsmith {
     constructor(options, statement) {
@@ -11,7 +12,7 @@ export default class Logsmith {
         this.logfile = options.logfile || null
         this.consoleOnly = options.console_only || true
         this.logFormat = options.logFormat || LogFormats.JSON
-        this.logStatementPattern = statement || DefaultLogStatementPattern
+        this.logStatementPattern = statement || defaultLogStatementPattern
         this.compiledLogPattern = compile(this.logStatementPattern)
     }
 
@@ -22,7 +23,7 @@ export default class Logsmith {
             this.logfile = configs.logfile || null
             this.consoleOnly = configs.consoleOnly
             this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
-            this.logStatementPattern = configs.logStatementPattern || DefaultLogStatementPattern
+            this.logStatementPattern = configs.logStatementPattern || defaultLogStatementPattern
             this.compiledLogPattern = compile(this.logStatementPattern)
         } else {
             return Error("File format error. Should be json or env.")
