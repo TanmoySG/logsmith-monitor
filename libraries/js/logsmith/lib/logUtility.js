@@ -7,6 +7,7 @@ export function prepareJSONLog(logLevel, log, env, callback) {
     const LogJSON = {
         timestamp: Date.now(),
         logLevel: logLevel,
+        env: env,
         ...log
     }
     callback(LogJSON)
@@ -24,6 +25,7 @@ export function prepareStatementLog(logLevel, log, env, logStatememtPattern, cal
     log = {
         timestamp: Date.now(),
         logLevel: logLevel,
+        env: env,
         ...log
     }
     const LogStatement = logStatememtPattern(log)
