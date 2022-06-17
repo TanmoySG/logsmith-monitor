@@ -1,18 +1,7 @@
 {
     "env": "test",
-    "logfile": "./examples/configs/log.log",
+    "logfile": "./examples//configs/log.log",
     "consoleOnly": false,
     "logStatementPattern": "[ {component} ~ {logLevel} ] : {message}",
-    "logFormat": "json",
-    "monitorLogging": true,
-    "monitor": {
-        "port": "8080",
-        "server": "localhost",
-        "publisher": {
-            "publisher": "testapp001"
-        },
-        "context": {
-            "context": "testcontext001"
-        }
-    }
+    "logFormat": "statement"
 }
