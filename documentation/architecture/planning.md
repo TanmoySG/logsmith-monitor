@@ -88,6 +88,7 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
 - Context Validation `target: v0.1.0-alpha` `in development`
 - Publisher Validation `target: v0.1.0-alpha` `in development`
 - Log Validation (schema) `target: v0.1.0-alpha` `in development`
+- Schema Descriptor, Field Type, and other schema enhancements `backlogged`
 - Post-Validation Actions for Publisher Registry `target: v0.1.0-alpha` `in development`
 - Post-Validation Actions for Context Registry `target: v0.1.0-alpha` `in development`
 - Post-Validation for LogRegistry `target: v0.1.0-alpha` `in development`
@@ -100,7 +101,6 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
 - CI/CD Pipelines `target: v0.1.0-alpha` `in development`
 - Strict Schema Usage `backlogged`
 - Realtime Log Fetching `backlogged`
-- Schema Descriptor, Field Type, and other schema enhancements `backlogged`
 - A Monitoring Dashboard (in Container Dashboard) `backlogged`
 - MetricRegistry Schema Validation and Definition `backlogged`
 - MetricRegistry Data Visualization in Dashboard `backlogged`
