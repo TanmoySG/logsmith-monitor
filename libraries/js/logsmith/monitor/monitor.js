@@ -5,74 +5,16 @@ import { MonitorResponse } from "../lib/specs.js"
 const Endpoints = {
     API: compile("{0}/"),
     Publisher: compile("{0}/publisher"),
-    checkPublisher: compile("{0}/{1}"),
     Context: compile("{0}/{1}/context"),
-    checkContext: compile("{0}/{1}/{2}"),
     Log: compile("{0}/{1}/{2}/logs")
 }
 
 function prepareRequestConfig(method, body) {
-    if (method == "POST") {
-        return {
-            method: method,
-            body: JSON.stringify(body),
-            headers: { 'Content-Type': 'application/json' }
-        }
-    } else if (method == "GET") {
-        return {
-            method: method
-        }
+    return {
+        method: method,
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' }
     }
-
-}
-
-export function initiateMonitor(listener, monitorConfig, callback) {
-    const publisher = monitorConfig.publisher
-    const context = monitorConfig.context
-    checkPublisher(listener, publisher.publisher, function (response) {
-        if (response.scope == MonitorResponse.publisher.exists) {
-            callback("exists")
-        } else {
-            callback("doesnt")
-            createNewPublisher(listener, publisher, function (response) {
-                if (response.scope == MonitorResponse.publisher.success) {
-                    checkContext(listener, publisher, context, function (response) {
-                        if (response.scope == MonitorResponse.publisher.exists) {
-                            callback("exists")
-                        } else {
-                            createNewContext(listener, publisher, context, function (response) {
-                                if (response.scope == MonitorResponse.context.success) {
-                                    callback(response)
-                                } else {
-                                    callback("failed")
-                                }
-                            })
-                        }
-                    })
-                } else {
-                    callback(response)
-                }
-            })
-        }
-    })
-}
-
-export function checkPublisher(listener, publisher, callback) {
-    const checkPublisherURI = Endpoints.checkPublisher(listener, publisher)
-    fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
-        return response.json()
-    }).then(function (response) {
-        callback(response)
-    })
-}
-
-export function checkContext(listener, publisher, context, callback) {
-    const checkPublisherURI = Endpoints.checkContext(listener, publisher, context)
-    fetch(checkPublisherURI, prepareRequestConfig("GET", {})).then(function (response) {
-        return response.json()
-    }).then(function (response) {
-        callback(response)
-    })
 }
 
 export function createNewPublisher(listener, publisher, callback) {
@@ -103,10 +45,33 @@ export function logToMonitor(listener, publisher, context, log, callback) {
     })
 }
 
-export function monitorLogRunner(listener, monitorConfig, log, callback) {
-    const publisher = monitorConfig.publisher
-    const context = monitorConfig.context
+export function monitorLogger(listener, publisher, context, log, callback) {
     logToMonitor(listener, publisher, context, log, function (response) {
-        callback(response)
+        if (response.scope == MonitorResponse.publisher.missing) {
+            createNewPublisher(listener, publisher, function (response) {
+                if (response.scope == MonitorResponse.publisher.success) {
+                    monitorLogger(listener, publisher, context, log, function (response) {
+                        callback(response)
+                    })
+                }
+                callback(response)
+            })
+        } else if (response.scope == MonitorResponse.context.missing) {
+            createNewContext(listener, publisher, context, function (response) {
+                if (response.scope == MonitorResponse.context.success) {
+                    monitorLogger(listener, publisher, context, log, function (response) {
+                        callback(response)
+                    })
+                }
+                callback(response)
+            })
+        } else {
+            if (response.scope == MonitorResponse.log.error) {
+                // Add Logic
+            } else if (response.scope == MonitorResponse.log.success) {
+                callback(response)
+            }
+        }
     })
 }
+

@@ -31,7 +31,7 @@ function formatContextConfig(publisher, monitorConfig) {
 }
 
 export function getMonitorConfigs(config) {
-    if(config.monitor === undefined){
+    if(Object.keys(config).length === 0){
         return {}
     }
     const monitorConfigs = {}

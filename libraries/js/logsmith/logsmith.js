@@ -2,49 +2,35 @@ import * as path from 'path';
 import compile from 'string-template/compile.js';
 import { loggerRunner } from './lib/drivers.js';
 import { readConfigFile } from './lib/fetchConfigs.js';
-import { initiateMonitor } from './monitor/monitor.js';
 import { getMonitorConfigs } from './monitor/monitorConfigs.js';
 import { LogFormats, LogLevels, DefaultLogStatementPattern } from './lib/specs.js';
 
+
 export default class Logsmith {
-    constructor(options) {
+    constructor(options, statement) {
         this.env = options.env || "default"
         this.logfile = options.logfile || null
         this.consoleOnly = options.console_only || true
         this.logFormat = options.logFormat || LogFormats.JSON
-        this.logStatementPattern = options.logStatementPattern || DefaultLogStatementPattern
+        this.logStatementPattern = statement || DefaultLogStatementPattern
         this.monitorLogging = options.monitorLogging || false
         this.monitorConfigs = getMonitorConfigs(options)
         this.compiledLogPattern = compile(this.logStatementPattern)
     }
 
-    fetchConfigFromFile(filepath, callback) {
+    fetchConfigFromFile(filepath) {
         if (path.extname(filepath) == ".json") {
             const configs = readConfigFile("json", filepath)
             this.env = configs.env || "default"
             this.logfile = configs.logfile || null
-            this.consoleOnly = configs.consoleOnly
+            this.consoleOnly = configs.consoleOnly 
             this.logFormat = Object.values(LogFormats).includes(configs.logFormat) ? configs.logFormat : LogFormats.JSON
             this.logStatementPattern = configs.logStatementPattern || DefaultLogStatementPattern
             this.monitorLogging = configs.monitorLogging || false
             this.monitorConfigs = getMonitorConfigs(configs)
             this.compiledLogPattern = compile(this.logStatementPattern)
-            callback("Config Loaded!")
         } else {
-            callback(Error("File format error. Should be json or env."))
-        }
-    }
-
-    monitorInit(callback) {
-        if (this.monitorLogging == true && this.monitorConfigs != undefined) {
-            initiateMonitor(this.monitorConfigs.monitorListener, this.monitorConfigs, function (response) {
-                callback({ "monitorInit": response })
-            })
-        } else {
-            setTimeout(()=>{
-                console.log("inside timeout");
-            },3000);
-            callback({ "monitorInit": false })
+            return Error("File format error. Should be json or env.")
         }
     }
 
@@ -57,8 +43,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }
@@ -71,8 +55,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }
@@ -86,8 +68,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }
@@ -100,8 +80,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }
@@ -114,8 +92,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }
@@ -129,8 +105,6 @@ export default class Logsmith {
             this.logFormat,
             this.consoleOnly,
             this.logfile,
-            this.monitorLogging,
-            this.monitorConfigs,
             log
         )
     }

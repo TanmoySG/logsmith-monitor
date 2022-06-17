@@ -485,32 +485,3 @@ function loadInits(monitorLogging, monitorConfigs) {
     }
 }
 ```
-
-```
-if (response.scope == MonitorResponse.publisher.missing) {
-            createNewPublisher(listener, publisher, function (response) {
-                if (response.scope == MonitorResponse.publisher.success) {
-                    monitorLogRunner(listener, monitorConfig, log, function (response) {
-                        callback(response)
-                    })
-                }
-                callback(response)
-            })
-        } else if (response.scope == MonitorResponse.context.missing) {
-            createNewContext(listener, publisher, context, function (response) {
-                if (response.scope == MonitorResponse.context.success) {
-                    monitorLogRunner(listener, monitorConfig, log, function (response) {
-                        console.log(response)
-                        callback(response)
-                    })
-                }
-                callback(response)
-            })
-        } else {
-            if (response.scope == MonitorResponse.log.error) {
-                callback(response)
-            } else if (response.scope == MonitorResponse.log.success) {
-                callback(response)
-            }
-        }
-```
