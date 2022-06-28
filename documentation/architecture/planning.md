@@ -114,6 +114,12 @@ Adding only new feature descriptions here. Existing Developed and Planned Featur
     - Simillar to how programs create a directory in the User directory on the respective OS
     - Workspace shall also allow the storage of Monitor Configurations
     - Also, multi-instance deployment can be made possible by creating separate directories in the Workspace with UUID
+- **Chained Special Functions**
+    - Say the config says `consoleOnly : true` so that none of the logs are published to monitor or in logfiles locally.
+    - But the user needs to publish the logs to monitor and file only for a particular action/function.
+    - In that case, chained .logToFile() and .logToMonitor() functions that does on-demand logging to file and monitor, respectively, will come in handy. 
+    - Whenever required the log method can be chanined with these functions that take the log as parameters and publish them as reqd.
+    - Eg. `log.CRITICAL(log).logToFile()` or `log.CRITICAL(log).logToMonitor()`
 
 #### Features Planned (yet)
 
