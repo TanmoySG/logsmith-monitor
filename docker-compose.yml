@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  logsmithmonitor:
-    image: logsmithmonitor
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+  monitor:
+    image: ghcr.io/tanmoysg/logsmith-monitor:latest
     ports:
       - 8080:8080
+    volumes:
+      - monitorvolume:/usr/src/app/logfiles
+
+volumes:
+  monitorvolume:
