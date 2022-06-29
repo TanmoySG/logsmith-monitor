@@ -36,11 +36,21 @@ Logsmith-Monitor Consists of three main Components - PublisherRegistry, ContextR
 
 Refer to the [Architectural Documentation](./documentation/architecture/README.md) for detailed information of logsmith-monitor's architecture.
 
-Please Note, Logsmith-monitor is still **Work in Progress** and hence may be rough on the edges. Upcoming changes/features that will be added soon (targeted for `v0.1.0-alpha` release) -
+Please Note, Logsmith-monitor is still **Work in Progress** and hence may be rough on the edges.
 
-- Docker Container Deployment. [Tracking Issues](https://github.com/TanmoySG/logsmith-monitor/issues?q=is%3Aissue+is%3Aopen+label%3Adeployment)
-- logsmith Helper Libraries for JS and Python for easy usage in programs. [Tracking Milestone](https://github.com/TanmoySG/logsmith-monitor/milestone/2)
+## Helper Libraries
 
+To ease the usage of monitor in programs, we've also created and published helper logging libraries that can also interact with monitor.
+
+[Python Helper Library - **Logsmith v0.1.0**]
+- Documentation - https://pypi.org/project/logsmith/
+- PyPi Package - https://pypi.org/project/logsmith/
+
+[NodeJS Helper Library - **LogsmithJS v0.0.4**]
+- Documentation - https://github.com/TanmoySG/logsmith-monitor/tree/main/libraries/js/logsmith#readme
+- NPM Package - https://www.npmjs.com/package/logsmithjs
+
+Helper libraries for more Languages will be developed soon!
 
 ## Testing and Demo
 
