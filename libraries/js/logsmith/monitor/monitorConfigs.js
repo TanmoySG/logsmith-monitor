@@ -38,7 +38,7 @@ export function getMonitorConfigs(config) {
     monitorConfigs.monitorPort = config.monitor.port || process.env.MONITOR_PORT
     monitorConfigs.monitorURI = config.monitor.server || process.env.MONITOR_URI
     monitorConfigs.monitorProtocol = config.monitor.protocol || process.env.MONITOR_PROTOCOL || "http"
-    monitorConfigs.monitorListener = URITemplate(monitorConfigs.monitorProtocol, monitorConfigs.monitorURI, monitorConfigs.monitorPort) || process.env.LISTENER
+    monitorConfigs.monitorListener = process.env.LISTENER || URITemplate(monitorConfigs.monitorProtocol, monitorConfigs.monitorURI, monitorConfigs.monitorPort) 
     monitorConfigs.publisher = formatPublisherConfig(config.monitor.publisher)
     monitorConfigs.context = formatContextConfig(monitorConfigs.publisher.publisher, config.monitor.context)
     return monitorConfigs

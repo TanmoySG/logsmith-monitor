@@ -13,6 +13,6 @@
   "dependencies": {
     "express": "^4.18.1",
     "logsmith": "file:../logsmith",
-    "logsmithjs": "^0.0.1"
+    "logsmithjs": "^0.0.4"
   }
 }
