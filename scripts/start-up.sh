@@ -1,6 +1,5 @@
 WORKDIR=$1
 LOGFILESDIR=$WORKDIR/logfiles
 
-rm -rf $LOGFILESDIR/*
-touch $LOGFILESDIR/PublisherRegistry.json
+mkdir $LOGFILESDIR
 echo {} > $LOGFILESDIR/PublisherRegistry.json
